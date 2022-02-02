@@ -125,5 +125,13 @@ source "$HOME/.cargo/env"
 ### Neofetch ###
 neofetch
 
-### zoxide
-eval "$(zoxide init zsh)"
+### z.lua & czmod module
+export _ZL_DATA='$ZSH_PLUGINS/z.lua/'
+export _ZL_ADD_ONCE=1
+export _ZL_CD='exa --long -all --header --git --icons --color=always --color-scale'
+export _ZL_ECHO=1
+export _ZL_MATCH_MODE=1
+export _ZL_USE_LFS=1
+export _ZL_HYPHEN=1
+eval "$(lua /path/to/z.lua --init zsh enhanced once echo fzf)"
+source "$ZSH_PLUGINS/z.lua/czmod/czmod.zsh"
