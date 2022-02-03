@@ -1,5 +1,16 @@
 #!/usr/bin/env zsh
 
+### ZSH SOURCES ###
+typeset -ga sources
+for file in "${ZSH}/bindkeys.zsh" \
+            "${ZSH}/functions.zsh" \
+            "${ZSH}/aliases.zsh" \
+            "${ZSH}/completion.zsh" \
+            "${ZDOTDIR}/plugins/find-the-command/ftc.zsh" 
+do
+    [ -s "${file}" ] && source "${file}"
+done
+
 # Clone zcomet if necessary
 if [[ ! -f ${ZDOTDIR:-${HOME}}/.zcomet/bin/zcomet.zsh ]]; then
   git clone https://github.com/agkozak/zcomet.git ${ZDOTDIR:-${HOME}}/.zcomet/bin
@@ -22,12 +33,7 @@ case "$OSTYPE" in
   *) echo 'WARN: unsupported system -- some cli programs might not work' ;;
 esac
 
-### ZSH SOURCES ###
-typeset -ga sources
-sources+="$ZSH/bindkeys.zsh"
-sources+="$ZSH/functions.zsh"
-sources+="$ZSH/aliases.zsh"
-sources+="$ZSH/completion.zsh"
+# colors
 autoload -U colors; colors
 
 # OMZL Shorthand Syntax
