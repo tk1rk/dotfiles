@@ -99,6 +99,7 @@ zcomet load mafredri/zsh-async
 zcomet load Alaxof/fzf-tab
 zcomet load sharkdp/vivid
 zcomet load z-shell/zredis
+zcomet load hangyuheng/zsh-interactive-cd
 zcomet load zdharma-continuum/zredis
 zcomet load zdharma-continuum/zui
 zcomet load zdharma-continuum/zsh-diff-so-fancy
@@ -140,6 +141,8 @@ export RUSTFLAGS="-C target-cpu = native" cargo build --release --features
 
 ### Neofetch ###
 neofetch
+
+
 
 # LS_COLORS (vivid)
 export LS_COLORS="$(vivid generate snazzy)"
