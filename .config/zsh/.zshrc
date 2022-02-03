@@ -19,6 +19,9 @@ fi
 # Source zcomet.zsh
 source ${ZDOTDIR:-${HOME}}/.zcomet/bin/zcomet.zsh
 
+# bash completion
+autoload -U +X bashcompinit && bashcompinit
+
 # Load a prompt
 zcomet load romkatv/powerlevel10k
 
