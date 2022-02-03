@@ -1,12 +1,13 @@
 #!/usr/bin/env zsh I'm off
 
-
 ### ZSH SOURCES ###
 typeset -ga sources
 for file in "${ZDOTDIR}/bindkeys.zsh" \
             "${ZDOTDIR}/functions.zsh" \
             "${ZDOTDIR}/aliases.zsh" \
             "${ZDOTDIR}/completion.zsh" \
+            "${ZDOTDIR}/setopt.zsh \
+            "${ZDOTDIR}/less.zsh \
             "${ZDOTDIR}/plugins/find-the-command/ftc.zsh" 
 do
     [ -s "${file}" ] && source "${file}"
