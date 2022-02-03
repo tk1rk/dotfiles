@@ -2,10 +2,10 @@
 
 ### ZSH SOURCES ###
 typeset -ga sources
-for file in "${ZSH}/bindkeys.zsh" \
-            "${ZSH}/functions.zsh" \
-            "${ZSH}/aliases.zsh" \
-            "${ZSH}/completion.zsh" \
+for file in "${ZDOTDIR}/bindkeys.zsh" \
+            "${ZDOTDIR}/functions.zsh" \
+            "${ZDOTDIR}/aliases.zsh" \
+            "${ZDOTDIR}/completion.zsh" \
             "${ZDOTDIR}/plugins/find-the-command/ftc.zsh" 
 do
     [ -s "${file}" ] && source "${file}"
@@ -128,7 +128,6 @@ if whence dircolors >/dev/null; then
   eval "$(dircolors -b)"
   zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
   export CLICOLOR=1
-  zstyle ':completion:*' list-colors ''
 fi
 
 ### Cargo ###
