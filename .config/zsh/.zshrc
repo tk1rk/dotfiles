@@ -85,6 +85,7 @@ zcomet load birdhackor/zsh-exa-ls-plugin
 zcomet load hlissner/zsh-autopair
 zcomet load mafredri/zsh-async
 zcomet load Alaxof/fzf-tab
+zcomet load sharkdp/vivid
 zcomet load zdharma-continuum/zui
 zcomet load zdharma-continuum/zsh-diff-so-fancy
 zcomet load zdharma-continuum/history-search-multi-word
@@ -124,6 +125,9 @@ source "$HOME/.cargo/env"
 
 ### Neofetch ###
 neofetch
+
+# LS_COLORS (vivid)
+export LS_COLORS="$(vivid generate snazzy)"
 
 ### z.lua & czmod module
 export _ZL_DATA='$ZSH_PLUGINS/z.lua/'
