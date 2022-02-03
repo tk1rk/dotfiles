@@ -4,6 +4,11 @@
 sudo mv $ZSH_PLUGINS/find-the-command/pacman-timers.service /usr/lib/systemd/system/
 sudo mv $ZSH_PLUGINS/find-the-command/pacman-timers.timer /usr/lib/systemd/system/
 
+# unzip zredis plugin dir
+unzip $ZSH_PLUGINS/zredis.zip
+# zredis
+sudo mkdir -p /usr/local/var/db/redis/
+
 # for ZSH
 case "$OSTYPE" in
   arch*)
@@ -11,9 +16,7 @@ case "$OSTYPE" in
   ;;
 esac
 
-# zredis
-sudo mkdir -p /usr/local/var/db/redis/
-
+# Ubuntu 
 sudo DEBIAN_FRONTEND=noninteractive apt install --yes cmake redis-server libhiredis-dev \
                         tree gem libfreetype6-dev libfontconfig-dev \
                         autoconf automake nodejs npm
