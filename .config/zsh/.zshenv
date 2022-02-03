@@ -23,6 +23,9 @@ export ZSH_CUSTOM="$ZDOTDIR/custom/"
 ### Cache
 export ZSH_CACHE_DIR="$XDG_CACHE_HOME/zsh/"
 [[ -d "$CACHEDIR" ]] || mkdir -p "$CACHEDIR"
+##s plugins
+export ZSH_PLUGINS="$ZDOTDIR/plugins/"
+[[ -d "$ZSH_PLUGINS" ]] || mkdir -p "$ZSH_PLUGINS"
 ### Completions
 export ZSH_COMPLETIONS="$ZSH_CACHE_DIR/completions/"
 [[ -d "$ZSH_COMPLETIONS" ]] || mkdir -p "$ZSH_COMPLETIONS"
@@ -37,6 +40,7 @@ mkdir -p "$ZSH_CACHE_DIR/completions"
 
 ### function path ###
 fpath=($ZSH/functions $ZSH/completions $fpath)
+_comp_options+=(globdots)
 
 ### Add all defined plugins to fpath. This must be done ###
 ### before running compinit. ###
