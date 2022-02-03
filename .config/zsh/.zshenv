@@ -1,7 +1,6 @@
 #!/usr/bin/env zsh
 
 #### xdg
-### Config
 export XDG_CONFIG_HOME="$HOME/.config/"
 [[ -d "$XDG_CONFIG_HOME" ]] || mkdir -p "$XDG_CONFIG_HOME"
 ### Data
@@ -16,7 +15,6 @@ mkdir -p {
 }
 
 #### zsh
-### Zdotdir
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh/"
 [[ -d "$ZDOTDIR" ]] || mkdir -p "$ZDOTDIR"
 ### Custom
@@ -30,8 +28,15 @@ export ZSH_COMPLETIONS="$ZSH_CACHE_DIR/completions/"
 [[ -d "$ZSH_COMPLETIONS" ]] || mkdir -p "$ZSH_COMPLETIONS"
 ###
 mkdir -p {
-    $ZDOTDIR,$ZSH_CACHE_DIR,$ZSH_CUSTOM,$ZSH_COMPLETIONS
+    $ZDOTDIR,$ZSH_CACHE_DIR,$ZSH_PLUGINS,$ZSH_CUSTOM,$ZSH_COMPLETIONS
 }
+
+### Create cache and completions dir and add to $fpath ###
+mkdir -p "$ZSH_CACHE_DIR/completions"
+(( ${fpath[(Ie)"$ZSH_CACHE_DIR/completions"]} )) || fpath=("$ZSH_CACHE_DIR/completions" $fpath)
+
+### function path ###
+fpath=($ZSH/functions $ZSH/completions $fpath)
 
 # install bat-cat-git 
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
