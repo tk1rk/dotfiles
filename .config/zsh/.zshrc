@@ -1,4 +1,5 @@
-#!/usr/bin/env zsh
+#!/usr/bin/env zsh I'm off
+
 
 ### ZSH SOURCES ###
 typeset -ga sources
@@ -12,8 +13,8 @@ do
 done
 
 # Clone zcomet if necessary
-if [[ ! -f ${ZDOTDIR:-${HOME}}/.zcomet/bin/zcomet.zsh ]]; then
-  git clone https://github.com/agkozak/zcomet.git ${ZDOTDIR:-${HOME}}/.zcomet/bin
+if [[ ! -f ${ZDOTDIR}/zcomet/bin/zcomet.zsh ]]; then
+  git clone https://github.com/agkozak/zcomet.git ${ZDOTDIR}/zcomet/bin
 fi
 
 # Source zcomet.zsh
