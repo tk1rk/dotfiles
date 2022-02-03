@@ -1,4 +1,4 @@
-#!/usr/bin/env zsh I'm off
+#!/usr/bin/env zsh
 
 ### ZSH SOURCES ###
 typeset -ga sources
