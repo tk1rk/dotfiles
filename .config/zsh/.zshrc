@@ -82,6 +82,7 @@ zcomet trigger rg BurntSushi/ripgrep
 zcomet trigger z skywind3000/z.lua
 
 
+
 # Lazy-load Prezto's archive module without downloading all of Prezto's
 # submodules
 zcomet trigger --no-submodules archive unarchive lsarchive \
@@ -95,6 +96,7 @@ zcomet load hlissner/zsh-autopair
 zcomet load mafredri/zsh-async
 zcomet load Alaxof/fzf-tab
 zcomet load sharkdp/vivid
+zcomet load zdharma-continuum/zredis
 zcomet load zdharma-continuum/zui
 zcomet load zdharma-continuum/zsh-diff-so-fancy
 zcomet load zdharma-continuum/history-search-multi-word
