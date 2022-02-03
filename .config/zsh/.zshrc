@@ -98,6 +98,7 @@ zcomet load hlissner/zsh-autopair
 zcomet load mafredri/zsh-async
 zcomet load Alaxof/fzf-tab
 zcomet load sharkdp/vivid
+zcomet load z-shell/zredis
 zcomet load zdharma-continuum/zredis
 zcomet load zdharma-continuum/zui
 zcomet load zdharma-continuum/zsh-diff-so-fancy
@@ -142,6 +143,9 @@ neofetch
 
 # LS_COLORS (vivid)
 export LS_COLORS="$(vivid generate snazzy)"
+
+# zredis
+source "${ZSH_PLUGINS}/zredis/zredis.plugin.zsh"
 
 ### z.lua & czmod module
 export _ZL_DATA='$ZSH_PLUGINS/z.lua/'
