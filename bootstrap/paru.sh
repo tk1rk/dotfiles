@@ -2,5 +2,5 @@
 
 
 # paru
-cd $HOME/.local/share/ && git clone https://aur.archlinux.org/paru.git \
+cd $HOME/.local/share/ && git clone https://aur.archlinux.org/paru.git 
 cd paru && makepkg
