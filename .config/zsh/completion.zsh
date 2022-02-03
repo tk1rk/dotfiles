@@ -6,19 +6,6 @@ fpath=($DOTFILES/zsh/plugins/zsh-completions/src $fpath)
 # Should be called before compinit
 zmodload zsh/complist
 
-# file info with long listing (like ls -l)
-zmodload -i zsh/stat
-disable stat
-
-# compinstall
-autoload -U compinstall
-compinstall
-
-# completion
-autoload -Uz compinit bashcompinit
-compinit 
-bashcompinit
-
 zle-line-init () {auto-fu-init;}
 zle -N zle-line-init
 
@@ -49,7 +36,6 @@ zstyle :bracketed-paste-magic paste-finish pastefinish
 
 # Load these ssh identities with the ssh module.
 zstyle ':zim:ssh' ids 'id_rsa' 'id_ecdsa' 'id_ed25519'
-
 
 # matches case insensitive for lowercase
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
@@ -93,5 +79,26 @@ zstyle ':completion:*:(all-|)files' ignored-patterns '(|*/).pyc'
 # Completing process IDs with menu selection.
 zstyle ':completion:*:*:kill:*' menu yes select
 zstyle ':completion:*:kill:*'   force-list always
+
+###;Completions ###
+zstyle ':completion:*' completer _expand _complete _ignored _approximate
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+zstyle ':completion:*' menu select=2
+zstyle ':completion:*' select-prompt '%SScrolling active: current selection at %p%s'
+zstyle ':completion:*:descriptions' format '-- %d --'
+zstyle ':completion:*:processes' command 'ps -au$USER'
+zstyle ':completion:complete:*:options' sort false
+zstyle ':fzf-tab:*' query-string prefix first
+zstyle ':fzf-tab:complete:_zlua:*' query-string input
+zstyle ':fzf-tab:*' continuous-trigger '/'
+zstyle ':completion:*:*:*:*:processes' command "ps -u $USER -o pid,user,comm,cmd -w -w"
+zstyle ':fzf-tab:complete:kill:argument-rest' fzf-flags --preview=$extract'ps --pid=$in[(w)1] -o cmd --no-headers -w -w' --preview-window=down:3:wrap
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 --color=always $realpath'  # disable for tmux-popup
+zstyle ':fzf-tab:*' switch-group ',' '.'
+zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
+zstyle ':fzf-tab:*' popup-pad 0 0
+zstyle ':completion:*:git-checkout:*' sort false
+zstyle ':completion:*:exa' file-sort modification
+zstyle ':completion:*:exa' sort false
 
 source /etc/bash_completion
