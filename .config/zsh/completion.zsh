@@ -11,7 +11,7 @@ zle -N zle-line-init
 
 a# cache
 zstyle ':completion:*' use-cache on
-zstyle ':completion:*' cache-path "$XDG_CACHE_HOME/zsh/.zcompcache"
+zstyle ':completion:*' cache-path "$ZSH_CACHE/.zcompcache"
 
 # fish like Auto suggestion
 autoload predict-on
@@ -83,6 +83,8 @@ zstyle ':completion:*:kill:*'   force-list always
 ###;Completions ###
 zstyle ':completion:*' completer _expand _complete _ignored _approximate
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+​zstyle ​'​:completion:*:matches​'​ group ​'​yes​'​                         ​
+​zstyle ​'​:completion:*​' group-name ​''
 zstyle ':completion:*' menu select=2
 zstyle ':completion:*' select-prompt '%SScrolling active: current selection at %p%s'
 zstyle ':completion:*:descriptions' format '-- %d --'
@@ -100,5 +102,11 @@ zstyle ':fzf-tab:*' popup-pad 0 0
 zstyle ':completion:*:git-checkout:*' sort false
 zstyle ':completion:*:exa' file-sort modification
 zstyle ':completion:*:exa' sort false
+​zstyle ​'​:completion:*:expand:*​' tag-order all-expansions            ​
+​zstyle ​'​:completion:*:history-words​'​ list ​false​                          ​
+​zstyle ​'​:completion:*:history-words​'​ menu yes                            
+​zstyle ​'​:completion:*:history-words​'​ remove-all-dups yes                 
+​zstyle ​'​:completion:*:history-words​'​ stop yes                            ​
 
+# bash completions
 source /etc/bash_completion
