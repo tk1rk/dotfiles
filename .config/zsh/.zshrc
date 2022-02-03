@@ -125,13 +125,15 @@ ZSH_AUTOSUGGEST_CLEAR_WIDGETS+=(expand-or-complete bracketed-paste accept-line p
 
 ### .dircolors ###
 if whence dircolors >/dev/null; then
-  eval "$(dircolors -b)"
+  eval "$(dircolors -b $HOME/.dircolors)"
   zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
   export CLICOLOR=1
 fi
 
-### Cargo ###
+### Cargo Source && Rustup Completion ###
 source "$HOME/.cargo/env"
+rustup completions zsh > $ZSH_COMPLETIONS/_rustup
+export RUSTFLAGS="-C target-cpu = native" cargo build --release --features
 
 ### Neofetch ###
 neofetch
