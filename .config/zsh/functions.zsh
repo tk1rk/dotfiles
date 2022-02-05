@@ -1,8 +1,5 @@
 #!/usr/bin/env zsh
 
-SAVEIFS=$IFS
-IFS="$(pr  
-
 zsh_update() {
   update_dotfiles
   if (( ${+functions[zcomet]} )); then
