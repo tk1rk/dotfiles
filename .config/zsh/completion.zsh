@@ -37,12 +37,6 @@ zstyle :bracketed-paste-magic paste-finish pastefinish
 # Load these ssh identities with the ssh module.
 zstyle ':zim:ssh' ids 'id_rsa' 'id_ecdsa' 'id_ed25519'
 
-# matches case insensitive for lowercase
-zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
-
-# matches patial words
-zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
-
 # pasting with tabs doesn't perform completion
 zstyle ':completion:*' insert-tab pending
 
@@ -52,26 +46,11 @@ zstyle ':completion:*' rehash true
 # verbose
 zstyle ':completion:*' verbose yes
 
-# menu if nb items > 2
-zstyle ':completion:*' menu select=0
-
 # completer
 zstyle ':completion:*' complete-options true
 
-zstyle ':completion:*' completer _expand _oldlist _extensions _complete _match _ignored _correct _approximate _prefix
-zstyle ':completion:*' completions 1
-zstyle ':completion:*' glob 1
-zstyle ':completion:*' group-name ''
-zstyle ':completion:*:manuals.*' insert-sections true
-zstyle ':completion:*' insert-unambiguous false
-zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
-zstyle ':completion:*' max-errors 5
-
-zstyle ':completion:*:man:*' menu yes select
-zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
-zstyle ':completion:*:manuals' separate-sections true
 zstyle ':completion:*' use-perl true
-zstyle :compinstall filename '/home/tk/.zshrc'
+zstyle :compinstall filename '$ZDOTDIR/.zshrc'
 
 # Ignore useless files, like .pyc.
 zstyle ':completion:*:(all-|)files' ignored-patterns '(|*/).pyc'
@@ -80,16 +59,10 @@ zstyle ':completion:*:(all-|)files' ignored-patterns '(|*/).pyc'
 zstyle ':completion:*:*:kill:*' menu yes select
 zstyle ':completion:*:kill:*'   force-list always
 
-###;Completions ###
-zstyle ':completion:*' completer _expand _complete _ignored _approximate
-zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
-​zstyle ​'​:completion:*:matches​'​ group ​'​yes​'​                         ​
-​zstyle ​'​:completion:*​' group-name ​''
-zstyle ':completion:*' menu select=2
-zstyle ':completion:*' select-prompt '%SScrolling active: current selection at %p%s'
-zstyle ':completion:*:descriptions' format '-- %d --'
-zstyle ':completion:*:processes' command 'ps -au$USER'
-zstyle ':completion:complete:*:options' sort false
+# fzf search display
+zstyle ':completion:*' fzf-search-display true
+
+# fzf-tab
 zstyle ':fzf-tab:*' query-string prefix first
 zstyle ':fzf-tab:complete:_zlua:*' query-string input
 zstyle ':fzf-tab:*' continuous-trigger '/'
@@ -99,9 +72,15 @@ zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 --color=always $realpath'  #
 zstyle ':fzf-tab:*' switch-group ',' '.'
 zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
 zstyle ':fzf-tab:*' popup-pad 0 0
+
+# git-checkout
 zstyle ':completion:*:git-checkout:*' sort false
+
+# exa
 zstyle ':completion:*:exa' file-sort modification
 zstyle ':completion:*:exa' sort false
+
+history-words
 ​zstyle ​'​:completion:*:expand:*​' tag-order all-expansions            ​
 ​zstyle ​'​:completion:*:history-words​'​ list ​false​                          ​
 ​zstyle ​'​:completion:*:history-words​'​ menu yes                            
