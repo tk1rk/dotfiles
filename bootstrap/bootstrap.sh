@@ -21,6 +21,11 @@ sudo DEBIAN_FRONTEND=noninteractive apt install --yes cmake redis-server libhire
                         tree gem libfreetype6-dev libfontconfig-dev \
                         autoconf automake nodejs npm
 
+# packer-nvim
+git clone --depth 1 https://github.com/wbthomason/packer.nvim\
+ ~/.local/share/nvim/site/pack/packer/start/packer.nvim
+
+
 # rustup
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh \
     1
