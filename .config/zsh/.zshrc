@@ -98,7 +98,7 @@ zcomet load marlonrichert/zsh-autocomplete
 zcomet load birdhackor/zsh-exa-ls-plugin
 zcomet load hlissner/zsh-autopair
 zcomet load mafredri/zsh-async
-zcomet load Alaxof/fzf-tab
+zcomet load lincheney/fzf-tab-completion
 zcomet load sharkdp/vivid
 zcomet load z-shell/zredis
 zcomet load hangyuheng/zsh-interactive-cd
