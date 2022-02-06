@@ -91,6 +91,8 @@ zcomet trigger --no-submodules archive unarchive lsarchive \
     sorin-ionescu/prezto modules/archive
 
 ### Plugins
+zcomet load junegunn/fzf shell completion.zsh key-bindings.zsh
+(( ${+commands[fzf]} )) || ~[fzf]/install --bin
 zcomet load marlonrichert/zcolors
 zcomet load marlonrichert/zsh-autocomplete
 zcomet load birdhackor/zsh-exa-ls-plugin
