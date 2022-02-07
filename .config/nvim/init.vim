@@ -4,7 +4,7 @@
 call plug#begin()
 
 " Aesthetics - Main
-Plug 'dracula/vim', { 'as': 'dracula' }
+Plug 'Mofiqul/dracula.nvim', { 'as': 'dracula' }
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'bryanmylee/vim-colorscheme-icons'
@@ -111,14 +111,14 @@ autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTr
 let g:airline_powerline_fonts = 1
 let g:airline_section_z = ' %{strftime("%-I:%M %p")}'
 let g:airline_section_warning = ''
-"let g:airline#extensions#tabline#enabled = 1 " Uncomment to display buffer tabline above
+let g:airline_extensions_tabline_enabled = 1 " Uncomment to display buffer tabline above
 
 " Neovim :Terminal
 tmap <Esc> <C-\><C-n>
 tmap <C-w> <Esc><C-w>
 "tmap <C-d> <Esc>:q<CR>
 autocmd BufWinEnter,WinEnter term://* startinsert
-autocmd BufLeave term://* stopinsert
+Qautocmd BufLeave term://* stopinsert
 
 " vim-pydocstring
 let g:pydocstring_doq_path = '~/.config/nvim/env/bin/doq'
@@ -365,21 +365,3 @@ nmap <Tab> :bnext<CR>
 nmap <S-Tab> :bprevious<CR>
 
 
-
-
-" material_plus (dracula_blood)
-let material_italic_comments = true
-let material_italic_string = false
-let material_italic_keywords = false
-let material_italic_functions = false
-let material_italic_variables = false
-let material_contrast = true
-let material_borders = false
-let material_disable_background = false
-let material_style_fix=v:true  "disable random loading
-let material_style="dracula_blood"  "load moonlight everytime or
-let material_darker_contrast=v:true
-let material_italic_keywords=false
-let material_italic_functions=false
-let material_daylight_switch=false  "this allow using brighter color
-" other themes: dracula, oceanic, dracula_blood, 'deep ocean', darker, palenight, monokai, mariana, emerald, middlenight_blue
