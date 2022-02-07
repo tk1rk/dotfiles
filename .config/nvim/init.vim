@@ -95,7 +95,7 @@ augroup END
 
 " Main Coloring Configurations
 syntax on
-color dracula
+colorscheme dracula
 
 " Enable True Color Support (ensure you're using a 256-color enabled $TERM, e.g. xterm-256color)
 set termguicolors
