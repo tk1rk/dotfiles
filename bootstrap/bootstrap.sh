@@ -21,12 +21,20 @@ sudo DEBIAN_FRONTEND=noninteractive apt install --yes cmake redis-server libhire
                         tree gem libfreetype6-dev libfontconfig-dev \
                         autoconf automake nodejs npm
 
-# packer-nvim
-git clone --depth 1 https://github.com/wbthomason/packer.nvim\
- ~/.local/share/nvim/site/pack/packer/start/packer.nvim
 
+#  Rust tools
+if ! [ -x "$(command -v cargo)" ]; then
+  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+fi
 
-# rustup
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh \
-    1
- 
+if ! command -v rust_analyzer &> /dev/null ; then
+    git clone https://github.com/rust-analyzer/rust-analyzer ~/build/rust-analyzer
+    cd ~/build/rust-analyzer
+    cargo xtask install --server
+fi
+
+cargo install \
+  git-trim \
+  ripgrep \
+  broot \
+  starship
