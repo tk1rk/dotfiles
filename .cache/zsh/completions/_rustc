@@ -1,0 +1,64 @@
+#compdef rustc
+
+local -a _rustc_opts_switches _rustc_opts_lint _rustc_opts_debug
+
+typeset -A opt_args
+
+_rustc_debuginfo_levels=(
+    "0[no debug info]"
+    "1[line-tables only (for stacktraces and breakpoints)]"
+    "2[full debug info with variable and type information (same as -g)]"
+)
+
+_rustc_crate_types=(
+    'bin'
+    'lib'
+    'rlib'
+    'dylib'
+    'cdylib'
+    'staticlib'
+    'proc-macro'
+)
+
+_rustc_emit_types=(
+    'asm'
+    'llvm-bc'
+    'llvm-ir'
+    'obj'
+    'metadata'
+    'link'
+    'dep-info'
+    'mir'
+)
+_rustc_print_types=(
+    'crate-name'
+    'file-names'
+    'sysroot'
+    'cfg'
+    'target-list'
+    'target-cpus'
+    'target-features'
+    'relocation-models'
+    'code-models'
+    'target-spec-json'
+    'native-static-libs'
+)
+_rustc_pretty_types=(
+    'normal[un-annotated source]'
+    'expanded[crates expanded]'
+    'expanded,identified[fully parenthesized, AST nodes with IDs]'
+)
+_rustc_unpretty_types=(
+    'normal[un-annotated source]'
+    'expanded[crates expanded]'
+    'expanded,identified[fully parenthesized, AST nodes with IDs]'
+    'flowgraph=[graphviz formatted flowgraph for node]:NODEID:'
+    'everybody_loops[all function bodies replaced with `loop {}`]'
+    'hir[the HIR]'
+    'hir,identified'
+    'hir,typed[HIR with types for each node]'
+)
+_rustc_color_types=(
+    'auto[colorize, if output goes to a tty (default)]'
+    'always[always colorize output]'
+    'never[never colorize output]'
