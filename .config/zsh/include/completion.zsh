@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/usr/bin/env zsh
 
 # Load more completions
 fpath=($DOTFILES/zsh/plugins/zsh-completions/src $fpath)
