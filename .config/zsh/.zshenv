@@ -83,4 +83,11 @@ export ENHANCD_FILTER="fzf:fzy:peco"
 # Less/Pager
 export PAGER="less -R"
 export WORDCHARS='~!#$%^&*(){}[]<>?.+;'  # sane moving between words on the prompt
-export GPG_TTY='$(tty)'
+export GPG_TTY="$(tty)"
+
+# ripgrep
+export RIPGREP_CONFIG_PATH="$HOME/.ripgreprc"
+
+# bat
+export BAT_THEME="Material-Theme-Darker"
+
