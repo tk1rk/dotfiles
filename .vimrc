@@ -1,1 +1,1 @@
-source "$HOME/.config/nvim/init.vim"
+source $HOME/.config/nvim/init.lua
