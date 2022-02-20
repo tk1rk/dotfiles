@@ -32,17 +32,96 @@ packer.startup(function()
     use 'nvim-treesitter/nvim-treesitter-refactor'
     use 'p00f/nvim-ts-rainbow'
     
+    -- colorbuddy
+    use {'tjdevries/colorbuddy.vim', {'nvim-treesitter/nvim-treesitter', opt = true}}
+
     -- Impatient
-    use 'lewis6991/impatient.nvim'
+    use { 'lewis6991/impatient.nvim' }
 
     -- lspconfig
-    use 'neovim/nvim-lspconfig'
+    use { 'neovim/nvim-lspconfig' }
+
+    -- sqlite
+    use { "tami5/sqlite.lua" }
 
     -- fuzzy-finder
-    use 'nvim-lua/plenary.nvim'
-    use 'nvim-telescope/telescope.nvim'
-    use 'cljoly/telescope-repo.nvim'
-   
-   
+    use { 'cljoly/telescope-repo.nvim' }
+    use { 'nvim-telescope/telescope.nvim', 
+      requires = { 
+        {'nvim-lua/plenary.nvim'} 
+      }
+    }
+
+    use { 'nvim-telescope/telescope-fzf-native.nvim', 
+      run = 'make', 
+      config = function() 
+        require"plugins/telescope".load_extension("fzf-native")
+      end
+    }
+
+    use { 'nvim-telescope/telescope-media-files.nvim', 
+      config = function() 
+        require"plugins/telescope".load_extension("media-files")
+        end
+    }
+
+    use {
+      "nvim-telescope/telescope-frecency.nvim",
+        requires = { 
+          {"tami5/sqlite.lua"}, 
+          {'kyazdani42/nvim-web-devicons'} 
+        },
+        config = function()   
+          require"telescope".load_extension("frecency")
+        end,
+    }
+    
+    use { "nvim-telescope/telescope-file-browser.nvim" }
+
+    use { 'pwntester/octo.nvim', 
+      requires = { 
+        {'nvim-lua/plenary.nvim'}, 
+        {'nvim-telescope/telescope.nvim'}, 
+        {'kyazdani42/nvim-web-devicons'} 
+      }, 
+      config = function () 
+        require"octo".setup() 
+      end 
+    }
+
+    -- vacuumline
+    
+    
+
+    -- chadtree
+    use { 'ms-jpq/chadtree', branch = 'chad', 
+      run = 'python3 -m chadtree deps'
+    } 
+
+    -- completions
+    use {'haorenW1025/completion-nvim', opt = true, 
+      requires = { 
+        {'hrsh7th/vim-vsnip', opt = true}, 
+        {'hrsh7th/vim-vsnip-integ', opt = true} 
+      }
+    }
+
+    -- Theme/Dracula
+    use { 'Mofiqul/Dracula.nvim, as = 'dracula' }
+    
+    -- neogit
+    use { 'TimUntersberger/neogit', 
+      requires = {
+        {'nvim-lua/plenary.nvim'} 
+      }
+    }
+
+
   end
+ )
+
+lua require'colorizer'.setup()
+
+
+end
  )
