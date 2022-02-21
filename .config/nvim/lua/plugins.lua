@@ -25,7 +25,7 @@ require'impatient'.enable_profile()
  --- startup and add configure plugins
 packer.startup(function()
   local use = use
-   -- add you plugins here like:
+   
     -- Treesitter
     use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'},
     use 'sheerun/vim-polyglot'
@@ -34,6 +34,16 @@ packer.startup(function()
     
     -- colorbuddy
     use {'tjdevries/colorbuddy.vim', {'nvim-treesitter/nvim-treesitter', opt = true}}
+
+    -- colorizer
+    use {'norcalli/nvim-colorizer.lua', config = function() require'colorizer'.setup()}
+
+
+
+
+
+
+
 
     -- Impatient
     use { 'lewis6991/impatient.nvim' }
@@ -109,7 +119,7 @@ packer.startup(function()
   end
  )
 
-lua require'colorizer'.setup()
+
 
 
 end
