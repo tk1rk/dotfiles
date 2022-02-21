@@ -52,29 +52,16 @@ packer.startup(function()
       }
     }
 
-    use { 'nvim-telescope/telescope-fzf-native.nvim', 
-      run = 'make', 
-      config = function() 
-        require"plugins/telescope".load_extension("fzf-native")
-      end
-    }
+    use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make', 
+      config = function() require"plugins/telescope".load_extension("fzf-native") end}
 
     use { 'nvim-telescope/telescope-media-files.nvim', 
-      config = function() 
-        require"plugins/telescope".load_extension("media-files")
-        end
-    }
+      config = function() require"plugins/telescope".load_extension("media-files") end}
 
-    use {
-      "nvim-telescope/telescope-frecency.nvim",
-        requires = { 
-          {"tami5/sqlite.lua"}, 
-          {'kyazdani42/nvim-web-devicons'} 
-        },
-        config = function()   
-          require"telescope".load_extension("frecency")
-        end,
-    }
+    use {"nvim-telescope/telescope-frecency.nvim", requires = { 
+      {"tami5/sqlite.lua"}, 
+      {'kyazdani42/nvim-web-devicons'} 
+    }, config = function() require"telescope".load_extension("frecency") end}
     
     use { "nvim-telescope/telescope-file-browser.nvim" }
 
@@ -83,20 +70,17 @@ packer.startup(function()
         {'nvim-lua/plenary.nvim'}, 
         {'nvim-telescope/telescope.nvim'}, 
         {'kyazdani42/nvim-web-devicons'} 
-      }, 
-      config = function () 
-        require"octo".setup() 
-      end 
-    }
+      }, config = function () require"octo".setup() end}
 
     -- vacuumline
-    
-    
-
+    use {'konapun/vacuumline.nvim', requires = {
+       {'glepnir/galaxyline.nvim', branch = 'main'},
+       {'kyazdani42/nvim-web-devicons', opt = true
+    }, config = function() require('vacuumline').setup({
+      theme = require('vacuumline.theme.one-dark')}) end} 
+   
     -- chadtree
-    use { 'ms-jpq/chadtree', branch = 'chad', 
-      run = 'python3 -m chadtree deps'
-    } 
+    use {'ms-jpq/chadtree', branch = 'chad', run = 'python3 -m chadtree deps'} 
 
     -- completions
     use {'haorenW1025/completion-nvim', opt = true, 
@@ -105,6 +89,11 @@ packer.startup(function()
         {'hrsh7th/vim-vsnip-integ', opt = true} 
       }
     }
+
+    -- coq.nvim 
+    use {'ms-jpq/coq_nvim', branch = 'coq', run =: ':COQnow -s'}}
+    -- 9000+ Snippets
+    use {'ms-jpq/coq.artifacts', branch = 'artifacts'}
 
     -- Theme/Dracula
     use { 'Mofiqul/Dracula.nvim, as = 'dracula' }
