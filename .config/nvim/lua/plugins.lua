@@ -38,13 +38,6 @@ packer.startup(function()
     -- colorizer
     use {'norcalli/nvim-colorizer.lua', config = function() require'colorizer'.setup()}
 
-
-
-
-
-
-
-
     -- Impatient
     use { 'lewis6991/impatient.nvim' }
 
@@ -56,22 +49,18 @@ packer.startup(function()
 
     -- fuzzy-finder
     use { 'cljoly/telescope-repo.nvim' }
-    use { 'nvim-telescope/telescope.nvim', 
-      requires = { 
-        {'nvim-lua/plenary.nvim'} 
-      }
+    use { 'nvim-telescope/telescope.nvim', requires = { 
+        {'nvim-lua/plenary.nvim'} }
     }
 
-    use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make', 
-      config = function() require"plugins/telescope".load_extension("fzf-native") end}
+    use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make'}
 
-    use { 'nvim-telescope/telescope-media-files.nvim', 
-      config = function() require"plugins/telescope".load_extension("media-files") end}
+    use { 'nvim-telescope/telescope-media-files.nvim'}
 
     use {"nvim-telescope/telescope-frecency.nvim", requires = { 
       {"tami5/sqlite.lua"}, 
-      {'kyazdani42/nvim-web-devicons'} 
-    }, config = function() require"telescope".load_extension("frecency") end}
+      {'kyazdani42/nvim-web-devicons'} } 
+    }
     
     use { "nvim-telescope/telescope-file-browser.nvim" }
 
@@ -81,6 +70,11 @@ packer.startup(function()
         {'nvim-telescope/telescope.nvim'}, 
         {'kyazdani42/nvim-web-devicons'} 
       }, config = function () require"octo".setup() end}
+
+    --fzf.lua
+    use { 'ibhagwan/fzf-lua',requires = { 
+      {'kyazdani42/nvim-web-devicons'}
+    }
 
     -- vacuumline
     use {'konapun/vacuumline.nvim', requires = {
@@ -99,6 +93,9 @@ packer.startup(function()
         {'hrsh7th/vim-vsnip-integ', opt = true} 
       }
     }
+
+    -- luadev
+    use 'folke/lua-dev.nvim'
 
     -- coq.nvim 
     use {'ms-jpq/coq_nvim', branch = 'coq', run =: ':COQnow -s'}}
