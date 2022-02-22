@@ -20,9 +20,21 @@ require('telescope').setup {
       -- defaults to {"png", "jpg", "mp4", "webm", "pdf"}         
       filetypes = {"png", "webp", "jpg", "jpeg"}, 
       find_cmd = "rg" -- find command (defaults to `fd`) 
-      } 
     },
+    pickers = {
+      find_files = {
+        find_command = { "fd", "--type", "f", "--strip-cwd-prefix" }
+      }
+    },
+    ["ui-select"] = {
+      require("telescope.themes").get_dropdown {
+        -- even more opts
+      }
+    }
   }
+ 
+  }
+}
 }
 -- To get fzf loaded and working with telescope, you need to call
 -- load_extension, somewhere after setup function:
@@ -30,7 +42,7 @@ require('telescope').load_extension('file_browser')
 require('telescope').load_extension('frecency')
 require('telescope').load_extension('fzf')
 require('telescope').load_extension('media_files')
-require('telescope').load_extension('file_browser')
-
+require('telescope').load_extension(' ')
+require('telescope').load_extension('ui-select')
 
 require('telescope').extensions.media_files.media_files()
