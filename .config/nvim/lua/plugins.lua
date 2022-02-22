@@ -60,39 +60,27 @@ packer.startup(function()
     -- telescope.nvim -----------------------
     use { 'cljoly/telescope-repo.nvim' }
     use { 'nvim-telescope/telescope.nvim', requires = { 
-        {'nvim-lua/plenary.nvim'} }
-    }
- 
-    -- telescope-fzf-native.nvim -----------------------
-    use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make'}
-    
-    -- telescope-media-files.nvim -----------------------
-    use { 'nvim-telescope/telescope-media-files.nvim'}
-    
-    -- telescope-frecency.nvim -----------------------
-    use {"nvim-telescope/telescope-frecency.nvim", requires = { 
-      {"tami5/sqlite.lua"}, 
-      {'kyazdani42/nvim-web-devicons'}} 
-    }
-    
-    -- telescope-file-browser.nvim -----------------------
-    use { "nvim-telescope/telescope-file-browser.nvim" }
-    
-    -- octo.nvim -----------------------
-    use { 'pwntester/octo.nvim', requires = { 
-      {'nvim-lua/plenary.nvim'}, 
-      {'nvim-telescope/telescope.nvim'}, 
-      {'kyazdani42/nvim-web-devicons'} 
-    }, config = function() require'octo'.setup() 
-    end}
-
-    -- telescope-ui-select.nvim --------------------
-    use { 'nvim-telescope/telescope-ui-select.nvim' }
+      {'nvim-lua/plenary.nvim'},
+      { 'nvim-telescope/telescope-github.nvim' },
+      { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
+      { 'nvim-telescope/telescope-media-files.nvim' },
+      { 'nvim-telescope/telescope-frecency.nvim, requires = { 
+        {"tami5/sqlite.lua"}, 
+        {'kyazdani42/nvim-web-devicons'}} 
+      },
+      { 'nvim-telescope/telescope-file-browser.nvim' },
+      { 'pwntester/octo.nvim', requires = { 
+        {'nvim-lua/plenary.nvim'}, 
+        {'nvim-telescope/telescope.nvim'}, 
+        {'kyazdani42/nvim-web-devicons'} 
+      }, config = function() require'octo'.setup() end} 
+      },
+      { 'nvim-telescope/telescope-ui-select.nvim' }
+    }}
 
     -- fzf ----------------------------
-    use { 'junegunn/fzf', run = './install --bin', 
-      requires = {
-        {'junegunn/fzf.vim'} }
+    use { 'junegunn/fzf', run = './install --bin', requires = {
+      {'junegunn/fzf.vim'} }
     }
 
     -- fzf.lua -----------------------
