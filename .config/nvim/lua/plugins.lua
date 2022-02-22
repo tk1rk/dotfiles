@@ -25,6 +25,9 @@ require'impatient'.enable_profile()
  --- startup and add configure plugins
 packer.startup(function()
   local use = use
+
+    -- packer.nvim
+    use {'wbthomason/packer.nvim', opt = true}
    
     -- Treesitter
     use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'},
@@ -76,13 +79,40 @@ packer.startup(function()
       {'kyazdani42/nvim-web-devicons'}
     }
 
-    -- vacuumline
-    use {'konapun/vacuumline.nvim', requires = {
-       {'glepnir/galaxyline.nvim', branch = 'main'},
-       {'kyazdani42/nvim-web-devicons', opt = true
-    }, config = function() require('vacuumline').setup({
-      theme = require('vacuumline.theme.one-dark')}) end} 
-   
+    -- bubblystatus
+    use {'datwaft/bubbly.nvim', config = function()
+      vim.g.bubbly_palette = {
+        background = "#34343c",
+        foreground = "#c5cdd9",
+        black = "#3e4249",
+        red = "#ec7279",
+        green = "#a0c980",
+        yellow = "#deb974",
+        blue = "#6cb6eb",
+        purple = "#d38aea",
+        cyan = "#5dbbc1",
+        white = "#c5cdd9",
+        lightgrey = "#57595e",
+        darkgrey = "#404247",
+      },
+       vim.g.bubbly_statusline = {
+         'mode',
+
+         'truncate',
+
+         'path',
+         'branch',
+         'signify',
+         'gitsigns',
+         'coc',
+
+         'divisor',
+
+         'filetype',
+         'progress',
+       } 
+     end}
+
     -- chadtree
     use {'ms-jpq/chadtree', branch = 'chad', run = 'python3 -m chadtree deps'} 
 
