@@ -42,7 +42,7 @@ require('telescope').load_extension('file_browser')
 require('telescope').load_extension('frecency')
 require('telescope').load_extension('fzf')
 require('telescope').load_extension('media_files')
-require('telescope').load_extension(' ')
+require('telescope').load_extension('packer')
 require('telescope').load_extension('ui-select')
 
 require('telescope').extensions.media_files.media_files()
