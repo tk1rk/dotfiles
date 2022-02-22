@@ -88,18 +88,18 @@ packer.startup(function()
 
     -- fzf ----------------------------
     use { 'junegunn/fzf', run = './install --bin', requires = {
-      {'junegunn/fzf.vim}
+      {'junegunn/fzf.vim} }
     }
 
     -- fzf.lua -----------------------
     use { 'ibhagwan/fzf-lua',requires = { 
-      {'kyazdani42/nvim-web-devicons'}}
+      {'kyazdani42/nvim-web-devicons'} }
     }
 
     -- lspfuzzy -----------------------
     use { 'ojroques/nvim-lspfuzzy', requires = {
       {'junegunn/fzf'},
-      {'junegunn/fzf.vim'}}
+      {'junegunn/fzf.vim'} }
     }
 
     -- bubblystatus -----------------------
