@@ -21,65 +21,88 @@ packer.init({
 
 require('impatient')
 require'impatient'.enable_profile()
- 
- --- startup and add configure plugins
+
 packer.startup(function()
   local use = use
-
-    -- packer.nvim
+   
+    -- packer.nvim -----------------------
     use {'wbthomason/packer.nvim', opt = true}
    
-    -- Treesitter
-    use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'},
-    use 'sheerun/vim-polyglot'
-    use 'nvim-treesitter/nvim-treesitter-refactor'
-    use 'p00f/nvim-ts-rainbow'
+    -- Treesitter -----------------------
+    use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' },
+    use { 'nvim-treesitter/nvim-treesitter-refactor' }
+    use { 'p00f/nvim-ts-rainbow' }
+
+    -- polyglot --------------------------
+    use { 'sheerun/vim-polyglot' }
     
-    -- colorbuddy
+    -- colorbuddy -----------------------
     use {'tjdevries/colorbuddy.vim', {'nvim-treesitter/nvim-treesitter', opt = true}}
 
-    -- colorizer
-    use {'norcalli/nvim-colorizer.lua', config = function() require'colorizer'.setup()}
+    -- colorizer -----------------------
+    use {'norcalli/nvim-colorizer.lua', config = function() require('colorizer').setup()}
 
-    -- Impatient
+    -- lsp-colors -----------------------
+    use { 'folke/lsp-colors.nvim', config = function() require('lspfuzzy').setup {} }
+
+    -- Impatient -----------------------
     use { 'lewis6991/impatient.nvim' }
 
-    -- lspconfig
+    -- lspconfig -----------------------
     use { 'neovim/nvim-lspconfig' }
 
-    -- sqlite
-    use { "tami5/sqlite.lua" }
+    -- sqlite -----------------------
+    use { 'tami5/sqlite.lua' }
 
-    -- fuzzy-finder
+    -- plenary.nvim -------------------------
+    use { 'nvim-lua/plenary.nvim' }
+
+    -- telescope.nvim -----------------------
     use { 'cljoly/telescope-repo.nvim' }
     use { 'nvim-telescope/telescope.nvim', requires = { 
         {'nvim-lua/plenary.nvim'} }
     }
-
+ 
+    -- telescope-fzf-native.nvim -----------------------
     use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make'}
-
+    
+    -- telescope-media-files.nvim -----------------------
     use { 'nvim-telescope/telescope-media-files.nvim'}
-
+    
+    -- telescope-frecency.nvim -----------------------
     use {"nvim-telescope/telescope-frecency.nvim", requires = { 
       {"tami5/sqlite.lua"}, 
-      {'kyazdani42/nvim-web-devicons'} } 
+      {'kyazdani42/nvim-web-devicons'}} 
     }
     
+    -- telescope-file-browser -----------------------
     use { "nvim-telescope/telescope-file-browser.nvim" }
+    
+    -- octo.nvim -----------------------
+    use { 'pwntester/octo.nvim', requires = { 
+      {'nvim-lua/plenary.nvim'}, 
+      {'nvim-telescope/telescope.nvim'}, 
+      {'kyazdani42/nvim-web-devicons'} 
+    }, config = function() require'octo'.setup() 
+    end}
 
-    use { 'pwntester/octo.nvim', 
-      requires = { 
-        {'nvim-lua/plenary.nvim'}, 
-        {'nvim-telescope/telescope.nvim'}, 
-        {'kyazdani42/nvim-web-devicons'} 
-      }, config = function () require"octo".setup() end}
-
-    --fzf.lua
-    use { 'ibhagwan/fzf-lua',requires = { 
-      {'kyazdani42/nvim-web-devicons'}
+    -- fzf ----------------------------
+    use { 'junegunn/fzf', run = './install --bin', requires = {
+      {'junegunn/fzf.vim}
     }
 
-    -- bubblystatus
+    -- fzf.lua -----------------------
+    use { 'ibhagwan/fzf-lua',requires = { 
+      {'kyazdani42/nvim-web-devicons'}}
+    }
+
+    -- lspfuzzy -----------------------
+    use { 'ojroques/nvim-lspfuzzy', requires = {
+      {'junegunn/fzf'},
+      {'junegunn/fzf.vim'}}
+    }
+
+    -- bubblystatus -----------------------
     use {'datwaft/bubbly.nvim', config = function()
       vim.g.bubbly_palette = {
         background = '#282a36',
@@ -113,33 +136,29 @@ packer.startup(function()
        } 
      end}
 
-    -- chadtree
+    -- chadtree -----------------------
     use {'ms-jpq/chadtree', branch = 'chad', run = 'python3 -m chadtree deps'} 
 
-    -- completions
-    use {'haorenW1025/completion-nvim', opt = true, 
-      requires = { 
-        {'hrsh7th/vim-vsnip', opt = true}, 
-        {'hrsh7th/vim-vsnip-integ', opt = true} 
-      }
+    -- completions -----------------------
+    use {'haorenW1025/completion-nvim', opt = true, requires = { 
+      {'hrsh7th/vim-vsnip', opt = true}, 
+      {'hrsh7th/vim-vsnip-integ', opt = true} }
     }
-
-    -- luadev
+ 
+    -- luadev -----------------------
     use 'folke/lua-dev.nvim'
 
-    -- coq.nvim 
+    -- coq.nvim -----------------------
     use {'ms-jpq/coq_nvim', branch = 'coq', run =: ':COQnow -s'}}
     -- 9000+ Snippets
     use {'ms-jpq/coq.artifacts', branch = 'artifacts'}
 
-    -- Theme/Dracula
+    -- Theme/Dracula -----------------------
     use { 'Mofiqul/Dracula.nvim, as = 'dracula' }
     
-    -- neogit
-    use { 'TimUntersberger/neogit', 
-      requires = {
-        {'nvim-lua/plenary.nvim'} 
-      }
+    -- neogit -----------------------
+    use { 'TimUntersberger/neogit', requires = {
+      {'nvim-lua/plenary.nvim'} }
     }
 
 
