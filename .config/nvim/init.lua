@@ -18,7 +18,6 @@ require('colors')
 require('plugins')
 require('plugins/alpha-nvim')
 require('plugins/chadtree')
-require('plugins/colorizer')
 require('plugins/indent-blankline')
 require('plugins/lualine')
 require('plugins/cmp')
@@ -53,4 +52,4 @@ augroup end
 
 
 
-local neogit = require('neogit') neogit.setup {}
+
