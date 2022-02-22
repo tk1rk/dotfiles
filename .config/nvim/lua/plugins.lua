@@ -87,8 +87,9 @@ packer.startup(function()
     end}
 
     -- fzf ----------------------------
-    use { 'junegunn/fzf', run = './install --bin', requires = {
-      {'junegunn/fzf.vim} }
+    use { 'junegunn/fzf', run = './install --bin', 
+      requires = {
+        {'junegunn/fzf.vim'} }
     }
 
     -- fzf.lua -----------------------
