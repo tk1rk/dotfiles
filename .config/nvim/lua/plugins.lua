@@ -60,12 +60,13 @@ packer.startup(function()
     -- telescope.nvim -----------------------
     use { 'cljoly/telescope-repo.nvim' }
     use { 'nvim-telescope/telescope.nvim', requires = { 
-      {'nvim-lua/plenary.nvim'},
+      { 'nvim-lua/plenary.nvim' },
       { 'nvim-telescope/telescope-github.nvim' },
+      { 'nvim-telescope/telescope-symbols.nvim' },
       { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
       { 'nvim-telescope/telescope-media-files.nvim' },
-      { 'nvim-telescope/telescope-frecency.nvim, requires = { 
-        {"tami5/sqlite.lua"}, 
+      { 'nvim-telescope/telescope-frecency.nvim', requires = { 
+        {'tami5/sqlite.lua'}, 
         {'kyazdani42/nvim-web-devicons'}} 
       },
       { 'nvim-telescope/telescope-file-browser.nvim' },
@@ -109,7 +110,7 @@ packer.startup(function()
         white = '#c5cdd9',
         lightgrey = '#57595e',
         darkgrey = '#404247',
-      },
+       },
        vim.g.bubbly_statusline = {
          'mode',
 
@@ -126,7 +127,8 @@ packer.startup(function()
          'filetype',
          'progress',
        } 
-     end}
+       end }
+     
 
     -- chadtree -----------------------
     use {'ms-jpq/chadtree', branch = 'chad', run = 'python3 -m chadtree deps'} 
@@ -148,6 +150,13 @@ packer.startup(function()
     -- Theme/Dracula -----------------------
     use { 'Mofiqul/Dracula.nvim, as = 'dracula' }
     
+    -- terminal
+    use { 's1n7ax/nvim-terminal', config = function()
+      vim.o.hidden = true
+      require('nvim-terminal').setup()
+      end,
+    }
+      
     -- neogit -----------------------
     use { 'TimUntersberger/neogit', requires = {
       {'nvim-lua/plenary.nvim'} }
