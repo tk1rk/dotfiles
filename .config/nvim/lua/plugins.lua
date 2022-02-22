@@ -75,7 +75,7 @@ packer.startup(function()
       {'kyazdani42/nvim-web-devicons'}} 
     }
     
-    -- telescope-file-browser -----------------------
+    -- telescope-file-browser.nvim -----------------------
     use { "nvim-telescope/telescope-file-browser.nvim" }
     
     -- octo.nvim -----------------------
@@ -85,6 +85,9 @@ packer.startup(function()
       {'kyazdani42/nvim-web-devicons'} 
     }, config = function() require'octo'.setup() 
     end}
+
+    -- telescope-ui-select.nvim --------------------
+    use { 'nvim-telescope/telescope-ui-select.nvim' }
 
     -- fzf ----------------------------
     use { 'junegunn/fzf', run = './install --bin', 
