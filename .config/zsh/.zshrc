@@ -13,23 +13,11 @@ do
     [ -s "${file}" ] && source "${file}"
 done
 
-# Clone zcomet if necessary
-if [[ ! -f ${ZDOTDIR}/zcomet/bin/zcomet.zsh ]]; then
-  git clone https://github.com/agkozak/zcomet.git ${ZDOTDIR}/zcomet/bin
-fi
-
-# Source zcomet.zsh
-source ${ZDOTDIR:-${HOME}}/.zcomet/bin/zcomet.zsh
-
 # bash completion
 autoload -U +X bashcompinit && bashcompinit
 
-# Load a prompt
-zcomet load romkatv/powerlevel10k
-
-# Lazy-load some plugins
-zcomet trigger zhooks agkozak/zhooks
-zcomet trigger zsh-prompt-benchmark romkatv/zsh-prompt-benchmark
+# colors
+autoload -U colors; colors
 
 # Helps zinit select correct remote binaries
 case "$OSTYPE" in
@@ -38,50 +26,80 @@ case "$OSTYPE" in
   *) echo 'WARN: unsupported system -- some cli programs might not work' ;;
 esac
 
-# colors
-autoload -U colors; colors
+# PZ
+PZ_PLUGIN_HOME="${ZDOTDIR:-~/.config/zsh}/plugins"
+[[ -d $PZ_PLUGIN_HOME/pz ]] ||
+  git clone https://github.com/mattmc3/pz.git $PZ_PLUGIN_HOME/pz
+source $PZ_PLUGIN_HOME/pz/pz.zsh
+
+# source plugins from github
+pz source zsh-users/zsh-autosuggestions
+pz source zsh-users/zsh-history-substring-search
+pz source zsh-users/zsh-completions
+pz source zsh-users/zsh-syntax-highlightin
+
+# source ohmyzsh plugins
+pz source ohmyzsh/ohmyzsh plugins/colored-man-pages
+
+# set your prompt
+pz prompt sindresorhus/pure
+
+# -or- use oh-my-zsh themes instead of a prompt plugin
+pz source ohmyzsh lib/git
+pz source ohmyzsh lib/theme-and-appearance
+pz source ohmyzsh themes/robbyrussell
+
+# Theme
+pz prompt romkatv/powerlevel10k
+
+# Lazy-load some plugins
+zcomet trigger zhooks agkozak/zhooks
+zcomet trigger zsh-prompt-benchmark romkatv/zsh-prompt-benchmark
 
 # OMZL Shorthand Syntax
-zcomet load ohmyzsh lib cli.zsh
-zcomet load ohmyzsh lib clipboard.zsh 
-zcomet load ohmyzsh lib compfix.zsh 
-zcomet load ohmyzsh lib completion.zsh 
-zcomet load ohmyzsh lib correction.zsh 
-zcomet load ohmyzsh lib directories.zsh
-zcomet load ohmyzsh lib functions.zsh
-zcomet load ohmyzsh lib git.zsh 
-zcomet load ohmyzsh lib grep.zsh 
-zcomet load ohmyzsh lib history.zsh
-zcomet load ohmyzsh lib key-bindings.zsh 
-zcomet load oh.yzsh lib prompt-info-functions.zsh
-zcomet load ohmyzsh lib spectrum.zsh 
-zcomet load ohmyzsh lib termsupport.zsh 
+pz source ohmyzsh lib cli.zsh
+pz source ohmyzsh lib clipboard.zsh 
+pz source ohmyzsh lib compfix.zsh 
+pz source ohmyzsh lib completion.zsh 
+pz source ohmyzsh lib correction.zsh 
+pz source ohmyzsh lib directories.zsh
+pz source ohmyzsh lib functions.zsh
+pz source ohmyzsh lib git.zsh 
+pz source ohmyzsh lib grep.zsh 
+pz source ohmyzsh lib history.zsh
+pz source ohmyzsh lib key-bindings.zsh 
+pz source oh.yzsh lib prompt-info-functions.zsh
+pz source ohmyzsh lib spectrum.zsh 
+pz source ohmyzsh lib termsupport.zsh 
 
 ## omzp snippets
-zcomet load ohmyzsh plugins/cargo
-zcomet load ohmyzsh plugins/colored-man-pages
-zcomet load ohmyzsh plugins/command-not-found
-zcomet load ohmyzsh plugins/direnv
-zcomet load ohmyzsh plugins/docker
-zcomet load ohmyzsh plugins/docker-compose
-zcomet load ohmyzsh plugins/extract
-zcomet load ohmyzsh plugins/fzf
-zcomet load ohmyzsh plugins/gitfast
-zcomet load ohmyzsh plugins/history
-zcomet load ohmyzsh plugins/history-sunstring-search
-zcomet load ohmyzsh plugins/rbenv
-zcomet load ohmyzsh plugins/ripgrep
-zcomet load ohmyzsh plugins/ruby
-zcomet load ohmyzsh plugins/rustup
+pz source ohmyzsh plugins/cargo
+pz source ohmyzsh plugins/colored-man-pages
+pz source ohmyzsh plugins/command-not-found
+pz source ohmyzsh plugins/direnv
+pz source ohmyzsh plugins/docker
+pz source ohmyzsh plugins/docker-compose
+pz source ohmyzsh plugins/extract
+pz source ohmyzsh plugins/fzf
+pz source ohmyzsh plugins/gitfast
+pz source ohmyzsh plugins/history
+pz source ohmyzsh plugins/history-sunstring-search
+pz source ohmyzsh plugins/rbenv
+pz source ohmyzsh plugins/ripgrep
+pz source ohmyzsh plugins/ruby
+pz source ohmyzsh plugins/rustup
 
 ### Programs 
-zcomet trigger bat sharkdp/bat
-zcomet trigger top /battop
-zcomet trigger exa ogham/exa
-zcomet trigger fd sharkdp/fd
-zcomet trigger ll Peltoche/lsd
-zcomet trigger rg BurntSushi/ripgrep
-zcomet trigger z skywind3000/z.lua
+pz source sharkdp/bat 
+pz source svartalf/rust-battop bt
+pz source ogham/exa ls
+pz source sharkdp/fd fd
+pz source Peltoche/lsd l
+pz source BurntSushi/ripgrep rg
+pz source dalance/procs ps
+pz source chmln/sd
+pz source bootandy/dust du
+
 
 
 
