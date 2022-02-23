@@ -8,7 +8,7 @@
 #
 # 2. Lazy loading:
 #
-#   fpath+=(~/zsh-defer)
+#   fpath+=($ZSH_PLUGINS/zsh-defer)
 #   autoload -Uz zsh-defer
 #
 # Once zsh-defer is loaded, type `zsh-defer -h` for usage.
