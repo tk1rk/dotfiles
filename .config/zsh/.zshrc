@@ -2,14 +2,16 @@
 
 ### ZSH SOURCES ###
 typeset -ga sources
-for file in "${ZDOTDIR}/bindkeys.zsh" \
-            "${ZDOTDIR}/functions.zsh" \
-            "${ZDOTDIR}/aliases.zsh" \
-            "${ZDOTDIR}/completion.zsh" \
-            "${ZDOTDIR}/setopt.zsh" \
-            "${ZDOTDIR}/less.zsh" \
-            "${ZDOTDIR}/plugins/find-the-command/ftc.zsh" 
-do
+for file in "${ZDOTDIR}/include/aliases.zsh" \
+            "${ZDOTDIR}/include/bindkeys.zsh \
+            "${ZDOTDIR}/include/completion.zsh" \
+            "${ZDOTDIR}/include/functions.zsh" \
+            "${ZDOTDIR}/include/less.zsh" \
+            "${ZDOTDIR}/include/setopt.zsh" \
+            "${ZDOTDIR}/include/less.zsh" \
+            "${ZSH_PLUGINS}/find-the-command/ftc.zsh" \
+            "${ZSH_PLUGINS}/zsh-defer/zsh-defer.plugin.zsh" \
+            "${ZSH_PLUGINS}/auto-ls-zsh/auto-ls.zsh" 
     [ -s "${file}" ] && source "${file}"
 done
 
@@ -19,68 +21,78 @@ autoload -U +X bashcompinit && bashcompinit
 # colors
 autoload -U colors; colors
 
-# PZ
-PZ_PLUGIN_HOME="${ZDOTDIR:-~/.config/zsh}/plugins"
-[[ -d $PZ_PLUGIN_HOME/pz ]] ||
-  git clone https://github.com/mattmc3/pz.git $PZ_PLUGIN_HOME/pz
-source $PZ_PLUGIN_HOME/pz/pz.zsh
+# Clone zcomet (if necessary)
+if [[ ! -f ${ZDOTDIR}/zcomet/bin/zcomet.zsh ]]; then
+  command git clone https://github.com/agkozak/zcomet.git ${ZDOTDIR}/zcomet/bin
+fi
+# zcomet source
+source ${ZDOTDIR}/zcomet/bin/zcomet.zsh
+mkdir -p $ZDOTDIR/zcomet/{repos,snippets}
 
-# Theme
-pz prompt romkatv/powerlevel10k
+# zcomet directories
+zstyle ':zcomet:*' home-dir $ZDOTDIR/zcomet
+zstyle ':zcomet:*' repos-dir $ZDOTDIR/zcomet/repos
+zstyle ':zcomet:*' snippets-dir $ZDOTDIR/zcomet/snippets
 
-# source ohmyzsh plugins
-pz source ohnyzsh lib/compfix.zsh 
-pz source ohmyzsh lib/completion.zsh 
-pz source ohmyzsh lib/correction.zsh 
-pz source ohmyzsh lib/functions.zsh
-pz source ohmyzsh lib/git.zsh
-pz source ohmyzsh lib/termsupport.zsh 
-pz source ohmyzsh lib/theme-and-appearance
+# Theme (powerlevel10k)
+zcomet load romkatv/powerlevel10k
+
+# ohmyzsh plugins
+zcomet load ohmyzsh lib compfix.zsh 
+zcomet load ohmyzsh lib completion.zsh 
+zcomet load ohmyzsh lib correction.zsh 
+zcomet load ohmyzsh lib functions.zsh
+zcomet load ohmyzsh lib git.zsh
+zcomet load ohmyzsh lib termsupport.zsh 
+zcomet load ohmyzsh lib theme-and-appearance
 
 # omzp snippets
-pz source ohmyzsh/ohmyzsh plugins/colored-man-pages
-pz source ohmyzsh/ohmyzsh plugins/command-not-found
-pz source ohmyzsh/ohmyzsh plugins/direnv
-pz source ohmyzsh/ohmyzsh plugins/docker
-pz source ohmyzsh/ohmyzsh plugins/docker-compose
-pz source ohmyzsh/ohmyzsh plugins/extract
-pz source ohmyzsh/ohmyzsh plugins/fzf
-pz source ohmyzsh/ohmyzsh plugins/ripgrep
-pz source ohmyzsh/ohmyzsh plugins/rust
+zcomet load ohmyzsh plugins/colored-man-pages
+zcomet load ohmyzsh plugins/command-not-found
+zcomet load ohmyzsh plugins/direnv
+zcomet load ohmyzsh plugins/docker
+zcomet load ohmyzsh plugins/docker-compose
+zcomet load ohmyzsh plugins/extract
+zcomet load ohmyzsh plugins/fzf
+zcomet load ohmyzsh plugins/ripgrep
+zcomet load ohmyzsh plugins/rust
 
 ### Programs 
-pz source sharkdp/bat 
-pz source svartalf/rust-battop bt
-pz source ogham/exa ls
-pz source sharkdp/fd fd
-pz source Peltoche/lsd l
-pz source BurntSushi/ripgrep rg
-pz source dalance/procs ps
-pz source chmln/sd
-pz source bootandy/dust du
+zcomet trigger bat sharkdp/bat
+zcomet trigger bottom bt ClementTsang/bottom
+zcomet trigger dt dandavision/delta
+zcomet trigger du bootandy/dust
+zcomet trigger ll ogham/exa   
+zcomet trigger fd sharkdp/fd
+zcomet trigger l Peltoche/lsd
+zcomet trigger ps dalance/procs
+zcomet trigger rg BurntSushi/ripgrep
+zcomet trigger battop bt svartalf/rust-battop
+zcomet trigger sd chmln/sd
 
-### Plugins
-
-# source plugins from github
-pz source zsh-users/zsh-completions
-pz source junegunn/fzf 
-pz source marlonrichert/zcolors
-pz source marlonrichert/zsh-autocomplete
-pz source birdhackor/zsh-exa-ls-plugin
-pz source hlissner/zsh-autopair
-pz source mafredri/zsh-async
-pz source sharkdp/vivid
-pz source zdharma-continuum/history-search-multi-word
-pz source zsh-users/zsh-history-substring-search
-pz source zsh-users/zsh-autosuggestions
-pz source zdharma-continuum/fast-syntax-highlighting
+### Plugins zcomet trigger
+zcomet load junegunn/fzf shell completion.zshf key-bindings.zsh
+(( ${+commands[fzf]} )) || ~[fzf]/install --bin
+zcomet load zsh-users/zsh-completions
+zcomet load junegunn/fzf 
+zcomet load marlonrichert/zcolors
+zcomet load marlonrichert/zsh-autocomplete
+zcomet load birdhackor/zsh-exa-ls-plugin
+zcomet load hlissner/zsh-autopair
+zcomet load mafredri/zsh-async
+zcomet load sharkdp/vivid
+zcomet load zdharma-continuum/history-search-multi-word
+zcomet load dim-an/cod
+zcomet load zsh-users/zsh-history-substring-search
+zcomet load zsh-users/zsh-autosuggestions
+zcomet load  zdharma-continuum/fast-syntax-highlighting
 
 # History environment variables
-HISTFILE=${ZDOTDIR}/.zhistory
-HISTSIZE=120000  # Larger than $SAVEHIST for HIST_EXPIRE_DUPS_FIRST to work
+HISTFILE=${ZDOTDIR}/zhistory
+HISTSIZE=120000  
 SAVEHIST=100000
 
-### load url-quote-magic and bracketed-paste-magic ###
+# url-quote-magic & bracketed-paste-magic 
 autoload -U url-quote-magic bracketed-paste-magic
 zle -N self-insert url-quote-magic
 zle -N bracketed-paste bracketed-paste-magic
@@ -98,3 +110,9 @@ source "$HOME/.cargo/env"
 
 # LS_COLORS (vivid)
 export LS_COLORS="$(vivid generate snazzy)"
+
+# cod
+source <(cod init $$ zsh)
+
+# p10k
+source "$HOME/.config/zsh/themes/powerlevel10k/powerlevel10k.zsh-theme"

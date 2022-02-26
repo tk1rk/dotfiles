@@ -9,7 +9,7 @@ zmodload zsh/complist
 zle-line-init () {auto-fu-init;}
 zle -N zle-line-init
 
-a# cache
+# cache
 zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path "$ZSH_CACHE/.zcompcache"
 
@@ -81,7 +81,7 @@ zstyle ':completion:*:exa' file-sort modification
 zstyle ':completion:*:exa' sort false
 
 history-words
-​zstyle ​'​:completion:*:expand:*​' tag-order all-expansions            ​
+zstyle ':completion:*:expand:*​' tag-order all-expansions            ​
 ​zstyle ​'​:completion:*:history-words​'​ list ​false​                          ​
 ​zstyle ​'​:completion:*:history-words​'​ menu yes                            
 ​zstyle ​'​:completion:*:history-words​'​ remove-all-dups yes                 

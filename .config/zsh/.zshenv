@@ -1,45 +1,30 @@
 #!/usr/bin/env zsh
 
 #### xdg
-export XDG_CONFIG_HOME="$HOME/.config/"
+export XDG_CONFIG_HOME="$HOME/.config"
 [[ -d "$XDG_CONFIG_HOME" ]] || mkdir -p "$XDG_CONFIG_HOME"
 ### Data
-export XDG_DATA_DIRS="$HOME/.local/share/:/usr/share/"
+export XDG_DATA_DIRS="$HOME/.local/share"
 [[ -d "$XDG_DATA_DIRS" ]] || mkdir -p "$XDG_DATA_DIRS"
 ### Cache
-export XDG_CACHE_HOME="$HOME/.cache/"
+export XDG_CACHE_HOME="$HOME/.cache"
 [[ -d "$XDG_CACHE_HOME" ]] || mkdir -p "$XDG_CACHE_HOME"
-###
-mkdir -p {
-    $XDG_CONFIG_HOME,$XDG_DATA_HOME,$XDG_CACHE_HOME
-}
 
 #### zsh
-export ZDOTDIR="$XDG_CONFIG_HOME/zsh/"
+export ZDOTDIR="$HOME/.config/zsh"
 [[ -d "$ZDOTDIR" ]] || mkdir -p "$ZDOTDIR"
-### Custom
-export ZSH_CUSTOM="$ZDOTDIR/custom/"
-[[ -d "$ZSH_CUSTOM" ]] || mkdir -p "$ZSH_CUSTOM"
 ### Cache
-export ZSH_CACHE_DIR="$XDG_CACHE_HOME/zsh/"
+export ZSH_CACHE_DIR="$HOME/.cache/zsh"
 [[ -d "$CACHEDIR" ]] || mkdir -p "$CACHEDIR"
 ##s plugins
-export ZSH_PLUGINS="$ZDOTDIR/plugins/"
+export ZSH_PLUGINS="$HOME/.config/zsh/plugins"
 [[ -d "$ZSH_PLUGINS" ]] || mkdir -p "$ZSH_PLUGINS"
 ### Completions
-export ZSH_COMPLETIONS="$ZSH_CACHE_DIR/completions/"
+export ZSH_COMPLETIONS="$HOME/.cache/zsh/completions"
 [[ -d "$ZSH_COMPLETIONS" ]] || mkdir -p "$ZSH_COMPLETIONS"
-###
-mkdir -p {
-    $ZDOTDIR,$ZSH_CACHE_DIR,$ZSH_PLUGINS,$ZSH_CUSTOM,$ZSH_COMPLETIONS
-}
 
 ### Create cache and completions dir and add to $fpath ###
-mkdir -p "$ZSH_CACHE_DIR/completions"
-(( ${fpath[(Ie)"$ZSH_CACHE_DIR/completions"]} )) || fpath=("$ZSH_CACHE_DIR/completions" $fpath)
-
-### function path ###
-fpath=($ZSH/functions $ZSH/completions $fpath)
+fpath=("$HOME/.cache/zsh/completions" $fpath)
 _comp_options+=(globdots)
 
 ### Add all defined plugins to fpath. This must be done ###
@@ -56,14 +41,11 @@ done
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
 # starship config
-export STARSHIP_CONFIG="$HOME/.config/starship/starship.toml"
-
-# home
-export HOME="/home/tk"                     
+#export STARSHIP_CONFIG="$HOME/.config/starship/starship.toml"
 
 # editor                                    
-export EDITOR="nvim"                          
-export VISUAL="nvim"
+export EDITOR="nano"                          
+export VISUAL="nano"
 export VIMCONFIG="$XDG_CONFIG_HOME/nvim"     
 
 ### Path ###
@@ -72,22 +54,22 @@ export PATH="/usr/bin:/bin:/usr/sbin:$HOME/.local/sbin:/sbin:$HOME/.local/bin:$H
 ### TERMINAL ###
 export TERM="xterm-256color"
 export COLORTERM="truecolor"
+DISABLE_LS_COLORS="true"
 
 ### LANG ###
 export LC_ALL="en_US.UTF-8"
 export LANG="en_US.UTF-8"
 
-### enhancd ###
-export ENHANCD_FILTER="fzf:fzy:peco"
-
 # Less/Pager
 export PAGER="less -R"
-export WORDCHARS='~!#$%^&*(){}[]<>?.+;'  # sane moving between words on the prompt
+export WORDCHARS='~!#$%^&*(){}[]<>?.+;'  
 export GPG_TTY="$(tty)"
 
 # ripgrep
 export RIPGREP_CONFIG_PATH="$HOME/.ripgreprc"
 
 # bat
-export BAT_THEME="Material-Theme-Darker"
+export BAT_THEME="Dracula"
 
+# p10k
+source "$ZDOTDIR/themes/powerlevel10k/powerlevel10k.plugin.zsh"

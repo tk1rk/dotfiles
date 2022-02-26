@@ -1,3 +1,3 @@
-#!/usr/bin/env sh
+#!/usr/bin/env zsh
 
-source $ZDOTDIR/.zshrc
+source "$ZDOTDIR/.zshrc"

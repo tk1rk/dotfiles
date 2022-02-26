@@ -12,7 +12,7 @@ sudo mkdir -p /usr/local/var/db/redis/
 # for ZSH
 case "$OSTYPE" in
   arch*)
-    sudo pacman -Syy --needed base-devel git aria2
+    sudo pacman -Syy --needed base-devel git aria2 hub axe
   ;;
 esac
 
@@ -38,3 +38,7 @@ cargo install \
   ripgrep \
   broot \
   starship
+  tre-command \
+  lsd \
+  exa \
+  

@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env zsh
 
-ZDOTDIR=$XDG_CONFIG_HOME/zsh/
+ZDOTDIR="$HOME/.config/zsh"
 [[ -f "$ZDOTDIR/.zshenv" ]] || source "$ZDOTDIR/.zshenv"
