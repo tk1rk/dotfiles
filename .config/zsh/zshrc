@@ -8,9 +8,6 @@ for file in "${ZDOTDIR}/include/aliases.zsh" \
             "${ZDOTDIR}/include/functions.zsh" \
             "${ZDOTDIR}/include/less.zsh" \
             "${ZDOTDIR}/include/setopt.zsh" \
-            "${ZDOTDIR}/include/less.zsh" \
-            "${ZSH_PLUGINS}/find-the-command/ftc.zsh" \
-            "${ZSH_PLUGINS}/zsh-defer/zsh-defer.plugin.zsh" \
             "${ZSH_PLUGINS}/auto-ls-zsh/auto-ls.zsh" 
     [ -s "${file}" ] && source "${file}"
 done
@@ -31,25 +28,26 @@ autoload -Uz _zi
 ### Prompt ###
 zi light @romkatv
 
-# ohmyzsh plugins
-zcomet load ohmyzsh lib compfix.zsh 
-zcomet load ohmyzsh lib completion.zsh 
-zcomet load ohmyzsh lib correction.zsh 
-zcomet load ohmyzsh lib functions.zsh
-zcomet load ohmyzsh lib git.zsh
-zcomet load ohmyzsh lib termsupport.zsh 
-zcomet load ohmyzsh lib theme-and-appearance
+# ohmyzsh libraries
+zi snippet OMZL::compfix.zsh 
+zi snippet OMZL::completion.zsh 
+zi snippet OMZL::functions.zsh
+zi snippet OMZL::correction.zsh 
+zi snippet OMZL::git.zsh
+zi snippet OMZL::termsupport.zsh 
+zi snippet OMZL::theme-and-appearance.ZSH
 
-# omzp snippets
-zcomet load ohmyzsh plugins/colored-man-pages
-zcomet load ohmyzsh plugins/command-not-found
-zcomet load ohmyzsh plugins/direnv
-zcomet load ohmyzsh plugins/docker
-zcomet load ohmyzsh plugins/docker-compose
-zcomet load ohmyzsh plugins/extract
-zcomet load ohmyzsh plugins/fzf
-zcomet load ohmyzsh plugins/ripgrep
-zcomet load ohmyzsh plugins/rust
+# ohmyzsh plugins
+zi snippet OMZP::colored-man-pages
+zi snippet OMZP::command-not-found
+zi snippet OMZP::direnv
+zi snippet OMZP::docker
+zi snippet OMZP::docker-compose
+zi snippet OMZP::extract
+zi snippet OMZP::fzf
+zi snippet OMZP::git
+zi snippet OMZP::ripgrep
+zi snippet OMZP::rust
 
 ### Programs 
 zcomet trigger bat sharkdp/bat
@@ -63,6 +61,19 @@ zcomet trigger ps dalance/procs
 zcomet trigger rg BurntSushi/ripgrep
 zcomet trigger battop bt svartalf/rust-battop
 zcomet trigger sd chmln/sd
+
+# completions
+zi ice as"completion"
+zi snippet OMZP::docker/_docker
+
+zi ice as"completion"
+zi snippet OMZP::fd/_fd
+
+
+
+
+
+
 
 
 # History environment variables
