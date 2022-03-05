@@ -1,5 +1,8 @@
 #!/usr/bin/env zsh
 
+zle-line-init () {auto-fu-init;}
+zle -N zle-line-init
+
 zle -N up-line-or-beginning-search
 zle -N down-line-or-beginning-search
 zle -N edit-command-line
