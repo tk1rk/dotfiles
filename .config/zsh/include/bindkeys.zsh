@@ -7,23 +7,28 @@ zle -N edit-command-line
 zle -N zle-keymap-select 
 auto-fu-zle-keymap-select
 
-### History Substring Search ###
+# Bind ^[[A/^[[B manually so up/down works both before and after zle-line-init
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
+
+# Bind up and down keys
+zmodload -F zsh/terminfo +p:terminfo
+if [[ -n ${terminfo[kcuu1]} && -n ${terminfo[kcud1]} ]]; then
+  bindkey ${terminfo[kcuu1]} history-substring-search-up
+  bindkey ${terminfo[kcud1]} history-substring-search-down
+fi
+
+bindkey '^P' history-substring-search-up
+bindkey '^N' history-substring-search-down
 bindkey -M vicmd 'k' history-substring-search-up
 bindkey -M vicmd 'j' history-substring-search-down
+# }}} End configuration added by Zim install
 
 # fuzzy find: start to type
 bindkey "$terminfo[kcuu1]" up-line-or-beginning-search
 bindkey "$terminfo[kcud1]" down-line-or-beginning-search
 bindkey "$terminfo[cuu1]" up-line-or-beginning-search
 bindkey "$terminfo[cud1]" down-line-or-beginning-search
-
-# backward and forward word with option+left/right
-bindkey '^[^[[D' backward-word
-bindkey '^[b' backward-word
-bindkey '^[^[[C' forward-word
-bindkey '^[f' forward-word
 
 # to to the beggining/end of line with fn+left/right or home/end
 bindkey "${terminfo[khome]}" beginning-of-line
@@ -79,33 +84,4 @@ done
 autoload -U url-quote-magic
 zle -N self-insert url-quote-magic
 
-# ZSH KEYBINDINGS {{{1
 
-# First, primarily use emacs key bindings
-bindkey -e
-
-# One keystroke to cd ..
-bindkey -s '\eu' '\eq^Ucd ..; ls^M'
-
-# Smart less-adder
-bindkey -s "\el" "^E 2>&1|less^M"
-
-# This lets me use ^Z to toggle between open text editors.
-bindkey -s '^Z' '^Ufg^M'
-
-# Edit the current command line with Meta-e
-autoload -U edit-command-line
-zle -N edit-command-line
-bindkey '\ee' edit-command-line
-
-# Let ^W delete to slashes - zsh-users list, 4 Nov 2005
-# (I can't live without this)
-backward-delete-to-slash() {
-  local WORDCHARS=${WORDCHARS//\//}
-  zle .backward-delete-word
-}
-zle -N backward-delete-to-slash
-bindkey "^W" backward-delete-to-slash
-
-# AUTO_PUSHD is set so we can always use popd
-bindkey -s '\ep' '^Upopd >/dev/null; dirs -v^M'
