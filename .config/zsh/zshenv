@@ -27,16 +27,6 @@ export ZSH_COMPLETIONS="$HOME/.cache/zsh/completions"
 fpath=("$HOME/.cache/zsh/completions" $fpath)
 _comp_options+=(globdots)
 
-### Add all defined plugins to fpath. This must be done ###
-### before running compinit. ###
-for plugin ($plugins); do
-  if is_plugin $ZSH_PLUGINS $plugin; then
-    fpath=($ZSH_PLUGINS/$plugin $fpath)
-  elif is_plugin $ZSH_PLUGINS $plugin; then
-    fpath=($ZSH_PLUGINS/plugins/$plugin $fpath)
-  fi
-done
-
 # install bat-cat-git 
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
