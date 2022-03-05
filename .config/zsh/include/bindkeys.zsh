@@ -52,24 +52,23 @@ autoload -U edit-command-line
 zle -N edit-command-line
 bindkey '^e' edit-command-line
 
-# search history with fzf if installed, default otherwise
-if test -d /usr/local/opt/fzf/shell; then
-	# shellcheck disable=SC1091
-	. /usr/local/opt/fzf/shell/key-bindings.zsh
-else
-	bindkey '^R' history-incremental-search-backward
-fi
-
-
 # Show dots while waiting to complete. Useful for systems with slow net access,
-# like those places where they use giant, slow NFS solutions. (Hint.)
-expand-or-complete-with-dots() {
-echo -n "\e[31m......\e[0m"
-zle expand-or-complete
-zle redisplay
-}
-zle -N expand-or-complete-with-dots
-bindkey "^I" expand-or-complete-with-dots
+
+if [[ ${COMPLETION_WAITING_DOTS:-false} != false ]]; then
+  expand-or-complete-with-dots() {
+    # use $COMPLETION_WAITING_DOTS either as toggle or as the sequence to show
+    [[ $COMPLETION_WAITING_DOTS = true ]] && COMPLETION_WAITING_DOTS="%F{red}…%f"
+    # turn off line wrapping and print prompt-expanded "dot" sequence
+    printf '\e[?7l%s\e[?7h' "${(%)COMPLETION_WAITING_DOTS}"
+    zle expand-or-complete
+    zle redisplay
+  }
+  zle -N expand-or-complete-with-dots
+  # Set the function as the default tab completion widget
+  bindkey -M emacs "^I" expand-or-complete-with-dots
+  bindkey -M viins "^I" expand-or-complete-with-dots
+  bindkey -M vicmd "^I" expand-or-complete-with-dots
+fi
 
 # This inserts a tab after completing a redirect. You want this.
 # (Source: http://www.zsh.org/mla/users/2006/msg00690.html)
