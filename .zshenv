@@ -1,4 +1,4 @@
 #!/usr/bin/env zsh
 
-ZDOTDIR="$HOME/.config/zsh"
-[[ -f "$ZDOTDIR/.zshenv" ]] || source "$ZDOTDIR/.zshenv"
+ZDOTDIR=$HOME/.zsh
+[[ -f "${ZDOTDIR}/zshenv" ]] || source "${ZDOTDIR}/zshenv"
