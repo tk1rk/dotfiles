@@ -13,7 +13,7 @@ local packer = require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
 
   -- colorscheme
-  use 'drewtempelmeyer/palenight.vim'
+  use 'Mofiqul/dracula.nvim'
 
   -- git integration
   use {
@@ -33,7 +33,7 @@ local packer = require('packer').startup(function(use)
   use {'konapun/vacuumline.nvim', requires = {
   'glepnir/galaxyline.nvim', branch = 'main',
   'kyazdani42/nvim-web-devicons', opt = true
-}, config = function() require('vacuumline.theme.one-dark').setup() end} -- Add this line to use defaults; otherwise, call `setup` with your config as described below wherever you configure your plugins
+  }, config = function() require('vacuumline.theme.one-dark').setup() end} -- Add this line to use defaults; otherwise, call `setup` with your config as described below wherever you configure your plugins
 
   -- show recent files on empty nvim command
   use 'mhinz/vim-startify'
