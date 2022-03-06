@@ -64,6 +64,9 @@ vim.api.nvim_set_keymap('', '<C-w>č', '<C-w>l', opts)
 -- opening terminal with shortcut
 vim.api.nvim_set_keymap('', '<Leader><CR>', '<Cmd>silent !$TERM &<CR>', opts)
 
+-- chadtree
+vim.api.nvim_set_keymap('', '<Leader>v', '<Cmd>CHADopen<CR>', opts)
+
 -- jumping back and forth
 vim.api.nvim_set_keymap('', '<C-K>', '<C-O>', opts)
 vim.api.nvim_set_keymap('', '<C-L>', '<C-I>', opts)
