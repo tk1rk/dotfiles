@@ -66,6 +66,7 @@ vim.api.nvim_set_keymap('', '<Leader><CR>', '<Cmd>silent !$TERM &<CR>', opts)
 
 -- chadtree
 vim.api.nvim_set_keymap('', '<Leader>v', '<Cmd>CHADopen<CR>', opts)
+vim.api.nvim_set_keymap('', '<Leader>l', '<Cmd>call setqflist([])<CR>', opts)
 
 -- jumping back and forth
 vim.api.nvim_set_keymap('', '<C-K>', '<C-O>', opts)
