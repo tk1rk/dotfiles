@@ -30,7 +30,10 @@ local packer = require('packer').startup(function(use)
   use 'scrooloose/nerdcommenter'
 
   -- status line
-  use 'glepnir/galaxyline.nvim'
+  use {'konapun/vacuumline.nvim', requires = {
+  'glepnir/galaxyline.nvim', branch = 'main',
+  'kyazdani42/nvim-web-devicons', opt = true
+}, config = function() require('vacuumline.theme.one-dark').setup() end} -- Add this line to use defaults; otherwise, call `setup` with your config as described below wherever you configure your plugins
 
   -- show recent files on empty nvim command
   use 'mhinz/vim-startify'
@@ -57,11 +60,11 @@ local packer = require('packer').startup(function(use)
   -- better highlighting
   use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
 
-  use {
-    'kyazdani42/nvim-tree.lua',
-    requires = 'kyazdani42/nvim-web-devicons',
-    config = function() require'nvim-tree'.setup {} end
-  }
+  -- color-buddy
+  use {'tjdevries/colorbuddy.vim', {'nvim-treesitter/nvim-treesitter', opt = true}}
+
+  -- file explorer
+  use {'ms-jpq/chadtree', branch = 'chad', run = 'python3 -m chadtree deps'}
 
   -- prettier tabs
   use 'romgrk/barbar.nvim'
@@ -88,13 +91,13 @@ end)
 -- plugin specific configs go here
 require('plugin-config/nvim-compe')
 require('plugin-config/telescope')
-require('plugin-config/nvim-tree')
+require('plugin-config/chadtree')
 require('plugin-config/nvim-treesitter')
 require('plugin-config/barbar')
 require('plugin-config/lsp-colors')
 require('plugin-config/lsp-trouble')
 require('plugin-config/lspsaga')
-require('plugin-config/galaxyline')
+require('plugin-config/vacuumline')
 require('plugin-config/gitsigns')
 require('plugin-config/indent-guide-lines')
 
