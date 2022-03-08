@@ -33,10 +33,10 @@ local packer = require('packer').startup(function(use)
   use {'konapun/vacuumline.nvim', requires = {
   'glepnir/galaxyline.nvim', branch = 'main',
   'kyazdani42/nvim-web-devicons', opt = true
-  }, config = function() require('vacuumline.theme.one-dark').setup() end} -- Add this line to use defaults; otherwise, call `setup` with your config as described below wherever you configure your plugins
+  }, config = function() require('vacuumline.theme.one-dark').setup() end}
 
-  -- show recent files on empty nvim command
-  use 'mhinz/vim-startify'
+  -- dashboard
+  use 'glepnir/dashboard-nvim'
 
   -- lsp config
   use {
@@ -45,7 +45,7 @@ local packer = require('packer').startup(function(use)
   }
 
   -- for LSP autocompletion
-  use 'hrsh7th/nvim-compe'
+  use { 'nvim-lua/completion-nvim' }
 
   -- TODO: prettify telescope vim, make it use regex & shorten the window
   -- telescope - searching / navigation
@@ -54,8 +54,11 @@ local packer = require('packer').startup(function(use)
     requires = { {'nvim-lua/plenary.nvim'} }
   }
 
+  -- fidget (lsp progress spinner)
+  use { 'j-hui/fidget.nvim', config = function() require"fidget".setup{} }
+
   -- better hotfix window (for showing and searching through results in telescope's find usages)
-  use {"kevinhwang91/nvim-bqf"}
+  use {'kevinhwang91/nvim-bqf'}
 
   -- better highlighting
   use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
@@ -89,16 +92,18 @@ local packer = require('packer').startup(function(use)
 end)
 
 -- plugin specific configs go here
-require('plugin-config/nvim-compe')
-require('plugin-config/telescope')
-require('plugin-config/chadtree')
-require('plugin-config/nvim-treesitter')
-require('plugin-config/barbar')
-require('plugin-config/lsp-colors')
-require('plugin-config/lsp-trouble')
-require('plugin-config/lspsaga')
-require('plugin-config/vacuumline')
-require('plugin-config/gitsigns')
-require('plugin-config/indent-guide-lines')
+require('plugin/nvim-compe')
+require('plugin/telescope')
+require('plugin/chadtree')
+require('plugin/nvim-treesitter')
+require('plugin/barbar')
+require('plugin/lsp-colors')
+require('plugin/fidget')
+require('plugin/lsp-trouble')
+require('plugin/lspsaga')
+require('plugin/dashboard')
+require('plugin/vacuumline')
+require('plugin/gitsigns')
+require('plugin/indent-guide-lines')
 
 return packer
