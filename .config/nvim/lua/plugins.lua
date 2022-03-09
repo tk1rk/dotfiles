@@ -16,12 +16,8 @@ local packer = require('packer').startup(function(use)
   use 'Mofiqul/dracula.nvim'
 
   -- git integration
-  use {
-    'lewis6991/gitsigns.nvim',
-    requires = {
-      'nvim-lua/plenary.nvim'
-    }
-  }
+  use { 'TimUntersberger/neogit', requires = 'nvim-lua/plenary.nvim' }
+  use { 'lewis6991/gitsigns.nvim', requires = 'nvim-lua/plenary.nvim' }
 
   -- surround vim
   use 'tpope/vim-surround'
@@ -30,10 +26,13 @@ local packer = require('packer').startup(function(use)
   use 'scrooloose/nerdcommenter'
 
   -- status line
-  use {'konapun/vacuumline.nvim', requires = {
-  'glepnir/galaxyline.nvim', branch = 'main',
-  'kyazdani42/nvim-web-devicons', opt = true
-  }, config = function() require('vacuumline.theme.one-dark').setup() end}
+  use {
+    'konapun/vacuumline.nvim', 
+    requires = {
+      {'glepnir/galaxyline.nvim', branch = 'main'},
+      {'kyazdani42/nvim-web-devicons', opt = true}
+  }, config = function() require('vacuumline.theme.one-dark').setup() 
+  end} 
 
   -- dashboard
   use 'glepnir/dashboard-nvim'
@@ -41,27 +40,63 @@ local packer = require('packer').startup(function(use)
   -- lsp config
   use {
     'neovim/nvim-lspconfig',
-    'williamboman/nvim-lsp-installer',
+    'williamboman/nvim-lsp-installer'
   }
 
   -- for LSP autocompletion
-  use { 'nvim-lua/completion-nvim' }
+  use 'hrsh7th/nvim-compe'
 
-  -- TODO: prettify telescope vim, make it use regex & shorten the window
   -- telescope - searching / navigation
+  -------------------------------------
   use {
-    'nvim-telescope/telescope.nvim',
-    requires = { {'nvim-lua/plenary.nvim'} }
+    'nvim-telescope/telescope.nvim', 
+    requires = {
+      {'nvim-lua/popup.nvim'}, 
+      {'nvim-lua/plenary.nvim'}
+    }
+  }
+  -------------------
+  --telescope project
+  use {
+    'nvim-telescope/telescope-project.nvim',
+    config = function()
+      require"telescope".load_extension("project")
+    end
+  }
+  ------------------
+  --telescope-github
+  use {
+    'nvim-telescope/telescope-github.nvim',
+    config = function()
+      require"telescope".load_extension("gh")
+    end
+  }
+  ------------------------
+  -- telescope media files
+  use {
+    'nvim-telescope/telescope-media-files.nvim',
+    config = function()
+      require"telescope".extensions.media_files.media_files()
+    end
+  }
+  -----------------
+  -- telescope-cheat
+  use {
+    'nvim-telescope/telescope-cheat.nvim',
+    requires = 'tami5/sql.nvim',
+    config = function()
+      require"telescope".load_extension("cheat")
+    end
   }
 
-  -- fidget (lsp progress spinner)
-  use { 'j-hui/fidget.nvim', config = function() require"fidget".setup{} }
-
   -- better hotfix window (for showing and searching through results in telescope's find usages)
-  use {'kevinhwang91/nvim-bqf'}
+  use {"kevinhwang91/nvim-bqf"}
 
   -- better highlighting
-  use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
+  use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
+  use 'nvim-treesitter/nvim-treesitter-textobjects'
+  use 'nvim-treesitter/nvim-treesitter-refactor'
+  use 'nvim-treesitter/playground'
 
   -- color-buddy
   use {'tjdevries/colorbuddy.vim', {'nvim-treesitter/nvim-treesitter', opt = true}}
@@ -72,6 +107,9 @@ local packer = require('packer').startup(function(use)
   -- prettier tabs
   use 'romgrk/barbar.nvim'
 
+  -- autopairs
+  use 'windwp/nvim-autopairs'
+
   -- nice diagnostic pane on the bottom
   use 'folke/lsp-trouble.nvim'
 
@@ -81,8 +119,11 @@ local packer = require('packer').startup(function(use)
   -- better LSP UI (for code actions, rename etc.)
   use 'glepnir/lspsaga.nvim'
 
-  -- show indentation levels
-  use 'Yggdroot/indentLine'
+  -- terminal integration
+  use 'akinsho/nvim-toggleterm.lua'
+
+  -- indentation 
+  use {"lukas-reineke/indent-blankline.nvim", branch = "lua"}
 
   -- this will automatically install listed dependencies
   -- only the first time NeoVim is opened, because that's when Packer gets installed
@@ -98,12 +139,11 @@ require('plugin/chadtree')
 require('plugin/nvim-treesitter')
 require('plugin/barbar')
 require('plugin/lsp-colors')
-require('plugin/fidget')
 require('plugin/lsp-trouble')
 require('plugin/lspsaga')
-require('plugin/dashboard')
 require('plugin/vacuumline')
 require('plugin/gitsigns')
+require('plugin/neogit')
 require('plugin/indent-guide-lines')
 
 return packer
