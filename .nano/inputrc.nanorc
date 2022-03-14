@@ -1,9 +1,10 @@
-syntax "inputrc" "inputrc$"
+syntax "Inputrc" "inputrc$"
 
 color red   "\<(off|none)\>"
 color green "\<on\>"
-FUNCTION:   "\<set|\$include\>"
-+STRING
-ESCAPE:     "\\.?"
-+HASHCOMMENT
-+LINT
+color brightblue   "\<set|\$include\>"
+color yellow ""(\\.|[^"])*"|'(\\.|[^'])*'"
+color magenta     "\\.?"
+color brightblack "(^|[[:space:]])#([^{].*)?$"
+color ,green "[[:space:]]+$"
+color ,red "	+ +| +	+"

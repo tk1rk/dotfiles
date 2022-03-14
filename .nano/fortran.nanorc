@@ -1,7 +1,7 @@
 ## Here is an example for Fortran 90/95
 
-syntax "fortran" "\.([Ff]|[Ff]90|[Ff]95|[Ff][Oo][Rr])$" 
-
+syntax "Fortran" "\.([Ff]|[Ff]90|[Ff]95|[Ff][Oo][Rr])$"
+comment "!"
 #color red "\<[A-Z_]a[0-9A-Z_]+\>" 
 color red "\<[0-9]+\>" 
 
@@ -48,3 +48,6 @@ icolor cyan "<[^=     ]*>" "'(\\.|[^"])*'"
 
 ## Comment highlighting
 icolor brightred "!.*$" "(^[Cc]| [Cc]) .*$"
+
+## Trailing spaces
+color ,green "[[:space:]]+$"

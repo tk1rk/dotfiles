@@ -1,22 +1,10 @@
-# Supports `.env` files
-syntax "dotenv" "\/\.env(\.old|\.bak|.example|~)?$"
+## Syntax highlight for .env files, eg. https://symfony.com/doc/current/components/dotenv.html
+## 
+## Derived from sh.nanorc
+##
+syntax "dotenv" "\.env" "\.env\..+"
 
-## Keys
-color cyan "^\s*[A-Z0-9_]+"
-
-## Values
-color brightyellow "=.*$"
-color ,red "[\'\"].*$"
-color brightwhite "[\'\"].*[\'\"]$"
-
-## Equal sign
-color green "="
-
-## Booleans
-color brightmagenta "(TRUE|true|FALSE|false)\s*($|;)"
-
-## Comments
-color brightyellow ";.*$"
-
-## Spaces in front of tabs.
-color ,red " +  +"
+color green "(\(|\)|\$|=)"
+color brightyellow ""(\\.|[^"])*"" "'(\\.|[^'])*'"
+color cyan "(^|[[:space:]])#.*$"
+color ,green "[[:space:]]+$"

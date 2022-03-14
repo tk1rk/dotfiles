@@ -1,8 +1,6 @@
 syntax "properties" "\.properties$"
+# property key
+icolor green "^[^:=]+[:=]"
 
-KEYWORD:  "^[[:space:]]*[^#!]([^:= ]|\\[:= ])*[:= ]"
-OPERATOR: "[:=]"
-ESCAPE:   "\\([#!=: ]|$)"
-ESCAPE:   "\\u[[:xdigit:]]{4}"
-COMMENT:  "^[[:space:]]*[#!].*$"
-+LINT
+# comments
+icolor blue "([[:space:]])*[#!].*$"

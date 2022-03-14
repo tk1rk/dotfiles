@@ -1,41 +1,27 @@
-syntax "privoxycfg" "(\.|/|)privoxy/config$"
-color brightwhite "[0-9]"
-color cyan "^[[:space:]]*[.a-z0-9-]*"
-color brightgreen "\ 1"
-color brightwhite "1[0-9]"
-color brightblue "\ \/.*$"
-color brightred "\ 0"
-color magenta "http:.*$"
+syntax "Privoxy-config" "privoxy/config$"
 
-# important config settings without which it may not work the way You want it to :)
-color yellow "(listen-address|forward|accept-intercepted-requests)"
+color cyan "(accept-intercepted-requests|actionsfile|admin-address|allow-cgi-request-crunching|buffer-limit|compression-level|confdir|connection-sharing|debug|default-server-timeout|deny-access|enable-compression|enable-edit-actions|enable-remote-http-toggle|enable-remote-toggle|enforce-blocks|filterfile|forward|forwarded-connect-retries|forward-socks4|forward-socks4a|forward-socks5|handle-as-empty-doc-returns-ok|hostname|keep-alive-timeout|listen-address|logdir|logfile|max-client-connections|permit-access|proxy-info-url|single-threaded|socket-timeout|split-large-forms|templdir|toggle|tolerate-pipelining|trustfile|trust-info-url|user-manual)[[:space:]]"
+color brightblack "(^|[[:space:]])#([^{].*)?$"
+color ,green "[[:space:]]+$"
+color ,red "	+ +| +	+"
 
-# comments 
-color green "#.*$"
+syntax "Privoxy-action" "\.action$"
 
-#######################################
-syntax "privoxyaction" "(\.|/|).action$"
+color brightred   "[{[:space:]]\-block([[:space:]{}]|$)"
+color brightgreen "[{[:space:]]\+block([[:space:]{}]|$)"
 
-color brightyellow start="\{" end="\}"
-color cyan "(\+|\-)(add-header|block|client-header-(filter|tagger)|content-type-overwrite|crunch-(client-header|if-none-match|server-header))"
-color cyan "(\+|\-)(deanimate-gifs|downgrade-http-version|fast-redirects|filter|force-text-mode|forward-override|handle-as-empty-document)"
-color cyan "(\+|\-)(hide-(accept-language|content-disposition|forwarded-for-headers|from-header|if-modified-since|refe(r|rr)er|user-agent))"
-color cyan "(\+|\-)(handle-as-image|inspect-jpegs|limit-connect|overwrite-last-modified|prevent-compression|server-header-(filter|tagger))"
-color cyan "(\+|\-)(session-cookies-only|set-image-blocker|crunch-(outgoing|incoming)-cookies|kill-popups|redirect|send(-|-vanilla-)wafer)"
+color brightred   "-(add-header|change-x-forwarded-for|client-header-filter|client-header-tagger|content-type-overwrite|crunch-client-header|crunch-if-none-match|crunch-incoming-cookies|crunch-outgoing-cookies|crunch-server-header|deanimate-gifs|downgrade-http-version|fast-redirects|filter|force-text-mode|forward-override|handle-as-empty-document|handle-as-image|hide-accept-language|hide-content-disposition|hide-from-header|hide-if-modified-since|hide-referrer|hide-user-agent|limit-connect|overwrite-last-modified|prevent-compression|redirect|server-header-filter|server-header-tagger|session-cookies-only|set-image-blocker)"
+color brightgreen "\+(add-header|change-x-forwarded-for|client-header-filter|client-header-tagger|content-type-overwrite|crunch-client-header|crunch-if-none-match|crunch-incoming-cookies|crunch-outgoing-cookies|crunch-server-header|deanimate-gifs|downgrade-http-version|fast-redirects|filter|force-text-mode|forward-override|handle-as-empty-document|handle-as-image|hide-accept-language|hide-content-disposition|hide-from-header|hide-if-modified-since|hide-referrer|hide-user-agent|limit-connect|overwrite-last-modified|prevent-compression|redirect|server-header-filter|server-header-tagger|session-cookies-only|set-image-blocker)"
+color magenta           "\\.?"
+color brightblack "(^|[[:space:]])#([^{].*)?$"
+color ,green "[[:space:]]+$"
+color ,red "	+ +| +	+"
 
-color yellow "\{\{(settings|alias)\}\}"
-# comments 
-color green "#.*$"
-color brightwhite "##.*$"
-color brightgreen "#-.*$"
+syntax "Privoxy-filter" "\.filter$"
 
-#######################################
-#syntax "privoxytemplate" "/etc/privoxy/templates/(\.|/|)"
-#color white "^.+$"
-#color green  start="<" end=">"
-#color cyan   "<[^> ]+"
-#color cyan   ">"
-#color yellow start="<!DOCTYPE" end="[/]?>"
-#color yellow start="<!--" end="-->"
-#color red    "&[^;]*;"
-
+color cyan  "^(FILTER|CLIENT-HEADER-FILTER|CLIENT-HEADER-TAGGER|SERVER-HEADER-FILTER|SERVER-HEADER-TAGGER): [a-z-]+"
+color brightblue "^(FILTER|CLIENT-HEADER-FILTER|CLIENT-HEADER-TAGGER|SERVER-HEADER-FILTER|SERVER-HEADER-TAGGER):"
+color magenta   "\\.?"
+color brightblack "(^|[[:space:]])#([^{].*)?$"
+color ,green "[[:space:]]+$"
+color ,red "	+ +| +	+"

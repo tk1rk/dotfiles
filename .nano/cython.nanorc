@@ -1,9 +1,9 @@
 ## Cython nanorc, based off of Python nanorc.
 ##
-syntax "cython" "\.pyx$" "\.pxd$" "\.pyi$"
+syntax "Cython" "\.pyx$" "\.pxd$" "\.pyi$"
 icolor brightred "def [ 0-9A-Z_]+"
-icolor brightred "cpdef [ 0-9A-Z_]+\(.*?\):"
-icolor brightred "cdef cppclass [ 0-9A-Z_]+\(.*?\):"
+icolor brightred "cpdef [0-9A-Z_]+\(.*\):"
+icolor brightred "cdef cppclass [ 0-9A-Z_]+\(.*\):"
 
 
 
@@ -28,3 +28,6 @@ color cyan start=""""[^"]" end=""""" start="'''[^']" end="'''"
 
 # Comment Color
 color brightblue "#.*$"
+
+## Trailing spaces
+color ,green "[[:space:]]+$"

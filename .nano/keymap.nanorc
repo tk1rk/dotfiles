@@ -1,9 +1,10 @@
-syntax "keymap" "\.(k|key)?map$|Xmodmap$"
+syntax "Keymap" "\.(k|key)?map$|Xmodmap$"
 
-KEYWORD:  "\<(add|clear|compose|keycode|keymaps|keysym|remove|string)\>"
-KEYWORD:  "\<(control|alt|shift)\>"
-NUMBER:   "\<[0-9]+\>"
-OPERATOR: "="
-+STRING
-COMMENT:  "^!.*$"
-+LINT
+color cyan  "\<(add|clear|compose|keycode|keymaps|keysym|remove|string)\>"
+color cyan  "\<(control|alt|shift)\>"
+color blue   "\<[0-9]+\>"
+color red "="
+color yellow ""(\\.|[^"])*"|'(\\.|[^'])*'"
+color brightblack  "^!.*$"
+color ,green "[[:space:]]+$"
+color ,red "	+ +| +	+"

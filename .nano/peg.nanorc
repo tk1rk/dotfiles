@@ -1,11 +1,12 @@
-syntax "peg" "\.l?peg$"
+syntax "PEG" "\.l?peg$"
 
-KEYWORD:  "^[[:space:]]*[A-Za-z][A-Za-z0-9_]*[[:space:]]*<-"
-NUMBER:   "\^[+-]?[0-9]+"
-OPERATOR: "[-+*?^/!&]|->|<-|=>"
-MACRO:    "%[A-Za-z][A-Za-z0-9_]*"
-REGEXP:   "\[[^]]*\]"
-+STRING
-COMMENT:  "(^|[[:space:]])\-\-.*$"
-+TODO
-+LINT
+color cyan  "^[[:space:]]*[A-Za-z][A-Za-z0-9_]*[[:space:]]*<-"
+color blue   "\^[+-]?[0-9]+"
+color red "[-+*?^/!&]|->|<-|=>"
+color brightyellow    "%[A-Za-z][A-Za-z0-9_]*"
+color magenta   "\[[^]]*\]"
+color yellow ""(\\.|[^"])*"|'(\\.|[^'])*'"
+color brightblack  "(^|[[:space:]])\-\-.*$"
+color brightwhite,cyan "TODO:?"
+color ,green "[[:space:]]+$"
+color ,red "	+ +| +	+"

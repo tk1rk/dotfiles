@@ -1,17 +1,11 @@
-# ini highlighting
-syntax "ini" "\.ini(\.old|~)?$"
- 
-# values
-color brightred "=.*$"
-# equal sign
-color green "="
-# numbers
-color brightblue "-?[0-9\.]+\s*($|;)"
-# ON/OFF
-color brightmagenta "ON|OFF|On|Off|on|off\s*($|;)"
-# sections
-color brightcyan "^\s*\[.*\]"
-# keys
-color cyan "^\s*[a-zA-Z0-9_\.]+"
-# comments
-color brightyellow ";.*$"
+syntax "INI" "\.(ini|desktop|lfl|override|cfg)$" "(mimeapps\.list|pinforc|setup\.cfg)$" "weechat/.+\.conf$"
+header "^\[[A-Za-z]+\]$"
+
+color brightcyan "\<(true|false)\>"
+color cyan "^[[:space:]]*[^=]*="
+color brightmagenta "^[[:space:]]*\[.*\]$"
+color red "[=;]"
+color yellow ""(\\.|[^"])*"|'(\\.|[^'])*'"
+color brightblack "(^|[[:space:]])(#([^{].*)?|;.*)$"
+color ,green "[[:space:]]+$"
+color ,red "	+ +| +	+"

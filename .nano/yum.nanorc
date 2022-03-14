@@ -1,6 +1,8 @@
-syntax "yum" "\.repo$|yum.*\.conf$"
+syntax "YUM" "\.repo$|yum.*\.conf$"
 
-+INI
-VARIABLE: "\$(releasever|arch|basearch|uuid|YUM[0-9])"
-+HASHCOMMENT
-+LINT
+color cyan "^[[:space:]]*[^=]*="
+color brightmagenta "^[[:space:]]*\[.*\]$"
+color brightyellow "\$(releasever|arch|basearch|uuid|YUM[0-9])"
+color brightblack "(^|[[:space:]])#([^{].*)?$"
+color ,green "[[:space:]]+$"
+color ,red "	+ +| +	+"

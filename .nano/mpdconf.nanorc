@@ -1,8 +1,9 @@
-syntax "mpdconf" "mpd\.conf$"
+syntax "MPD" "mpd\.conf$"
 
-KEYWORD: "\<(user|group|bind_to_address|host|port|plugin|name|type)\>"
-KEYWORD: "\<((music|playlist)_directory|(db|log|state|pid|sticker)_file)\>"
-SECTION: "^(input|audio_output|decoder)[[:space:]]*\{|\}"
-+STRING
-+HASHCOMMENT
-+LINT
+color cyan "\<(user|group|bind_to_address|host|port|plugin|name|type)\>"
+color cyan "\<((music|playlist)_directory|(db|log|state|pid|sticker)_file)\>"
+color brightmagenta "^(input|audio_output|decoder)[[:space:]]*\{|\}"
+color yellow ""(\\.|[^"])*"|'(\\.|[^'])*'"
+color brightblack "(^|[[:space:]])#([^{].*)?$"
+color ,green "[[:space:]]+$"
+color ,red "	+ +| +	+"

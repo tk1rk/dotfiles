@@ -1,8 +1,9 @@
-syntax "sed" "\.sed$"
+syntax "SED" "\.sed$"
 header "^#!.*bin/(env +)?sed( |$)"
 
-OPERATOR: "[|^$.*+]"
-VARIABLE: "\{[0-9]+,?[0-9]*\}"
-ESCAPE:   "\\."
-+HASHCOMMENT
-+LINT
+color red "[|^$.*+]"
+color brightyellow "\{[0-9]+,?[0-9]*\}"
+color magenta   "\\."
+color brightblack "(^|[[:space:]])#([^{].*)?$"
+color ,green "[[:space:]]+$"
+color ,red "	+ +| +	+"
