@@ -1,182 +1,132 @@
-# Remove some existing commands
-unbind ^\ all
-unbind ^o all
-
-
-# Sane keyboard shortcuts
-bind ^s savefile all
-bind ^q exit all
-bind ^x cut all
-bind ^v paste all
-bind ^c copy all
-bind ^z undo all
-bind ^y redo  all
-bind ^g gotoline all
-bind ^f whereis all
-bind ^q cancel yesno
-bind ^r replace all
-
-
-# None of these are working
-#bind ^/ comment all
-bind ^SPACE complete all
-bind ^\ browser all
-
-
-# Display
-set showcursor
-set positionlog
-set linenumbers
-set constantshow
-set multibuffer
-set mouse
-set whitespace "»⋅"
-set wordchars "_"
-set zap
-set atblanks
+# settings
 set autoindent
+set nonewlines
+set saveonexit
 set backup
-set smooth
-set smarthome
-set suspend
-set linenumbers
+set locking
+set nohelp
+set atblanks
+set breaklonglinesc ugh
 set matchbrackets "(<[{)>]}"
-set keycolor #F8F8F2,#282A36
-set functioncolor #F8F8F2,#282A36
-set numbercolor #F8F8F2,#282A36
-set selectedcolor #282A36,#F8F8F2
-set statuscolor #F8F8F2,#282A36
+set quotestr "regex" "^([ \t]*([!#%:;>|}]|//))+"
+set rebinddelete
+set mouse
+set tabsize 4
 set softwrap
-set tabsize 2
-set brackets ""')>]}"
-unset casesensitive
-set softwrap
-set operatingdir ""
+set suspendable
+set smooth
+set boldtext
+set minibar
+set unix
+set trimblanks
+set magic 
+set postionlog
+
+# colors
+set keycolor #2ff,normal
+set functioncolor #d75,normal
+set minicolor #2ff,normal
+set numbercolor #2ff,normal
+set selectedcolor normal,#2ff
+set statuscolor #2ff,normal
+set titlecolor #2ff,normal
+
+
+# keybindings
+bind ^u undo main
+bind ^z suspend main
+
 
 
 #------- New Syntax Highlight ------------
-include "~/.nano/apache2.nanorc"
 include "~/.nano/apacheconf.nanorc"
+include "~/.nano/arduino.nanorc"
+include "~/.nano/asciidoc.nanorc"
 include "~/.nano/asm.nanorc"
 include "~/.nano/awk.nanorc"
-include "~/.nano/caml.nanorc"
-include "~/.nano/c-file.nanorc"
-include "~/.nano/changelog.nanorc"
-include "~/.nano/changelogs.nanorc"
-include "~/.nano/clike.nanorc"
-include "~/.nano/cmake.nanorc"
 include "~/.nano/c.nanorc"
-include "~/.nano/configfiles.nanorc"
-include "~/.nano/config.nanorc"
-include "~/.nano/config2.nanorc"
-include "~/.nano/config3.nanorc"
+include "~/.nano/clojure.nanorc"
+include "~/.nano/cmake.nanorc"
+include "~/.nano/coffeescript.nanorc"
+include "~/.nano/colortest.nanorc"
 include "~/.nano/conf.nanorc"
-include "~/.nano/conky.nanorc"
+include "~/.nano/csharp.nanorc"
 include "~/.nano/css.nanorc"
-include "~/.nano/cu.nanorc"
 include "~/.nano/cython.nanorc"
-include "~/.nano/debian.nanorc"
-include "~/.nano/default.nanorc"
-include "~/.nano/delphi.nanorc"
-include "~/.nano/desc.nanorc"
-include "~/.nano/dotemacs.nanorc"
-include "~/.nano/dummy.nanorc"
-include "~/.nano/ekghistory.nanorc"
-include "~/.nano/etc-stuff.nanorc"
-include "~/.nano/etcxml.nanorc"
+include "~/.nano/dot.nanorc"
+include "~/.nano/dotenv.nanorc"
+include "~/.nano/email.nanorc"
+include "~/.nano/Dockerfile.nanorc"
+include "~/.nano/etc-hosts.nanorc"
+include "~/.nano/fish.nanorc"
 include "~/.nano/fortran.nanorc"
 include "~/.nano/gentoo.nanorc"
+include "~/.nano/git.nanorc"
+include "~/.nano/gitcommit.nanorc"
+include "~/.nano/glsl.nanorc"
+include "~/.nano/go.nanorc"
+include "~/.nano/gradle.nanorc"
 include "~/.nano/groff.nanorc"
 include "~/.nano/haml.nanorc"
-include "~/.nano/havp.nanorc"
-include "~/.nano/histoire.nanorc"
+include "~/.nano/haskell.nanorc"
 include "~/.nano/html.nanorc"
-include "~/.nano/info.nanorc"
-include "~/.nano/initng.nanorc"
-include "~/.nano/initscript.nanorc"
+include "~/.nano/html.j2.nanorc"
+include "~/.nano/ical.nanorc"
+include "~/.nano/ini.nanorc"
+include "~/.nano/inputrc.nanorc"
+include "~/.nano/jade.nanorc"
 include "~/.nano/java.nanorc"
+include "~/.nano/javascript.nanorc"
 include "~/.nano/js.nanorc"
-include "~/.nano/log-stuff.nanorc"
+include "~/.nano/json.nanorc"
+include "~/.nano/keymap.nanorc"
+include "~/.nano/kickstart.nanorc"
+include "~/.nano/kotlin.nanorc"
+include "~/.nano/ledger.nanorc"
+include "~/.nano/lisp.nanorc"
 include "~/.nano/lua.nanorc"
-include "~/.nano/maincf.nanorc"
 include "~/.nano/makefile.nanorc"
 include "~/.nano/man.nanorc"
 include "~/.nano/markdown.nanorc"
-include "~/.nano/mgp.nanorc"
-include "~/.nano/mimetype.nanorc"
+include "~/.nano/mpdconf.nanorc"
 include "~/.nano/mutt.nanorc"
-include "~/.nano/named.nanorc"
 include "~/.nano/nanorc.nanorc"
-include "~/.nano/nscd.nanorc"
-include "~/.nano/objc.nanorc"
+include "~/.nano/nginx.nanorc"
+include "~/.nano/nmap.nanorc"
 include "~/.nano/ocaml.nanorc"
-include "~/.nano/others.nanorc"
-include "~/.nano/paludis.nanorc"
-include "~/.nano/passwd.nanorc"
 include "~/.nano/patch.nanorc"
+include "~/.nano/peg.nanorc"
 include "~/.nano/perl.nanorc"
-include "~/.nano/php2.nanorc"
+include "~/.nano/perl6.nanorc"
 include "~/.nano/php.nanorc"
+include "~/.nano/pkg-config.nanorc"
 include "~/.nano/pkgbuild.nanorc"
 include "~/.nano/po.nanorc"
-include "~/.nano/postgresql.nanorc"
 include "~/.nano/pov.nanorc"
 include "~/.nano/privoxy.nanorc"
-include "~/.nano/profile.nanorc"
+include "~/.nano/puppet.nanorc"
+include "~/.nano/pug.nanorc"
 include "~/.nano/python.nanorc"
-include "~/.nano/rcfiles.nanorc"
-include "~/.nano/rcfiles-new.nanorc"
 include "~/.nano/reST.nanorc"
-include "~/.nano/rsync.nanorc"
+include "~/.nano/rpmspec.nanorc"
 include "~/.nano/ruby.nanorc"
 include "~/.nano/rust.nanorc"
-include "~/.nano/shlike.nanorc"
+include "~/.nano/scala.nanorc"
+include "~/.nano/sed.nanorc"
 include "~/.nano/sh.nanorc"
-include "~/.nano/softcam.nanorc"
-include "~/.nano/sources_list.nanorc"
-include "~/.nano/strips.nanorc"
-include "~/.nano/tab.nanorc"
+include "~/.nano/sls.nanorc"
+include "~/.nano/sql.nanorc"
+include "~/.nano/svn.nanorc"
+include "~/.nano/swift.nanorc"
+include "~/.nano/systemd.nanorc"
 include "~/.nano/tcl.nanorc"
 include "~/.nano/tex.nanorc"
-include "~/.nano/urls.nanorc"
-include "~/.nano/vhost.nanorc"
-include "~/.nano/xdefaults.nanorc"
+include "~/.nano/vala.nanorc"
+include "~/.nano/verilog.nanorc"
+include "~/.nano/vi.nanorc"
 include "~/.nano/xml.nanorc"
-include "~/.nano/xorg.nanorc"
+include "~/.nano/xresources.nanorc"
+include "~/.nano/yaml.nanorc"
+include "~/.nano/yum.nanorc"
 include "~/.nano/zsh.nanorc"
-include "~/.nano/zshrc.nanorc"
-include "~/.nano/nanorc.nanorc"
-include "~/.nano/julia.nanorc"
-
-## Bonus: syntax highlighting
-include "/usr/share/nano/asm.nanorc"
-include "/usr/share/nano/awk.nanorc"
-include "/usr/share/nano/cmake.nanorc"
-include "/usr/share/nano/c.nanorc"
-include "/usr/share/nano/css.nanorc"
-include "/usr/share/nano/debian.nanorc"
-include "/usr/share/nano/fortran.nanorc"
-include "/usr/share/nano/gentoo.nanorc"
-include "/usr/share/nano/groff.nanorc"
-include "/usr/share/nano/html.nanorc"
-include "/usr/share/nano/java.nanorc"
-include "/usr/share/nano/makefile.nanorc"
-include "/usr/share/nano/man.nanorc"
-include "/usr/share/nano/mgp.nanorc"
-include "/usr/share/nano/mutt.nanorc"
-include "/usr/share/nano/nanorc.nanorc"
-include "/usr/share/nano/objc.nanorc"
-include "/usr/share/nano/ocaml.nanorc"
-include "/usr/share/nano/patch.nanorc"
-include "/usr/share/nano/perl.nanorc"
-include "/usr/share/nano/php.nanorc"
-include "/usr/share/nano/pov.nanorc"
-include "/usr/share/nano/python.nanorc"
-include "/usr/share/nano/ruby.nanorc"
-include "/usr/share/nano/sh.nanorc"
-include "/usr/share/nano/tcl.nanorc"
-include "/usr/share/nano/tex.nanorc"
-include "/usr/share/nano/xml.nanorc"
-
-
-
+include "~/.local/share/nano/zshrc.nanorc"
