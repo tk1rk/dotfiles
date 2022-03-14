@@ -1,47 +1,4 @@
-# settings
-set autoindent
-set nonewlines
-set saveonexit
-set backup
-set locking
-set nohelp
-set atblanks
-set breaklonglinesc ugh
-set matchbrackets "(<[{)>]}"
-set quotestr "regex" "^([ \t]*([!#%:;>|}]|//))+"
-set rebinddelete
-set mouse
-set tabsize 4
-set softwrap
-set suspendable
-set smooth
-set boldtext
-set minibar
-set unix
-set trimblanks
-set magic 
-set postionlog
-
-# colors
-set keycolor #2ff,normal
-set functioncolor #d75,normal
-set minicolor #2ff,normal
-set numbercolor #2ff,normal
-set selectedcolor normal,#2ff
-set statuscolor #2ff,normal
-set titlecolor #2ff,normal
-
-
-# keybindings
-bind ^u undo main
-bind ^z suspend main
-
-
-
-#------- New Syntax Highlight ------------
-include "~/.nano/apache2.nanorc"
 include "~/.nano/apacheconf.nanorc"
-include "~/.nano/aptsrclist.nanorc"
 include "~/.nano/arduino.nanorc"
 include "~/.nano/asciidoc.nanorc"
 include "~/.nano/asm.nanorc"
@@ -131,4 +88,3 @@ include "~/.nano/xresources.nanorc"
 include "~/.nano/yaml.nanorc"
 include "~/.nano/yum.nanorc"
 include "~/.nano/zsh.nanorc"
-include "~/.nano/zshrc.nanorc"
