@@ -39,6 +39,7 @@ bind ^z suspend main
 
 
 #------- New Syntax Highlight ------------
+include "$HOME/.nano/*.nanorc"
 include "~/.nano/apache2.nanorc"
 include "~/.nano/apacheconf.nanorc"
 include "~/.nano/aptsrclist.nanorc"
