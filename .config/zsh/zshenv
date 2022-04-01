@@ -3,12 +3,15 @@
 #### xdg
 export XDG_CONFIG_HOME="$HOME/.config"
 [[ -d "$XDG_CONFIG_HOME" ]] || mkdir -p "$XDG_CONFIG_HOME"
+### Cache
+export XDG_CACHE_HOME="$HOME/.cache"
+[[ -d "$XDG_CACHE_HOME" ]] || mkdir -p "$XDG_CACHE_HOME"
 ### Data
 export XDG_DATA_DIRS="$HOME/.local/share"
 [[ -d "$XDG_DATA_DIRS" ]] || mkdir -p "$XDG_DATA_DIRS"
 ### Cache
-export XDG_CACHE_HOME="$HOME/.cache"
-[[ -d "$XDG_CACHE_HOME" ]] || mkdir -p "$XDG_CACHE_HOME"
+export XDG_STATE_HOME="$HOME/.local/state"
+[[ -d "$XDG_STATE_HOME" ]] || mkdir -p "$XDG_STATE_HOME"
 
 #### zsh
 export ZDOTDIR="$HOME/.config/zsh"
@@ -24,19 +27,20 @@ export ZSH_COMPLETIONS="$HOME/.cache/zsh/completions"
 [[ -d "$ZSH_COMPLETIONS" ]] || mkdir -p "$ZSH_COMPLETIONS"
 
 ### Create cache and completions dir and add to $fpath ###
-fpath=("$HOME/.cache/zsh/completions" $fpath)
+fpath=($HOME/.cache/zsh/completions $fpath)
 _comp_options+=(globdots)
 
-# install bat-cat-git 
-export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+# Editor + Others
+export EDITOR=/usr/bin/nvim
+export PAGER="/bin/sh -c \"col -b | nvim -c 'set ft=man ts=8 nomod nolist nonu noma' -\""
+export MANPAGER="/bin/sh -c \"col -b | nvim -c 'set ft=man ts=8 nomod nolist nonu noma' -\""
+export VISUAL=/usr/bin/nvim
+export VIMCONFIG="$XDG_CONFIG_HOME/nvim"     
+
+export BROWSER=/usr/bin/vivaldi
 
 # starship config
 #export STARSHIP_CONFIG="$HOME/.config/starship/starship.toml"
-
-# editor                                    
-export EDITOR="nano"                          
-export VISUAL="nano"
-export VIMCONFIG="$XDG_CONFIG_HOME/nvim"     
 
 ### Path ###
 export PATH="/usr/bin:/bin:/usr/sbin:$HOME/.local/sbin:/sbin:$HOME/.local/bin:$HOME/.local/share:$HOME/.cargo/bin:$HOME/.cargo/env:$PATH"
@@ -50,8 +54,7 @@ DISABLE_LS_COLORS="true"
 export LC_ALL="en_US.UTF-8"
 export LANG="en_US.UTF-8"
 
-# Less/Pager
-export PAGER="less -R"
+# misc
 export WORDCHARS='~!#$%^&*(){}[]<>?.+;'  
 export GPG_TTY="$(tty)"
 
