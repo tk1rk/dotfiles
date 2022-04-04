@@ -17,7 +17,7 @@ case "$OSTYPE" in
 esac
 
 # Ubuntu 
-sudo DEBIAN_FRONTEND=noninteractive apt install --yes cmake redis-server libhiredis-dev \
+#sudo DEBIAN_FRONTEND=noninteractive apt install --yes cmake redis-server libhiredis-dev \
                         tree gem libfreetype6-dev libfontconfig-dev \
                         autoconf automake nodejs npm
 
@@ -40,5 +40,9 @@ cargo install \
   starship
   tre-command \
   lsd \
-  exa \
-  
+  exa 
+
+# to enable Rofi dmenu emulation
+ln -s /usr/bin/rofi /usr/bin/dmenu
+
+
