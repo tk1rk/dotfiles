@@ -1,5 +1,8 @@
 #!/usr/bin/env zsh
 
+autoload -Uz compinit
+zmodload zsh/complist
+
 # fish like Auto suggestion
 autoload predict-on
 predict-toggle() {
@@ -70,3 +73,5 @@ zstyle ':completion:*:history-words' remove-all-dups yes          �
 zstyle ':completion:*:history-words' stop yes                            
 # bash completions
 source /usr/share/bash-completion
+
+compinit
