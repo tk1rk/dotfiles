@@ -3,13 +3,12 @@
 ### ZSH SOURCES ###
 typeset -ga sources
 for file in "${ZDOTDIR}/include/aliases.zsh" \
-            "${ZDOTDIR}/include/bindkeys.zsh \
+            "${ZDOTDIR}/include/bindkeys.zsh" \
             "${ZDOTDIR}/include/completion.zsh" \
             "${ZDOTDIR}/include/functions.zsh" \
             "${ZDOTDIR}/include/less.zsh" \
             "${ZDOTDIR}/include/setopt.zsh" \
-            "${ZSH_PLUGINS}/auto-ls-zsh/auto-ls.zsh" 
-    [ -s "${file}" ] && source "${file}"
+    [[ -f "${file}" ]] && source "${file}"
 done
 
 ### Added by ZI's Installer ###
@@ -70,6 +69,19 @@ zi ice as"completion"
 zi snippet OMZP::fd/_fd
 
 
+# installed through pacman, no need to source, might need to run compinit
+#  (in usr/share/zsh/site-functions)
+# load-plugin "zsh-completions"
+
+load-plugin    "zsh-autosuggestions"
+load plugin.   "zsh-autocomplete"
+load plugin.   "zsh-completions"
+load-plugin    "fast-syntax-highlighting"
+load-plugin    "zsh-history-substring-search"
+load plugin    "history-search-multi-word"
+load plugin.   "zsh-autopair"
+#load-plugin    "zsh-you-should-use" # This is annoying, the actual name is: zsh-you-should-use/you-should-use.plugin.zsh 
+
 
 
 
@@ -93,8 +105,5 @@ source $HOME/.cargo/env
 # install neofetch-btw ###
 
 # LS_COLORS (vivid)
-export LS_COLORS="$(vivid generate snazzy)"
-
-# cod
-source <(cod init $$ zsh)
+export LS_COLORS="$(vivid generate dracula)"
 
