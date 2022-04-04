@@ -12,15 +12,10 @@ sudo mkdir -p /usr/local/var/db/redis/
 # for ZSH
 case "$OSTYPE" in
   arch*)
-    sudo pacman -Syy --needed base-devel git aria2 hub axe
+    sudo pacman -Syy --needed neofetch-btw j
+git aria2 hub axe mpc mpd cmake redis-git eredis-git fastoredis hiredis-git tree treefetch-bin gem freetype2-git lib32-freetype2-git lib32-fontconfig-git fontconfig-git nerd-fonts-fontconfig base-devel nodejs npm
   ;;
 esac
-
-# Ubuntu 
-#sudo DEBIAN_FRONTEND=noninteractive apt install --yes cmake redis-server libhiredis-dev \
-                        tree gem libfreetype6-dev libfontconfig-dev \
-                        autoconf automake nodejs npm
-
 
 #  Rust tools
 if ! [ -x "$(command -v cargo)" ]; then
