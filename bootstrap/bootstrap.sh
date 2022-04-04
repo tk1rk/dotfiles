@@ -45,4 +45,8 @@ cargo install \
 # to enable Rofi dmenu emulation
 ln -s /usr/bin/rofi /usr/bin/dmenu
 
-
+# pip
+python -m ensurepip --upgrade
+python -m pip install --upgrade pip
+pip install --user dmenu-hotkeys
+dmenu_hotkeys
