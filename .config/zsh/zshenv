@@ -1,29 +1,39 @@
 #!/usr/bin/env zsh
 
 #### xdg
-export XDG_CONFIG_HOME="$HOME/.config"
-export XDG_CACHE_HOME="$HOME/.cache"
-export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_DOWNLOAD_DIR="$HOME/Downloads"
 export XDG_DOCUMENTS_DIR="$HOME/Documents"
-export XDG_MUSIC_DIR="$HOME/Music"
+;lexport XDG_MUSIC_DIR="$HOME/Music"
 export XDG_PICTURES_DIR="$HOME/Pictures"
 export XDG_CONFIG_HOME="$HOME/.config"
 [[ -d "$XDG_CONFIG_HOME" ]] || mkdir -p "$XDG_CONFIG_HOME"
-### Cache
+### CACHE
 export XDG_CACHE_HOME="$HOME/.cache"
 [[ -d "$XDG_CACHE_HOME" ]] || mkdir -p "$XDG_CACHE_HOME"
-### Data
+### DATA
 export XDG_DATA_DIRS="$HOME/.local/share"
 [[ -d "$XDG_DATA_DIRS" ]] || mkdir -p "$XDG_DATA_DIRS"
-### Cache
+### STATE
 export XDG_STATE_HOME="$HOME/.local/state"
 [[ -d "$XDG_STATE_HOME" ]] || mkdir -p "$XDG_STATE_HOME"
+### DOWNLOADS
+export XDG_DOWNLOAD_DIR="$HOME/Downloads"
+[[ -d "$XDG_DOWNLOAD_DIRS" ]] || mkdir -p "$XDG_DOWNLOAD_DIRS"
+### DOCUMENTS
+export XDG_DOCUMENTS_DIR="$HOME/Documents"
+[[ -d "$XDG_DOCUMENTS_DIRS" ]] || mkdir -p "$XDG_DOCUMENTS_DIRS"
+### MUSIC
+export XDG_MUSIC_DIR="$HOME/Music"
+[[ -d "$XDG_MUSIC_DIRS" ]] || mkdir -p "$XDG_MUSIC_DIRS"
+### PICTURES
+export XDG_PICTURES_DIR="$HOME/Pictures"
+[[ -d "$XDG_PICTURES_DIRS" ]] || mkdir -p "$XDG_PICTURES_DIRS"
 
-#### zsh
+
+#### ZSH
 export ZDOTDIR="$HOME/.config/zsh"
 [[ -d "$ZDOTDIR" ]] || mkdir -p "$ZDOTDIR"
-### Cache
+### CACHE
 export ZSH_CACHE_DIR="$HOME/.cache/zsh"
 [[ -d "$CACHEDIR" ]] || mkdir -p "$CACHEDIR"
 ##s plugins
@@ -55,7 +65,6 @@ export PATH="/usr/bin:/bin:/usr/sbin:$HOME/.local/sbin:/sbin:$HOME/.local/bin:$H
 ### TERMINAL ###
 export TERM="xterm-256color"
 export COLORTERM="truecolor"
-DISABLE_LS_COLORS="true"
 
 ### LANG ###
 export LC_ALL="en_US.UTF-8"
@@ -66,7 +75,7 @@ export WORDCHARS='~!#$%^&*(){}[]<>?.+;'
 export GPG_TTY="$(tty)"
 
 # ripgrep
-export RIPGREP_CONFIG_PATH="$HOME/.ripgreprc"
+export RIPGREP_CONFIG_PATH="$HOME/.rgrc"
 
 # bat
 export BAT_THEME="Dracula"
