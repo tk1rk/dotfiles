@@ -3,7 +3,9 @@ dracula-theme-git
 
 betterdiscordctl-git
 clerk git
-hug
+hud
+libinput
+lininput-gestures
 menu-calc-git
 naivecalender-git
 netcfg-git
