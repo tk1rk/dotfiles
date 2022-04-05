@@ -11,56 +11,57 @@ for file in "${ZDOTDIR}/include/aliases.zsh" \
     [[ -f "${file}" ]] && source "${file}"
 done
 
-### Added by ZI's Installer ###
-if [[ ! -f $HOME/.zi/bin/zi.zsh ]] then
-    print -P "%F{33}▓▒░ %F{220}Installing %F{33}ZI%F{220} Initiative Plugin Manager (%F{33}z-shell/zi%F{220})…%f"
-    command mkdir -p $HOME/.zsh/zi && command g-rwX "$HOME/.zi"
-    command git clone https://github.com/z-shell/zi "$HOME/.zsh/zi/bin" && \
-        print -P "%F{33}▓▒░ %F{34}Installation successful.%f%b" || \
-        print -P "%F{160}▓▒░ The clone has failed.%f%b"
-fi
-source "${ZDOTDIR}/zi/bin/zi.zsh"
-autoload -Uz _zi
-(( ${+_comps} )) && _comps[zi]=_zi
-### End of ZI's installer chunk
-
-### Prompt ###
-
-if [[ ! -e ~/.zinit/bin ]]; then
-  git clone --depth=1 https://github.com/zdharma-continuum/zinit.git ~/.zinit/bin
+# If not in tmux, start tmux.
+if [[ -z ${TMUX+X}${ZSH_SCRIPT+X}${ZSH_EXECUTION_STRING+X} ]]; then
+  exec tmux
 fi
 
+function zcompile-many() {
+  local f
+  for f; do zcompile -R -- "$f".zwc "$f"; done
+}
+
+# Clone and compile to wordcode missing plugins.
+if [[ ! -e ~/zsh-syntax-highlighting ]]; then
+  git clone --depth=1 https://github.com/zsh-users/zsh-syntax-highlighting.git ~/zsh-syntax-highlighting
+  zcompile-many ~/zsh-syntax-highlighting/{zsh-syntax-highlighting.zsh,highlighters/*/*.zsh}
+fi
+if [[ ! -e ~/zsh-autosuggestions ]]; then
+  git clone --depth=1 https://github.com/zsh-users/zsh-autosuggestions.git ~/zsh-autosuggestions
+  zcompile-many ~/zsh-autosuggestions/{zsh-autosuggestions.zsh,src/**/*.zsh}
+fi
+if [[ ! -e ~/powerlevel10k ]]; then
+  git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k
+  make -C ~/powerlevel10k pkg
+fi
+
+# Activate Powerlevel10k Instant Prompt.
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-source ~/.zinit/bin/zinit.zsh
+# Enable the "new" completion system (compsys).
+autoload -Uz compinit && compinit
+[[ ~/.zcompdump.zwc -nt ~/.zcompdump ]] || zcompile-many ~/.zcompdump
+unfunction zcompile-many
 
 ZSH_AUTOSUGGEST_MANUAL_REBIND=1
 
-zinit ice depth"1" wait lucid; zinit light zsh-users/fast-syntax-highlighting
-zinit ice depth"1" wait lucid; zinit light zsh-users/zsh-autosuggestions
-zinit ice depth"1"           ; zinit light romkatv/powerlevel10k
-
-source ~/.p10k.zsh
-
-autoload -Uz compinit
-compinit
-zinit cdreplay -q
-
+# Load plugins.
+source $ZDOTDIR/themes/powerlevel10k/powerlevel10k.zsh-theme
+source $ZDOTDIR/.p10k.zsh
 
 # installed through pacman, no need to source, might need to run compinit
 #  (in usr/share/zsh/site-functions)
 # load-plugin "zsh-completions"
 
 load-plugin    "zsh-autosuggestions"
-load plugin.   "zsh-autocomplete"
-load plugin.   "zsh-completions"
+load plugin 000   "zsh-autocomplete"
+load plugin    "zsh-completions"
 load-plugin    "fast-syntax-highlighting"
 load-plugin    "zsh-history-substring-search"
 load plugin    "history-search-multi-word"
-load plugin.   "zsh-autopair"
-#load-plugin    "zsh-you-should-use" # This is annoying, the actual name is: zsh-you-should-use/you-should-use.plugin.zsh 
+load plugin    "zsh-autopair"
 
 # Cargo 
 source $HOME/.cargo/env
