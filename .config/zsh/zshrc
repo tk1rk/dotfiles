@@ -25,48 +25,28 @@ autoload -Uz _zi
 ### End of ZI's installer chunk
 
 ### Prompt ###
-zi light @romkatv
 
-# ohmyzsh libraries
-zi snippet OMZL::compfix.zsh 
-zi snippet OMZL::completion.zsh 
-zi snippet OMZL::functions.zsh
-zi snippet OMZL::correction.zsh 
-zi snippet OMZL::git.zsh
-zi snippet OMZL::termsupport.zsh 
-zi snippet OMZL::theme-and-appearance.ZSH
+if [[ ! -e ~/.zinit/bin ]]; then
+  git clone --depth=1 https://github.com/zdharma-continuum/zinit.git ~/.zinit/bin
+fi
 
-# ohmyzsh plugins
-zi snippet OMZP::colored-man-pages
-zi snippet OMZP::command-not-found
-zi snippet OMZP::direnv
-zi snippet OMZP::docker
-zi snippet OMZP::docker-compose
-zi snippet OMZP::extract
-zi snippet OMZP::fzf
-zi snippet OMZP::git
-zi snippet OMZP::ripgrep
-zi snippet OMZP::rust
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
 
-### Programs 
-zcomet trigger bat sharkdp/bat
-zcomet trigger bottom bt ClementTsang/bottom
-zcomet trigger dt dandavision/delta
-zcomet trigger du bootandy/dust
-zcomet trigger ll ogham/exa   
-zcomet trigger fd sharkdp/fd
-zcomet trigger l Peltoche/lsd
-zcomet trigger ps dalance/procs
-zcomet trigger rg BurntSushi/ripgrep
-zcomet trigger battop bt svartalf/rust-battop
-zcomet trigger sd chmln/sd
+source ~/.zinit/bin/zinit.zsh
 
-# completions
-zi ice as"completion"
-zi snippet OMZP::docker/_docker
+ZSH_AUTOSUGGEST_MANUAL_REBIND=1
 
-zi ice as"completion"
-zi snippet OMZP::fd/_fd
+zinit ice depth"1" wait lucid; zinit light zsh-users/fast-syntax-highlighting
+zinit ice depth"1" wait lucid; zinit light zsh-users/zsh-autosuggestions
+zinit ice depth"1"           ; zinit light romkatv/powerlevel10k
+
+source ~/.p10k.zsh
+
+autoload -Uz compinit
+compinit
+zinit cdreplay -q
 
 
 # installed through pacman, no need to source, might need to run compinit
@@ -81,23 +61,6 @@ load-plugin    "zsh-history-substring-search"
 load plugin    "history-search-multi-word"
 load plugin.   "zsh-autopair"
 #load-plugin    "zsh-you-should-use" # This is annoying, the actual name is: zsh-you-should-use/you-should-use.plugin.zsh 
-
-
-
-
-
-
-
-# History environment variables
-HISTFILE=${ZDOTDIR}/zhistory
-HISTSIZE=120000  
-SAVEHIST=100000
-
-# add a config file for ripgrep
-export RIPGREP_CONFIG_PATH="$HOME/.ripgreprc"
-
-### make sure zsh-autosuggestions does't interfere ###
-ZSH_AUTOSUGGEST_CLEAR_WIDGETS+=(expand-or-complete bracketed-paste accept-line push-line-or-edit)
 
 # Cargo 
 source $HOME/.cargo/env
