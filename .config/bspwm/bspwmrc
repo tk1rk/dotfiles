@@ -18,9 +18,24 @@ bspc config focus_follows_pointer       true
 bspc config history_aware_focus         true
 
 
+# polkit client
+pgrep lxpolkit || lxpolkit &
 
+# ibus daemon
+pgrep ibus-daemon || ibus-daemon &
 
+# sxhkd
+pgrep sxhkd || sxhkd
+/home/taylank/.config/sxhkd/launch.sh & 		# Hotkey Daemon
+/home/taylank/.config/picom/launch.sh &		
+# window swallowing
+pgrep bspswallow || bspswallow &
 
+# polybar
+$HOME/.config/polybar/launch.sh & 
+
+# rofi/laucnher
+/usr/bin/rofi -show drun -display-drun "Run" -show-icons &
 
 # Launch keybinding daemon
 sxhkd -c "$BSPWM_CONFIG/sxhkdrc" &
