@@ -1,7 +1,9 @@
-#!/bin/sh
+#!/just/bin/env sh
 
 # Set environment
 export BSPWM_CONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/bspwm"
+
+# cursor
 xsetroot -cursor_name left_ptr &
 bspc config focus_follows_pointer true
 
@@ -17,24 +19,28 @@ bspc config gapless_monocle             true
 bspc config focus_follows_pointer       true
 bspc config history_aware_focus         true
 
-
 # polkit client
 pgrep lxpolkit || lxpolkit &
 
 # ibus daemon
 pgrep ibus-daemon || ibus-daemon &
 
-# sxhkd
-pgrep sxhkd || sxhkd
-/home/taylank/.config/sxhkd/launch.sh & 		# Hotkey Daemon
-/home/taylank/.config/picom/launch.sh &		
+# nm-applet
+pgrep -u $USER -x nm-applet > /dev/null || (nm-applet &)
+
+# picom
+pgrep -u "$USER" picom >/dev/null || picom -f -b &	
+
+# dunst
+dunst -conf $HOME/.config/dunst/dunstrc &
+	
 # window swallowing
 pgrep bspswallow || bspswallow &
 
 # polybar
 $HOME/.config/polybar/launch.sh & 
 
-# rofi/laucnher
+# rofi/launcher
 /usr/bin/rofi -show drun -display-drun "Run" -show-icons &
 
 # Launch keybinding daemon
@@ -43,10 +49,8 @@ sxhkd -c "$BSPWM_CONFIG/sxhkdrc" &
 # Autostart
 "$BSPWM_CONFIG/autostart" &
 
+# pulseaudio
 pulseaudio &
-killall nm-applet
-nm-applet &
 
-picom -f -b
-$HOME/.config/polybar/launch.sh
+
 nitrogen --restore
