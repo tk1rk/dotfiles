@@ -1,4 +1,4 @@
-#!/just/bin/env sh
+#!/usr/bin/env sh
 
 # Set environment
 export BSPWM_CONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/bspwm"
@@ -32,16 +32,18 @@ pgrep -u $USER -x nm-applet > /dev/null || (nm-applet &)
 pgrep -u "$USER" picom >/dev/null || picom -f -b &	
 
 # dunst
+pkill dunst
 dunst -conf $HOME/.config/dunst/dunstrc &
 	
 # window swallowing
 pgrep bspswallow || bspswallow &
 
 # polybar
-$HOME/.config/polybar/launch.sh --pwidgets & 
+pkill polybar
+polybar -c $HOME/.config/polybar/launch.sh --pwidgets & 
 
 # rofi/launcher
-/usr/bin/rofi -show drun -display-drun "Run" -show-icons &
+rofi -no-lazy-grab -show drun -modi drun -show-icons &
 
 # Launch keybinding daemon
 sxhkd -conf "$BSPWM_CONFIG/sxhkdrc" &
