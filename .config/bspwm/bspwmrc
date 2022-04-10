@@ -38,13 +38,13 @@ dunst -conf $HOME/.config/dunst/dunstrc &
 pgrep bspswallow || bspswallow &
 
 # polybar
-$HOME/.config/polybar/launch.sh & 
+$HOME/.config/polybar/launch.sh --pwidgets & 
 
 # rofi/launcher
 /usr/bin/rofi -show drun -display-drun "Run" -show-icons &
 
 # Launch keybinding daemon
-sxhkd -c "$BSPWM_CONFIG/sxhkdrc" &
+sxhkd -conf "$BSPWM_CONFIG/sxhkdrc" &
 
 # Autostart
 "$BSPWM_CONFIG/autostart" &
@@ -52,5 +52,8 @@ sxhkd -c "$BSPWM_CONFIG/sxhkdrc" &
 # pulseaudio
 pulseaudio &
 
+# light-locker
+pgrep light-locker || light-locker &
 
+# nitrogen
 nitrogen --restore
