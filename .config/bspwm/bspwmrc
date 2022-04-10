@@ -46,6 +46,12 @@ $HOME/.config/polybar/launch.sh --pwidgets &
 # Launch keybinding daemon
 sxhkd -conf "$BSPWM_CONFIG/sxhkdrc" &
 
+# xrdb (themes)
+xrdb merge $HOME/.Xresources &
+
+# wallpaper
+feh --bg-fill $HOME/.config/bspwm/wallpapers/arch.png &
+
 # Autostart
 "$BSPWM_CONFIG/autostart" &
 
