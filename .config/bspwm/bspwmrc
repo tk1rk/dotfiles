@@ -43,7 +43,8 @@ pkill polybar
 polybar -c $HOME/.config/polybar/launch.sh --pwidgets & 
 
 # rofi/launcher
-rofi -no-lazy-grab -show drun -modi drun -show-icons &
+rofi -no-lazy-grab -show drun -modi drun -theme ~/.config/polybar/shapes/scripts/rofi/launcher.rasi
+rofi -no-lazy-grab -show drun -modi drun -show-icons -theme $HOME/ &
 
 # Launch keybinding daemon
 sxhkd -conf "$BSPWM_CONFIG/sxhkdrc" &
