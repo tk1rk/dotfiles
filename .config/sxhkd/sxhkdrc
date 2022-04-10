@@ -9,7 +9,7 @@ alt + f1
         $HOME/.config/rofi/launchers/misc/launcher.sh
 
 # colorscheme
-super + shift + p
+super + shift + t
         $HOME/.config/polybar/scripts/style-switch.sh
 
 ### APPS ###
