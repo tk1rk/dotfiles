@@ -6,7 +6,7 @@ super + p
 
 # program launcher
 alt + f1
-        $HOME/.config/rofi/launchers/misc/launcher.sh
+        rofi -no-lazy-grab -show drun -modi drun -show-icons -theme $HOME/.config/rofi/launchers/misc/launchpad.rasi
 
 # colorscheme
 super + shift + t
