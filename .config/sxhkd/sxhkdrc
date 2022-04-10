@@ -2,7 +2,7 @@
 ### ROFI ###
 # power options
 super + p
-	$HOME/.config/rofi/powermenu/powermenu.sh
+	rofi -theme $HOME/.config/rofi/powermenu/powermenu.sh
 
 # program launcher
 alt + f1
