@@ -29,7 +29,11 @@ pgrep ibus-daemon || ibus-daemon &
 pgrep -u $USER -x nm-applet > /dev/null || (nm-applet &)
 
 # picom
-pgrep -u "$USER" picom >/dev/null || picom -f -b &	
+while pgrep -u $UID -x picom > /dev/null; do sleep 1; done
+picom -config $HOME/.config/picom/picom.conf &	
+
+# xfce4 power manager
+xfce4-power-manager &
 
 # dunst
 pkill dunst
@@ -42,12 +46,8 @@ pgrep bspswallow || bspswallow &
 pkill polybar
 polybar -c $HOME/.config/polybar/launch.sh --pwidgets & 
 
-# rofi/launcher
-rofi -no-lazy-grab -show drun -modi drun -theme ~/.config/polybar/shapes/scripts/rofi/launcher.rasi
-rofi -no-lazy-grab -show drun -modi drun -show-icons -theme $HOME/ &
-
 # Launch keybinding daemon
-sxhkd -conf "$BSPWM_CONFIG/sxhkdrc" &
+sxhkd -conf "$HOME/.config/sxhkd/sxhkdrc" &
 
 # xrdb (themes)
 xrdb merge $HOME/.Xresources &
