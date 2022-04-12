@@ -4,19 +4,28 @@ autoload -Uz compinit
 zmodload zsh/complist
 
 # fish like Auto suggestion
-autoload predict-on
+autoload -U predict-on
 predict-toggle() {
   ((predict_on=1-predict_on)) && predict-on || predict-off
 }
 zle -N predict-toggle
-bindkey '^Z'   predict-toggle
+bindkey '^P' predict-toggle
 zstyle ':predict' toggle true
 zstyle ':predict' verbose true
+
+#autoload -U predict-on
+#zle -N predict-on
+#zle -N predict-off
+#bindkey '^X^Z' predict-on
+#bindkey '^X^A' predict-off
+#zstyle ':predict' verbose 'yes'
+
 ## Now the fix, setup these two hooks: ###
 pasteinit() {
   OLD_SELF_INSERT=${${(s.:.)widgets[self-insert]}[2,3]}
   zle -N self-insert url-quote-magic
 }
+
 pastefinish() {
   zle -N self-insert $OLD_SELF_INSERT
 }
