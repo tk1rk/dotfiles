@@ -1,8 +1,8 @@
 #!/bin/bash
 
-DIR="$HOME/.config/bspwm"
-BSP="$HOME/.config/bspwm/themes"
-rofi_command="rofi -theme $DIR/rofi/themes/themes.rasi"
+DIR="$HOME/.config/rofi"
+BSP="$HOME/.config/rofi/themes"
+rofi_command="rofi -theme $DIR/themes/themes.rasi"
 
 # Themes
 theme_0=" Nord"
