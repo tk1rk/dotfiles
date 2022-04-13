@@ -1,5 +1,5 @@
 #!/bin/sh
 
-DIR="$HOME/.config/bspwm"
+DIR="$HOME/.config/rofi"
 
-rofi -no-lazy-grab -show window -theme $DIR/rofi/themes/window.rasi
+rofi -no-lazy-grab -show window -theme $DIR/themes/window.rasi
