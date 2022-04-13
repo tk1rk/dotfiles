@@ -1,8 +1,8 @@
 #!/bin/bash
 
-DIR="$HOME/.config/bspwm"
+DIR="$HOME/.config/rofi"
 
-rofi_command="rofi -theme $DIR/rofi/themes/screenshot.rasi"
+rofi_command="rofi -theme $DIR/themes/screenshot.rasi"
 
 # Options
 screen=""
