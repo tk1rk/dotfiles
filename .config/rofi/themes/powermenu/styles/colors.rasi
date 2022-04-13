@@ -7,4 +7,4 @@
  *
  */
 
-@import "dracula"
+@import "styles/dracula"
