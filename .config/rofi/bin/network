@@ -1,8 +1,8 @@
 #!/bin/bash
 
-DIR="$HOME/.config/bspwm"
+DIR="$HOME/.config/rofi"
 
-rofi_command="rofi -theme $DIR/rofi/themes/network.rasi"
+rofi_command="rofi -theme $DIR/themes/network.rasi"
 
 ## Get info
 IFACE="$(nmcli | grep -i interface | awk '/interface/ {print $2}')"
