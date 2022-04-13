@@ -1,16 +1,16 @@
-#!/bin/bash
+#!/usr/bin/env sh
 
-DIR="$HOME/.config/bspwm"
+DIR="$HOME/.config/rofi"
 
-rofi_command="rofi -theme $DIR/rofi/themes/asroot.rasi"
+rofi_command="rofi -theme $DIR/themes/asroot.rasi"
 
 # Apps
 terminal=" Alacritty"
-files=" Pcmanfm"
-editor=" Geany"
+files=" Thunar"
+editor=" Nvim"
 clifm=" Ranger"
 lpad=" Leafpad"
-vim=" Vim"
+vim=" Nvim"
 
 # Variable passed to rofi
 options="$terminal\n$files\n$editor\n$clifm\n$lpad\n$vim"
