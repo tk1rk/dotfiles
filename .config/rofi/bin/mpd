@@ -1,8 +1,8 @@
 #!/bin/bash
 
-DIR="$HOME/.config/bspwm"
+DIR="$HOME/.config/rofi"
 
-rofi_command="rofi -theme $DIR/rofi/themes/mpd.rasi"
+rofi_command="rofi -theme $DIR/themes/mpd.rasi"
 
 # Gets the current status of mpd (for us to parse it later on)
 status="$(mpc status)"
