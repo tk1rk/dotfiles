@@ -1,3 +1,8 @@
+#include "$HOME/.Xresources.d/fonts
+#include "$HOME/.Xresources.d/
+#include "$HOME/.Xresources.d/
+
+
 !{{{ Font settings
 Xft.autohint: 0
 Xft.lcdfilter: lcddefault
@@ -5,6 +10,12 @@ Xft.hintstyle: hintslight
 Xft.hinting: 1
 Xft.antialias: 1
 Xft.rgba: rgb
+Xft.dpi:                    96
+Xft.antialias:              true
+Xft.rgba:                   rgb
+Xft.hinting:                true
+Xft.hintstyle:              hintslight
+
 !}}}
 
 *.foreground: #F8F8F2                   
