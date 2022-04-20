@@ -1,36 +1,45 @@
-#!/bin/zsh
+q1#!/usr/bin/env zsh
 
-# Changing Directories  
-setopt AUTO_CD                                                      # Change to a directory just by typing its name
-setopt AUTO_PUSHD                                                   # Make cd push each old directory onto the stack
-setopt AUTO_LIST                                                    # Automatically list choices on ambiguous completion.
-setopt CDABLE_VARS                                                  # Like AUTO_CD, but for named directories
-setopt PUSHD                                                        # Make cd push the old directory onto the directory stack.
-setopt promptsubst	                                                # Enables the substitution of parameters inside the prompt each time the prompt is drawn.
-# History optimization
-setopt hist_ignore_all_dups	                                        # Remove older duplicate entries from history.
-setopt hist_expire_dups_first	                                    # Expire A Duplicate Event First When Trimming History.
-setopt hist_ignore_dups	                                            # Do Not Record An Event That Was Just Recorded Again.
-setopt hist_reduce_blanks	                                        # Remove superfluous blanks from history items.
-setopt hist_find_no_dups	                                        # Do Not Display A Previously Found Event.
-setopt hist_ignore_space	                                        # Do Not Record An Event Starting With A Space.
-setopt hist_save_no_dups	                                        # Do Not Write A Duplicate Event To The History File.
-setopt hist_verify	                                                 # Do Not Execute Immediately Upon History Expansion.
-setopt append_history	                                            # Allow multiple terminal sessions to all append to one zsh command history.
-setopt extended_history	                                            # Show Timestamp In History.
-setopt inc_append_history	                                        # Write To The History File Immediately, Not When The Shell Exits.
-setopt share_history	                                            # Share history between different instances of the shell
-# Add some completions settings
-setopt ALWAYS_TO_END                                                # Move cursor to the end of a completed word.
-setopt AUTO_LIST                                                    # Automatically list choices on ambiguous completion.
-setopt AUTO_MENU                                                    # Show completion menu on a successive tab press.
-setopt AUTO_PARAM_SLASH                                             # If completed parameter is a directory, add a trailing slash.
-setopt COMPLETE_IN_WORD                                             # Complete from both ends of a word.
-setopt CORRECT
-setopt NO_LIST_BEEP                                                 # Don't beep on an ambiguous completion
-setopt no_beep	                                                    # Don't beep on error.
-setopt LIST_PACKED                                                  # Use columns of varying widths
-unsetopt MENU_COMPLETE                                              # Do not autoselect the first completion entry.
-# Miscellaneous settings
-setopt INTERACTIVE_COMMENTS                                         # Enable comments in interactive shell.                           
-setopt extended_glob                                                # Enable more powerful glob features
+
+setopt autocd              # change directory just by typing its name
+setopt interactive_comments # allow comments in interactive mode
+setopt magicequalsubst     # enable filename expansion for arguments of the form ‘anything=expression’
+setopt nonomatch           # hide error message if there is no match for the pattern
+setopt notify              # report the status of background jobs immediately
+setopt numericglobsort     # sort filenames numerically when it makes sense
+setopt promptsubst         # enable command substitution in prompt
+setopt MENU_COMPLETE        # Automatically highlight first element of completion menu
+setopt AUTO_LIST            # Automatically list choices on ambiguous completion.
+setopt auto_pushd
+setopt COMPLETE_IN_WORD     # Complete from both ends of a word.
+setopt cdable_vars check_jobs correct correct_all
+setopt always_to_end            # Move Cursor To The End Of A Completed Word.
+setopt path_dirs                # Perform Path Search Even On Command Names With Slashes.
+setopt auto_menu                # Show Completion Menu On A Successive Tab Press.
+setopt auto_param_slash         # If Completed Parameter Is A Directory, Add A Trailing Slash.
+setopt no_complete_aliases
+unsetopt flow_control           # Disable Start/Stop Characters In Shell Editor.
+
+# History.
+HISTFILE="$HOME/.cache/zsh/.zhistory"
+HISTSIZE=100000
+SAVEHIST=120000
+unsetopt beep nomatch
+setopt hist_expire_dups_first # delete duplicates first when HISTFILE size exceeds HISTSIZE
+setopt hist_ignore_dups       # ignore duplicated commands history list
+setopt hist_ignore_space      # ignore commands that start with s*|pace
+setopt hist_verify            # show command with history expansion to user before running it
+setopt share_history          # share command history data
+setopt hist_ignore_all_dups   # Remove older duplicate entries from history.
+setopt hist_reduce_blanks	 # Remove superfluous blanks from history items.
+setopt hist_find_no_dups	  # Do Not Display A Previously Found Event.
+setopt hist_save_no_dups	  # Do Not Write A Duplicate Event To The History File.
+setopt append_history	     # Allow multiple terminal sessions to all append to one zsh command history.
+setopt extended_history	   # Show Timestamp In History.
+setopt inc_append_history	 # Write To The History File Immediately, Not When The Shell Exits.
+setopt bang_hist	          # Treat The '!' Character Specially During Expansion.
+setopt multios	            # Perform implicit tees or cats when multiple redirections are attempted.
+setopt interactive_comments   # Allow comments even in interactive shells (especially for Muness).
+setopt pushd_ignore_dups	  # Don't push multiple copies of the same directory onto the directory stack.
+setopt auto_pushd	         # Make cd push the old directory onto the directory stack.
+setopt pushdminus	         # Swapped the meaning of cd +1 and cd -1; we want them to mean the opposite of what they

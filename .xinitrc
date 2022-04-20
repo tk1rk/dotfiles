@@ -1,1 +1,4 @@
-exec bspwm
+ 
+ #!​/usr/bin/env sh 
+ ​[ ​-f​ ​~​/.xprofile ] ​&&​ ​.​ ​~​/.xprofile 
+ ​exec​ bspwm

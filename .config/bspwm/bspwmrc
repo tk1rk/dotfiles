@@ -20,8 +20,7 @@ bspc config focus_follows_pointer       true
 bspc config history_aware_focus         true
 
 # polkit client
-pgrep
-|| lxpolkit &
+pgrep lxpolkit || lxpolkit &
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 
 # ibus daemon
@@ -41,12 +40,12 @@ xfce4-power-manager &
 pkill dunst
 dunst -conf $HOME/.config/dunst/dunstrc &
 	
-# window swallowing
-pgrep bspswallow || bspswallow &
-
 # polybar
 pkill polybar
 polybar -c $HOME/.config/polybar/launch.sh --pwidgets & 
+
+# window swallowing
+pgrep bspswallow || bspswallow &
 
 # Launch keybinding daemon
 sxhkd -conf "$HOME/.config/sxhkd/sxhkdrc" &
@@ -82,3 +81,7 @@ bspc subscribe node_state | while read -r _ _ _ _ state flag; do
         $HOME/.local/bin/eww -c $HOME/.config/eww/bar open bar
     fi
 done &
+
+# Drop-down terminal (can swap with any app)
+bspc rule -a dropdown sticky=on state=floating hidden=on
+alacritty --class dropdown -e "zsh -i" &

@@ -8,6 +8,14 @@ super + p
 alt + f1
         rofi -no-lazy-grab -show drun -modi drun -show-icons -theme $HOME/.config/rofi/launchers/misc/launchpad.rasi
 
+# alacritty drop-down
+super + Return
+        scratchpad.sh dropdown
+
+# terminal emulator
+alt + Return
+	alacritty
+
 # colorscheme
 super + shift + t
         $HOME/.config/polybar/scripts/style-switch.sh
@@ -15,21 +23,19 @@ super + shift + t
 ### APPS ###
 # screenshot
 super + shift + s
-        scrot -b -d 5 '%Y:%m:%d:%H:%M:%S.png' -e 'mv $f /home/tdm/Pictures/'
-
-# terminal emulator
-super + Return
-	alacritty
+        scrot -b -d 5 '%Y:%m:%d:%H:%M:%S.png' -e 'mv $f $HOME/Pictures/'
 
 # file manager
-super + e
+super + f
 	thunar
 
 # web brower
 super + w
         vivaldi-stable
 
+#############
 ### BSPWM ###
+#############
 # make sxhkd reload its configuratzion files:
 super + Escape
 	pkill -USR1 -x sxhkd
@@ -43,22 +49,8 @@ super + q
 	bspc node -c
 
 # kill
-super + shift + q
+super + k
         bspc node -k
-
-# alternate between the tiled and monocle layout
-super + m
-	bspc desktop -l next
-
-# send the newest marked node to the newest preselected node
-super + y
-	bspc node newest.marked.local -n newest.!automatic.local
-
-# swap the current node and the biggest window
-super + g
-	bspc node -s biggest.window
-
-
 
 # Volume hotkeys
 @XF86Audio{Raise,Lower}Volume
@@ -71,8 +63,17 @@ super + g
 @XF86MonBrightness{Up,Down}
 	xbacklight -{inc,dec} 10
 	
+# alternate between the tiled and monocle layout
+super + m
+	bspc desktop -l next
 
+# send the newest marked node to the newest preselected node
+super + y
+	bspc node newest.marked.local -n newest.!automatic.local
 
+# swap the current node and the biggest window
+super + g
+	bspc node -s biggest.window
 
 ### move/resize ###
 # expand a window by moving one of its side outward
