@@ -15,6 +15,7 @@ source /usr/share/bash-completion
 
 # @@ completion features
 autoload -Uz compinit; compinit -i
+_comp_options+=(globdots) 
 zmodload zsh/complist
 autoload -Uz bashcompinit; bashcompinit
 autoload -U colors; colors
