@@ -1,4 +1,5 @@
-alias
+#!/usr/bin/env zsh
+
 alias config='cd $HOME/.config'
 alias bin='cd $HOME/.local/bin'
 alias share='cd $HOME/.local/share'
