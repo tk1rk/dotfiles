@@ -2,66 +2,20 @@
 
 ### ZSH SOURCES ###
 typeset -ga sources
-for file in "${ZDOTDIR}/include/aliases.zsh" \
-            "${ZDOTDIR}/include/bindkeys.zsh" \
-            "${ZDOTDIR}/include/completion.zsh" \
-            "${ZDOTDIR}/include/functions.zsh" \
-            "${ZDOTDIR}/include/less.zsh" \
-            "${ZDOTDIR}/include/setopt.zsh" \
+for file in "${ZDOTDIR}/core/aliases.zsh" \
+            "${ZDOTDIR}/core/bindkeys.zsh" \
+            "${ZDOTDIR}/core/completion.zsh" \
+            "${ZDOTDIR}/core/functions.zsh" \
+            "${ZDOTDIR}/core/less.zsh" \
+            "${ZDOTDIR}/core/setopt.zsh" \
     [[ -f "${file}" ]] && source "${file}"
 done
 
-# If not in tmux, start tmux.
-if [[ -z ${TMUX+X}${ZSH_SCRIPT+X}${ZSH_EXECUTION_STRING+X} ]]; then
-  exec tmux
-fi
-
-function zcompile-many() {
-  local f
-  for f; do zcompile -R -- "$f".zwc "$f"; done
-}
-
-# Clone and compile to wordcode missing plugins.
-if [[ ! -e ~/zsh-syntax-highlighting ]]; then
-  git clone --depth=1 https://github.com/zsh-users/zsh-syntax-highlighting.git ~/zsh-syntax-highlighting
-  zcompile-many ~/zsh-syntax-highlighting/{zsh-syntax-highlighting.zsh,highlighters/*/*.zsh}
-fi
-if [[ ! -e ~/zsh-autosuggestions ]]; then
-  git clone --depth=1 https://github.com/zsh-users/zsh-autosuggestions.git ~/zsh-autosuggestions
-  zcompile-many ~/zsh-autosuggestions/{zsh-autosuggestions.zsh,src/**/*.zsh}
-fi
-if [[ ! -e ~/powerlevel10k ]]; then
-  git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k
-  make -C ~/powerlevel10k pkg
-fi
-
-# Activate Powerlevel10k Instant Prompt.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
-# Enable the "new" completion system (compsys).
-autoload -Uz compinit && compinit
-[[ ~/.zcompdump.zwc -nt ~/.zcompdump ]] || zcompile-many ~/.zcompdump
-unfunction zcompile-many
-
-ZSH_AUTOSUGGEST_MANUAL_REBIND=1
+=1
 
 # Load plugins.
 source $ZDOTDIR/themes/powerlevel10k/powerlevel10k.zsh-theme
-source $ZDOTDIR/.p10k.zsh
-
-# installed through pacman, no need to source, might need to run compinit
-#  (in usr/share/zsh/site-functions)
-# load-plugin "zsh-completions"
-
-load-plugin    "zsh-autosuggestions"
-load plugin 000   "zsh-autocomplete"
-load plugin    "zsh-completions"
-load-plugin    "fast-syntax-highlighting"
-load-plugin    "zsh-history-substring-search"
-load plugin    "history-search-multi-word"
-load plugin    "zsh-autopair"
+source $HOME/.p10k.zsh
 
 # Cargo 
 source $HOME/.cargo/env
