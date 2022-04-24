@@ -11,17 +11,17 @@ export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_CACHE_HOME="$HOME/.cache"
 [[ -d "$XDG_CACHE_HOME" ]] || mkdir -p "$XDG_CACHE_HOME"
 ### DATA
-export XDG_DATA_DIRS="$HOME/.local/share"
-[[ -d "$XDG_DATA_DIRS" ]] || mkdir -p "$XDG_DATA_DIRS"
+export XDG_DATA_DIR="$HOME/.local/share"
+[[ -d "$XDG_DATA_DIR" ]] || mkdir -p "$XDG_DATA_DIRS"
 ### STATE
 export XDG_STATE_HOME="$HOME/.local/state"
 [[ -d "$XDG_STATE_HOME" ]] || mkdir -p "$XDG_STATE_HOME"
 ### DOWNLOADS
 export XDG_DOWNLOAD_DIR="$HOME/Downloads"
-[[ -d "$XDG_DOWNLOAD_DIRS" ]] || mkdir -p "$XDG_DOWNLOAD_DIRS"
+[[ -d "$XDG_DOWNLOAD_DIR" ]] || mkdir -p "$XDG_DOWNLOAD_DIR"
 ### DOCUMENTS
 export XDG_DOCUMENTS_DIR="$HOME/Documents"
-[[ -d "$XDG_DOCUMENTS_DIRS" ]] || mkdir -p "$XDG_DOCUMENTS_DIRS"
+[[ -d "$XDG_DOCUMENTS_DIR" ]] || mkdir -p "$XDG_DOCUMENTS_DIR"
 ### MUSIC
 export XDG_MUSIC_DIR="$HOME/Music"
 [[ -d "$XDG_MUSIC_DIRS" ]] || mkdir -p "$XDG_MUSIC_DIRS"
@@ -49,18 +49,18 @@ _comp_options+=(globdots)
 
 # Editor + Others
 export EDITOR=/usr/bin/nvim
-export PAGER="/bin/sh -c \"col -b | nvim -c 'set ft=man ts=8 nomod nolist nonu noma' -\""
-export MANPAGER="/bin/sh -c \"col -b | nvim -c 'set ft=man ts=8 nomod nolist nonu noma' -\""
+export PAGER="/bin/sh -c \"col -b | nvim -c 'set ft=man ts=4 nomod nolist nonu noma' -\""
+export MANPAGER="/bin/sh -c \"col -b | nvim -c 'set ft=man ts=4 nomod nolist nonu noma' -\""
 export VISUAL=/usr/bin/nvim
 export VIMCONFIG="$XDG_CONFIG_HOME/nvim"     
 
-export BROWSER=/usr/bin/vivaldi
+export BROWSER=/usr/bin/vivaldi-stable
 
 # starship config
 #export STARSHIP_CONFIG="$HOME/.config/starship/starship.toml"
 
 ### Path ###
-export PATH="/usr/bin:/bin:/usr/sbin:$HOME/.local/sbin:/sbin:$HOME/.local/bin:$HOME/.local/share:$HOME/.cargo/bin:$HOME/.cargo/env:$PATH"
+export PATH="$HOME/.local/bin:$HOME/.local/share:$HOME/.cargo/bin:$HOME/.cargo/env:$HOME/Applications:$HOME/.config/rofi/bin:HOME/.config/polybar/themes/pwidgets/scripts:$PATH"
 
 ### TERMINAL ###
 export TERM="xterm-256color"
@@ -79,6 +79,3 @@ export RIPGREP_CONFIG_PATH="$HOME/.rgrc"
 
 # bat
 export BAT_THEME="Dracula"
-
-# p10k
-source "$ZDOTDIR/themes/powerlevel10k/powerlevel10k.plugin.zsh"
