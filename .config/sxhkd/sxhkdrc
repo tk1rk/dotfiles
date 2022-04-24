@@ -8,6 +8,13 @@ super + p
 alt + f1
         rofi -no-lazy-grab -show drun -modi drun -show-icons -theme $HOME/.config/rofi/launchers/misc/launchpad.rasi
 
+# colorscheme
+super + shift + t
+        $HOME/.config/polybar/scripts/style-switch.sh
+
+
+
+### APPS ###
 # alacritty drop-down
 super + Return
         scratchpad.sh dropdown
@@ -16,11 +23,6 @@ super + Return
 alt + Return
 	alacritty
 
-# colorscheme
-super + shift + t
-        $HOME/.config/polybar/scripts/style-switch.sh
-
-### APPS ###
 # screenshot
 super + shift + s
         scrot -b -d 5 '%Y:%m:%d:%H:%M:%S.png' -e 'mv $f $HOME/Pictures/'
@@ -52,16 +54,28 @@ super + q
 super + k
         bspc node -k
 
-# Volume hotkeys
-@XF86Audio{Raise,Lower}Volume
-	amixer sset Master 2%{+,-}
+#Audio Control
+XF86AudioRaiseVolume
+        pactl set-sink-volume @DEFAULT_SINK@ +10%
+XF86AudioLowerVolume 
+        pactl set-sink-volume @DEFAULT_SINK@ -10%
+XF86AudioMute
+        pactl set-sink-mute @DEFAULT_SINK@ toggle
+XF86AudioMicMute
+        pactl set-source-mute @DEFAULT_SOURCE@ toggle
+XF86AudioPlay
+        mpc toggle
+XF86AudioNext
+        mpc next
+XF86AudioPrev
+        mpc prev
 
-@XF86AudioMute
-	amixer sset Master toggle
+# Laptop screen brightness control
+XF86MonBrightnessUp 
+        sudo light -A 10
+XF86MonBrightnessDown 
+        sudo light -U 10
 
-# Brightness hotkeys
-@XF86MonBrightness{Up,Down}
-	xbacklight -{inc,dec} 10
 	
 # alternate between the tiled and monocle layout
 super + m
