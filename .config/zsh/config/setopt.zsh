@@ -1,4 +1,4 @@
-q1#!/usr/bin/env zsh
+#!/usr/bin/env zsh
 
 
 setopt autocd              # change directory just by typing its name
