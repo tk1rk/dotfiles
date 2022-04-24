@@ -1,5 +1,6 @@
 #!/usr/bin/env zsh
 
+
 # fish like Auto suggestion
 autoload -U predict-on
 predict-toggle() {
