@@ -16,8 +16,6 @@ for file in "${ZDOTDIR}/core/aliases.zsh" \
     [[ -f "${file}" ]] && source "${file}"
 done
 
-=1
-
 # Load plugins.
 source $ZDOTDIR/themes/powerlevel10k/powerlevel10k.zsh-theme
 
