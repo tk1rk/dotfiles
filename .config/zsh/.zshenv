@@ -3,7 +3,7 @@
 #### xdg
 export XDG_DOWNLOAD_DIR="$HOME/Downloads"
 export XDG_DOCUMENTS_DIR="$HOME/Documents"
-;lexport XDG_MUSIC_DIR="$HOME/Music"
+export XDG_MUSIC_DIR="$HOME/Music"
 export XDG_PICTURES_DIR="$HOME/Pictures"
 export XDG_CONFIG_HOME="$HOME/.config"
 [[ -d "$XDG_CONFIG_HOME" ]] || mkdir -p "$XDG_CONFIG_HOME"
