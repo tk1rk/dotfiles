@@ -11,7 +11,7 @@ powerline-go power-profile-selector-git hsetroot \
 scrot slop xdo xsel xorg-xsetroot xsettingsd xtitle \
 power-profiles-daemon-git python-papis-python-rofi \
 python-papis-rofi-git python-pyrof-git python-rofi \
-rofi-applets-menu rofi-autorandr rofi-greenclips ,
+rofi-applets-menu rofi-autorandr rofi-greenclips \
 udiskie-dmenu-git hud rofi-power-menu rofi-zeal-git \
 pineentry-rofi rofication-git pass-clip rofi-mpc \
 passmenu-rs-git pass-ssh rofi-theme-applet-1080p \
@@ -20,7 +20,7 @@ rofi-theme-menu-1080p rofi-wifi-menu-git rofigen-git \
 rofi-search-git rofi-screenshot-git rofi-blocks-git \
 rofi-pass-git rofi-bluetooth-git rofi-dmenu \
 rofi-file-browser-extended-git \
-termsyn-font nerd-fonts-git nerd-fonts-sf-mono \
+nerd-fonts-git nerd-fonts-sf-mono \
 nerd-fonts-profont nerd-fonts-cozette-ttf \
 nerd-fonts-fontconfig themix-full-git wedder \
 xmenu yay yay-cache-cleanup-hook zsh-git zsh-doc-git \
@@ -30,7 +30,8 @@ git-completion prll cod-git zsh-abbr zsh-autopair \
 pmy-git zsh-system-clipboard-git zsh-fzy-git \
 zsh-load nvmrc fzf-tab-completion-git histdb-rs \
 neovim-coc-zsh-git zsh-sudo-git \
-zsh-history-search-multi-word-git
+zsh-history-search-multi-word-git python3-virtualbox \
+python3-vboxapi
 
 
 
