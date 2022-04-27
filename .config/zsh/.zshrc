@@ -7,27 +7,20 @@ fi
 
 # ZSH SOURCES 
 typeset -ga sources
-for file in "${ZDOTDIR}/core/aliases.zsh" \
-            "${ZDOTDIR}/core/bindkeys.zsh" \
-            "${ZDOTDIR}/core/completion.zsh" \
-            "${ZDOTDIR}/core/functions.zsh" \
-            "${ZDOTDIR}/core/less.zsh" \
-            "${ZDOTDIR}/core/setopt.zsh" \
-    [[ -f "${file}" ]] && source "${file}"
+for file in $ZDOTDIR/core/*.zsh; do 
+    source "$file"
 done
 
 # ZI
-__ZI="${ZHOME}/.zi/bin/zi.zsh"
+ZI[HOME_DIR]=$HOME/.zi
+Zi[BIN_DIR]=$HOME/.zi/bin
+source $HOME/.zi/bin/zi.zsh
 
-if [[ ! -f "$__ZI" ]]; then
-  print -P "%F{33}▓▒░ %F{220}Installing ZI Initiative Plugin Manager (z-shell/zi)…%f"
-  command mkdir -p "$HOME/.zi" && command chmod g-rwX "$HOME/.zi"
-  command git clone https://github.com/z-shell/zi "$HOME/.zi/bin" && \
-    print -P "%F{33}▓▒░ %F{34}Installation successful.%f%b" || \
-    print -P "%F{160}▓▒░ The clone has failed.%f%b"
+if [[ ! -d $HOME/.zi ]]; then
+  command mkdir -p $HOME/.zi && command chmod g-rwX $HOME/.zi \
+  command sh -c "$(curl -fsSL https://git.io/get-zi)" -- -a zunit 
 fi
 
-source "$__ZI"
 autoload -Uz _zi
 (( ${+_comps} )) && _comps[zi]=_zi
 
@@ -121,8 +114,6 @@ atload"zstyle ':completion:*' list-colors '${(s.:.)LS_COLORS}'" \
 zi load zdharma-continuum/zui
 zi ice lucid wait"[[ -n ${ZLAST_COMMANDS[(r)cras*]} ]]"
 zi load zdharma-continuum/zi-crasis
-
-
 
 # Cargo 
 source $HOME/.cargo/env
