@@ -18,7 +18,8 @@ source $HOME/.zi/bin/zi.zsh
 
 if [[ ! -d $HOME/.zi ]]; then
   command mkdir -p $HOME/.zi && command chmod g-rwX $HOME/.zi \
-  command sh -c "$(curl -fsSL https://git.io/get-zi)" -- -a zunit 
+  command sh -c "$(curl -fsSL https://git.io/get-zi)" -- -a zunit \
+  command zi module build && typeset -g ZI_MOD_DEBUG=1
 fi
 
 autoload -Uz _zi
