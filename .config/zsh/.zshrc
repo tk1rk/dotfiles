@@ -116,6 +116,46 @@ zi load zdharma-continuum/zui
 zi ice lucid wait"[[ -n ${ZLAST_COMMANDS[(r)cras*]} ]]"
 zi load zdharma-continuum/zi-crasis
 
+zi ice from'gh-r' as'program'
+zi light @junegunn/fzf
+
+zi ice from'gh-r' as'program' mv'fd* fd' sbin'**/fd(.exe|) -> fd'
+zi light @sharkdp/fd
+
+zi ice from'gh-r' as'program' mv'bat* bat' sbin'**/bat(.exe|) -> bat'
+zi light @sharkdp/bat
+
+zi ice lucid wait as'program' has'bat' pick'src/*'
+zi light eth-p/bat-extras
+
+zi ice from'gh-r' as'program' mv'vivid* vivid' sbin'**/vivid(.exe|) -> vivid'
+zi light @sharkdp/vivid
+
+zi ice wait lucid as'program' pick'zunit' atclone'./build.zsh' atpull'%atclone'
+zi load @zdharma/zunit
+
+
+
+
+### completions ###
+zi ice lucid wait as'completion' blockf has'alacritty'
+zi snippet https://github.com/alacritty/alacritty/blob/master/extra/completions/_alacritty
+
+zi ice lucid wait as'completion' blockf has'fd'
+zi snippet https://github.com/ohmyzsh/ohmyzsh/blob/master/plugins/fd/_fd
+
+zi ice lucid wait as'completion' blockf has'yadm'
+zi snippet https://github.com/TheLocehiliosan/yadm/blob/master/completion/zsh/_yadm
+
+zi ice lucid wait as'completion' blockf has'rg'
+zi snippet https://github.com/BurntSushi/ripgrep/blob/master/complete/_rg
+
+zi ice lucid wait as'completion' blockf pick'src/go' src'src/zsh'
+zi light zchee/zsh-completions
+
+
+
+
 # Cargo 
 source $HOME/.cargo/env
 
