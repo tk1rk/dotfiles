@@ -54,6 +54,10 @@ super + q
 super + k
         bspc node -k
 
+# polybar autoclose
+super + b
+        polybar-msg cmd toggle
+
 #Audio Control
 XF86AudioRaiseVolume
         pactl set-sink-volume @DEFAULT_SINK@ +10%
