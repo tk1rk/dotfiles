@@ -1,11 +1,11 @@
 #!/usr/bin/env sh
 
 # Set environment
-export BSPWM_CONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/bspwm"
+export BSPWM_CONFIG=$HOME/.config/bspwm
 
 # cursor
 xsetroot -cursor_name left_ptr &
-bspc config focus_follows_pointer true
+bspc config focus_follows_pointer true &
 
 bspc monitor -d 1 2 3 4
 
@@ -50,6 +50,10 @@ polybar -c "$HOME/.config/polybar/launch.sh" --pwidgets &
 # Launch keybinding daemon
 sxhkd -conf "$HOME/.config/sxhkd/sxhkdrc" &
 
+# touchpad
+xinput set-prop "SynPS/2 Synaptics TouchPad" "libinput Tapping Enabled" 1
+xinput set-prop "SynPS/2 Synaptics TouchPad" "libinput Natural Scrolling Enabled" 1
+
 # xrdb (themes)
 xrdb merge "$HOME/.Xresources" &
 
@@ -57,17 +61,13 @@ xrdb merge "$HOME/.Xresources" &
 feh --bg-fill "$HOME/.config/bspwm/wallpapers/arch.png" &
 
 # Autostart
-"$BSPWM_CONFIG/autostart" &
+$HOME/.config/bspwm/autostart &
 
 # pulseaudio
 pulseaudio &
 
 # light-locker
 pgrep light-locker || light-locker &
-
-# polybar
-pkill polybar
-polybar -c "$HOME/.config/polybar/launch.sh" --pwidgets & 
 
 # Run EWW.
 eww -c "$HOME/.config/eww/bar" --restart open bar &
