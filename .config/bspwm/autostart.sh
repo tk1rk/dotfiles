@@ -5,7 +5,7 @@
 #/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 
 # ibus daemon
-#pgrep ibus-daemon || ibus-daemon &
+pgrep ibus-daemon || ibus-daemon &
 
 # nm-applet
 pgrep -u $USER -x nm-applet > /dev/null || (nm-applet &)
@@ -22,7 +22,10 @@ pkill dunst
 dunst -conf "$HOME/.config/dunst/dunstrc" &
 	
 # window swallowing
-#pgrep bspswallow || bspswallow &
+pgrep bspswallow || bspswallow &
+
+# xsettingsd
+xsettingsd &
 
 # Launch keybinding daemon
 sxhkd -conf "$HOME/.config/sxhkd/sxhkdrc" &
@@ -36,9 +39,6 @@ xrdb merge "$HOME/.Xresources" &
 
 # wallpaper
 feh --bg-fill "$HOME/.config/bspwm/wallpapers/arch.png" &
-
-# Autostart
-$HOME/.config/bspwm/autostart &
 
 # pulseaudio
 pulseaudio &
