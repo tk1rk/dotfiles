@@ -7,6 +7,16 @@
  *
  */
 
+* {
+    background:                     #282a36ff;
+    background-alt:                 #282a36ff;
+    foreground:                     #f8f8f2;
+    border:               	    #282a36ff;
+    border-alt:               	    #282a36ff;
+    selected:               	    #6272a4ff;
+    urgent:                         #ff5555;
+}
+
 configuration {
 	font:				"FantasqueSansMono Nerd Font 14";
         show-icons:                     true;
