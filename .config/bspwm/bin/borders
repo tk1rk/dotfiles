@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env sh
 # neeasade
 # makes dual borders
 # depends on wmutils/opt
