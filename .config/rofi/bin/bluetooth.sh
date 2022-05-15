@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env sh
 img_active="/home/devops/.local/share/icons/Flatery-Indigo-Dark/panel/24@2x/blueman-active.svg"
 
 img_deactive="/home/devops/.local/share/icons/Flatery-Indigo-Dark/panel/24@2x/bluetooth-disabled.svg"
