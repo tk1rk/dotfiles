@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 # Author : rxyhn
 
 DIR="$HOME/.config/dunst"
