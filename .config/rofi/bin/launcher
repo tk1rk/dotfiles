@@ -1,5 +1,0 @@
-#!/usr/bin/env sh
-
-DIR="$HOME/.config/rofi"
-
-rofi -no-lazy-grab -show drun -theme $DIR/themes/launchpad.rasi
