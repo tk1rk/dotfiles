@@ -4,7 +4,6 @@
 ## Mail    : adi1090x@gmail.com
 ## Github  : @adi1090x
 ## Twitter : @adi1090x
-      row_alt
 
 theme="full_rounded"
 dir="$HOME/.config/rofi/powermenu"
