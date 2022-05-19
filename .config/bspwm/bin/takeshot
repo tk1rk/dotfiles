@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 ## Script to take screenshots with maim
 
 time=`date +%Y-%m-%d-%I-%M-%S`
