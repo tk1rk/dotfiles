@@ -11,7 +11,7 @@ launch_bar() {
 
 	# Launch the bar
 	if [[ "$style" == "pwidgets" ]]; then
-		bash "$dir"/pwidgets/launch.sh --main
+		sh "$dir"/pwidgets/launch.sh --system --workspace
 	else
 		polybar -q main -c "$dir/$style/config.ini" &
 	fi
