@@ -1,37 +1,90 @@
-yay -Syyu ant-dracula-theme-git dracula-gtk-theme-git \
-dracula-xresources-git dracula-alacritty-git \
-xcursor-arch-cursor-complete clerk-git github-cli hub \
-libinput xf86-input-libinput libinput-xrandr-autorotate \
-libinput-gestures menu-calc-git naivecalender-git \
-netcfg-git passrofi-git light-locker-git \
-light-locker-settings notify-send.sh \
-lightdm-webkit2-theme-glorious papirus-icon-theme-git \
-picom-ibhagwan-git polybar powerline-fonts-git \
-powerline-go power-profile-selector-git hsetroot \
-scrot slop xdo xsel xorg-xsetroot xsettingsd xtitle \
-power-profiles-daemon-git python-papis-python-rofi \
-python-papis-rofi-git python-pyrof-git python-rofi \
-rofi-applets-menu rofi-autorandr rofi-greenclips \
-udiskie-dmenu-git hud rofi-power-menu rofi-zeal-git \
-pineentry-rofi rofication-git pass-clip rofi-mpc \
-passmenu-rs-git pass-ssh rofi-theme-applet-1080p \
-rofi-theme-powermenu-1080p rofi-theme-launcher-1080p \
-rofi-theme-menu-1080p rofi-wifi-menu-git rofigen-git \
-rofi-search-git rofi-screenshot-git rofi-blocks-git \
-rofi-pass-git rofi-bluetooth-git rofi-dmenu \
-rofi-file-browser-extended-git \
-nerd-fonts-git nerd-fonts-sf-mono \
-nerd-fonts-profont nerd-fonts-cozette-ttf \
-nerd-fonts-fontconfig themix-full-git wedder \
-xmenu yay yay-cache-cleanup-hook zsh-git zsh-doc-git \
-spaceship-prompt-git zsh-you-should-use gitstatus \
-pacac-zsh-completions zsh-directory-history-git \
-git-completion prll cod-git zsh-abbr zsh-autopair \
-pmy-git zsh-system-clipboard-git zsh-fzy-git \
-zsh-load nvmrc fzf-tab-completion-git histdb-rs \
-neovim-coc-zsh-git zsh-sudo-git \
-zsh-history-search-multi-word-git python3-virtualbox \
+ant-dracula-theme-git 
+clerk-git 
+cod-git
+dracula-gtk-theme-git 
+dracula-xresources-git 
+dracula-alacritty-git 
+fzf-tab-completion-git 
+gitstatus 
+git-completion 
+github-cli
+histdb-rs 
+hub 
+menu-calc-git 
+naivecalender-git 
+netcfg-git 
+nvmrc 
+nerd-fonts-git 
+nerd-fonts-sf-mono 
+nerd-fonts-profont 
+nerd-fonts-cozette-ttf 
+nerd-fonts-fontconfig
+neovim-coc-zsh-git 
+pamac-zsh-completions 
+prll
+polybar 
+powerline-fonts-git
+powerline-go 
+power-profile-selector-git 
+power-profiles-daemon-git 
+python3-virtualbox 
 python3-vboxapi
+python-papis-python-rofi 
+python-papis-rofi-git 
+python-pyrof-git 
+python-rofi 
+pineentry-rofi 
+passrofi-git
+passmenu-rs-git 
+pass-ssh 
+pineentry-rofi 
+pass-clip 
+rofi-applets-menu 
+rofi-autorandr 
+rofi-greenclips 
+rofi-power-menu 
+rofi-zeal-git 
+rofication-git 
+rofi-mpc 
+rofi-theme-applet-1080p 
+rofi-theme-powermenu-1080p 
+rofi-theme-launcher-1080p 
+rofi-theme-menu-1080p 
+rofi-wifi-menu-git 
+rofigen-git 
+rofi-search-git 
+rofi-screenshot-git 
+rofi-blocks-git 
+rofi-pass-git 
+rofi-bluetooth-git 
+rofi-dmenu 
+rofi-file-browser-extended-git 
+hsetroot 
+spaceship-prompt-git 
+scrot 
+slop 
+xdo 
+xsel 
+xsettingsd 
+xtitle 
+xcursor-arch-cursor-complete 
+themix-full-git 
+udiskie-dmenu-git 
+wedder 
+yay-cache-cleanup-hook
+zsh-doc-git 
+zsh-you-should-use 
+zsh-directory-history-git 
+zsh-system-clipboard-git 
+zsh-fzy-git 
+zsh-load 
+zsh-sudo-git 
+zsh-history-search-multi-word-git 
+zsh-abbr 
+zsh-autopair 
+
+
+
 
 
 
