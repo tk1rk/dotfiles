@@ -15,7 +15,7 @@ while pgrep -u $UID -x picom > /dev/null; do sleep 1; done
 picom -config "$HOME/.config/picom/picom.conf" &	
 
 # xfce4 power manager
-#xfce4-power-manager &
+xfce4-power-manager &
 
 # dunst
 pkill dunst
@@ -44,7 +44,7 @@ feh --bg-fill "$HOME/.config/bspwm/wallpapers/arch.png" &
 pulseaudio &
 
 # light-locker
-pgrep light-locker || light-locker &
+#pgrep light-locker || light-locker &
 
 # polybar
 pkill polybar
@@ -68,7 +68,7 @@ bspc subscribe node_state | while read -r _ _ _ _ state flag; do
         "$HOME/.local/bin/eww" -c "$HOME/.config/eww/bar" open bar
     fi
 done &
-
+                             
 # Drop-down terminal (can swap with any app)
 bspc rule -a dropdown sticky=on state=floating hidden=on
 alacritty --class dropdown -e "zsh -i" &
