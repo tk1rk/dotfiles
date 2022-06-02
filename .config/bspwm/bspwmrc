@@ -4,24 +4,23 @@
 export BSPWM_CONFIG=$HOME/.config/bspwm
 
 # cursor
-xsetroot -cursor_name left_ptr &
+xsetroot -cursor_name left_ptr 
+sxhkd &
 
 bspc monitor eDP1 -d "󰈹", "", "󰉋", "󰓇", "󰟴", "󰒓"
 
 bspc config border_width        5
 bspc config window_gap          8
-bspc config top_padding         20
-bspc config bottom_padding      5
-bspc config right_padding       5
 
-bspc config split_ratio                 0.52
+bspc config split_ratio		        0.62
+bspc config focus_follows_pointer	true
+bspc config pointer_modifier	        mod1
+ 
+bspc config automatic_scheme	        spiral
 bspc config borderless_monocle          true
 bspc config gapless_monocle             true
-bspc config focus_follows_pointer       true
 bspc config history_aware_focus         true
-bspc config click_to_focus              none
 bspc config adaptive raise              true
-bspc config center_pseudo_tiled         true
 
 # source the colors.
 source "$HOME/.cache/wal/colors.sh"
@@ -55,10 +54,12 @@ bspc subscribe node_state | while read -r _ _ _ _ state flag; do
 done &
 
 ###External rules
-##Pseudo automatic mode: always splits focused window when opening new window
-#bspc config external_rules_command ~/.config/bspwm/scripts/pseudo_automatic_mode
-##Adjust new window: splits biggest windows to keep windows about the same size
-#bspc config external_rules_command ~/.config/bspwm/scripts/adjust-new-window
+# Pseudo automatic mode: always splits focused window when opening new window
+bspc config external_rules_command ~/.config/bspwm/scripts/pseudo_automatic_mode
+
+# Adjust new window: splits biggest windows to keep windows about the same size
+bspc config external_rules_command ~/.config/bspwm/scripts/adjust-new-window
+
 
 #polybar hidden when fullscreen for vlc, youtube, mpv ...
 #find out the name of your monitor with xrandr
