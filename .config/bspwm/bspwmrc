@@ -1,15 +1,38 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
-# Set environment
-export BSPWM_CONFIG=$HOME/.config/bspwm
+## Environtment
+export PATH="${PATH}:$HOME/.config/bspwm/bin"
+
+## Java Applications
+wmname LG3D
+export _JAVA_AWT_WM_NONREPARENTING=1
+
+## Get colors from .Xresources -------------------------------#
+xrdb ~/.Xresources
+getcolors() {
+	FOREGROUND=$(xrdb -query | grep 'foreground:'| awk '{print $NF}')
+	BACKGROUND=$(xrdb -query | grep 'background:'| awk '{print $NF}')
+	BLACK=$(xrdb -query | grep 'color0:'| awk '{print $NF}')
+	RED=$(xrdb -query | grep 'color1:'| awk '{print $NF}')
+	GREEN=$(xrdb -query | grep 'color2:'| awk '{print $NF}')
+	YELLOW=$(xrdb -query | grep 'color3:'| awk '{print $NF}')
+	BLUE=$(xrdb -query | grep 'color4:'| awk '{print $NF}')
+	MAGENTA=$(xrdb -query | grep 'color5:'| awk '{print $NF}')
+	CYAN=$(xrdb -query | grep 'color6:'| awk '{print $NF}')
+	WHITE=$(xrdb -query | grep 'color7:'| awk '{print $NF}')
+}
+getcolors
+
 
 # cursor
 xsetroot -cursor_name left_ptr 
 sxhkd &
 
-bspc monitor eDP1 -d "󰈹", "", "󰉋", "󰓇", "󰟴", "󰒓"
+## Configurations --------------------------------------------#
 
-bspc config border_width        5
+bspc monitor -d I II III IV 
+
+bspc config border_width        2
 bspc config window_gap          8
 
 bspc config split_ratio		        0.62
@@ -26,7 +49,7 @@ bspc config adaptive raise              true
 source "$HOME/.cache/wal/colors.sh"
 
 # wallpaper
-wal -i "$HOME/.cache/wal/arch.png"
+feh --scale-bg "$HOME/.config/bspwm/wallpapers/arch.png"
 
 # Set the border colors.
 bspc config normal_border_color   "$color15" # normal: not focused
@@ -59,7 +82,6 @@ bspc config external_rules_command ~/.config/bspwm/scripts/pseudo_automatic_mode
 
 # Adjust new window: splits biggest windows to keep windows about the same size
 bspc config external_rules_command ~/.config/bspwm/scripts/adjust-new-window
-
 
 #polybar hidden when fullscreen for vlc, youtube, mpv ...
 #find out the name of your monitor with xrandr
