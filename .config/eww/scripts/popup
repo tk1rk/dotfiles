@@ -27,7 +27,7 @@ fi
 if [ "$1" = "launcher" ]; then
 $HOME/.local/bin/launcher
 elif [ "$1" = "wifi" ]; then
-kitty -e nmtui
+alacrittu -e nmtui
 elif [ "$1" = "audio" ]; then
 pavucontrol
 elif [ "$1" = "calendar" ]; then
