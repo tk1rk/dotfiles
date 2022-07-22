@@ -42,6 +42,10 @@ xrdb -override "${HOME}/.Xresources" &
 # wallpaper
 feh --bg-fill "${HOME}/.config/bspwm/assets/bloodfountain.jpg" &
 
+# Enable Super Keys For Menu
+ksuperkey -e 'Super_L=Alt_L|F1' &
+ksuperkey -e 'Super_R=Alt_L|F1' &
+
 # Run EWW.
 "${HOME}/.local/bin/eww" -c "${HOME}/.config/eww/bar --restart open bar" &
 
