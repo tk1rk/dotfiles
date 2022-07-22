@@ -1,0 +1,4 @@
+ACTION=="add"
+SUBSYSTEM=="scsi_host"
+KERNEL=="host*"
+ATTR{link_power_management_policy}="med_power_with_dipm"
