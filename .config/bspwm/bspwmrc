@@ -11,6 +11,7 @@ export PATH="${PATH}:${HOME}/.config/bspwm/bin"
 wmname LG3D
 export _JAVA_AWT_WM_NONREPARENTING=1
 
+# wallpapers
 export WALLPAPER="$HOME/.config/bspwm/assets/bloodfountain.jpg"
 export LOCKSCREEN_WALLPAPER="$HOME/.config/bspwm/assets/bloodfountain.jpg"
 
@@ -54,8 +55,6 @@ config focus_follows_pointer        true
 # ##############################################################################
 # #                                 MISCELLANEOUS                              #
 # ##############################################################################
-# Fix windows being below bar
-xdo lower -N eww-bar
 
 ###External rules
 # Pseudo automatic mode: always splits focused window when opening new window
