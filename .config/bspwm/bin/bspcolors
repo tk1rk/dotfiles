@@ -1,10 +1,5 @@
 #!/usr/bin/env bash
 
-## Copyright (C) 2020-2022 Aditya Shakya <adi1090x@gmail.com>
-## Everyone is permitted to copy and distribute copies of this file under GNU-GPL3
-
-## A script to get colours from xrdb & deploy it to polybar, alacritty & rofi.
-
 DIR="$HOME/.config/bspwm"
 
 getcolors () {
@@ -29,33 +24,9 @@ getcolors () {
 	ALTWHITE="$(xrdb -query | grep 'color15:'| awk '{print $NF}')"
 }
 
-bspbar () {
-	cat > $DIR/polybar/colors <<- EOF	
-	[color]
-
-	FOREGROUND = ${FOREGROUND}
-	BACKGROUND = ${BACKGROUND}
-	BLACK = ${BLACK}
-	RED = ${RED}
-	GREEN = ${GREEN}
-	YELLOW = ${YELLOW}
-	BLUE = ${BLUE}
-	MAGENTA = ${MAGENTA}
-	CYAN = ${CYAN}
-	WHITE = ${WHITE}
-	ALTBLACK = ${ALTBLACK}
-	ALTRED = ${ALTRED}
-	ALTGREEN = ${ALTGREEN}
-	ALTYELLOW = ${ALTYELLOW}
-	ALTBLUE = ${ALTBLUE}
-	ALTMAGENTA = ${ALTMAGENTA}
-	ALTCYAN = ${ALTCYAN}
-	ALTWHITE = ${ALTWHITE}
-	EOF
-}
 
 bspterm () {
-	cat > "$DIR"/alacritty/colors.yml <<- _EOF_
+	cat > "$DIR"/alacritty/dracula.yml <<- _EOF_
 		## Colors configuration
 		colors:
 		  # Default colors
@@ -126,7 +97,6 @@ bspdunst () {
 
 main () {
 	getcolors
-	bspbar
 	bspterm
 	bsprofi
 	bspdunst
