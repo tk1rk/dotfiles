@@ -1,14 +1,5 @@
 #!/usr/bin/env sh
 
-#############################################################################
-#   ██████╗ ███████╗██████╗ ██╗    ██╗███╗   ███╗   ###
-#   ██╔══██╗██╔════╝██╔══██╗██║    ██║████╗ ████║   ###
-#   ██████╔╝███████╗██████╔╝██║ █╗ ██║██╔████╔██║   ##
-#   ██╔══██╗╚════██║██╔═══╝ ██║███╗██║██║╚██╔╝██║   #
-#   ██████╔╝███████║██║     ╚███╔███╔╝██║ ╚═╝ ██║   #####
-#   ╚═════╝ ╚══════╝╚═╝      ╚══╝╚══╝ ╚═╝     ╚═╝   #####                                    
-##########################################################################
-
 # ##############################################################################
 # #                                  ENV VARS                                  # 
 # ##############################################################################
@@ -20,46 +11,51 @@ export PATH="${PATH}:${HOME}/.config/bspwm/bin"
 wmname LG3D
 export _JAVA_AWT_WM_NONREPARENTING=1
 
+export WALLPAPER="$HOME/.config/bspwm/assets/bloodfountain.jpg"
+export LOCKSCREEN_WALLPAPER="$HOME/.config/bspwm/assets/bloodfountain.jpg"
+
 # Parse colors from "~/.Xresources"
 xrdb -override "${HOME}/.Xresources"
 
 
-xrdb_query()
-{
-    [ -n "$XRDB_QUERY" ] || XRDB_QUERY="$(xrdb -query)"
-
-    echo "$XRDB_QUERY" | while IFS=';' read -r STRING; do
-        [ "${1}" = "${STRING%%\	*}" ] || continue
-        echo "${STRING##*\	}"
-        break
-    done
-}
-
-getcolors()
-{
-    #FOREGROUND="$(xrdb_query '*.foreground:')"
-    BACKGROUND="$(xrdb_query '*.background:')"
-    #BLACK="$(xrdb_query '*.color0:')"
-    #RED="$(xrdb_query '*.color1:')"
-    #GREEN="$(xrdb_query '*.color2:')"
-    #YELLOW="$(xrdb_query '*.color3:')"
-    #BLUE="$(xrdb_query '*.color4:')"
-    #MAGENTA="$(xrdb_query '*.color5:')"
-    #CYAN="$(xrdb_query '*.color6:')"
-    #WHITE="$(xrdb_query '*.color7:')"
-}
-
-getcolors
-
 # ##############################################################################
 # #                                  FUNCTIONS                                 # 
 # ##############################################################################
-
-# Credits to 6gk/polka
 rule() { bspc rule -a "$@" & }
 config() { bspc config "$@" & }
+start() { pkill -x "$1"; { sleep 0.1; "$@" & }; }
 
 
+# ##############################################################################
+# #                                 WINDOW RULES                               #
+# ##############################################################################
+bspc monitor -d 1 2 3 4 
+
+
+# ##############################################################################
+# #                            GENERAL CONFIGURATION                           #
+# ##############################################################################
+config pointer_modifier             Mod4
+
+config window_gap                   10
+
+config top_padding                  0
+config left_padding                 48
+config right_padding                0
+config bottom_padding               0
+
+config split_ratio                  0.52
+config borderless_monocle           true
+config gapless_monocle              true
+config focus_follows_pointer        true
+
+
+
+# ##############################################################################
+# #                                 MISCELLANEOUS                              #
+# ##############################################################################
+# Fix windows being below bar
+xdo lower -N eww-bar
 
 ###External rules
 # Pseudo automatic mode: always splits focused window when opening new window
@@ -67,9 +63,3 @@ bspc config external_rules_command ~/.config/bspwm/scripts/pseudo_automatic_mode
 
 # Adjust new window: splits biggest windows to keep windows about the same size
 bspc config external_rules_command ~/.config/bspwm/scripts/adjust-new-window
-
-#polybar hidden when fullscreen for vlc, youtube, mpv ...
-#find out the name of your monitor with xrandr
-#xdo below -t $(xdo id -n root) $(xdo id -a polybar-main_DP-1)
-#xdo below -t $(xdo id -n root) $(xdo id -a polybar-main_HDMI1)
-#xdo below -t $(xdo id -n root) $(xdo id -a polybar-main_HDMI2)
