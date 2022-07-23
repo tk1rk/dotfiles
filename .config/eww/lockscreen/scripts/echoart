@@ -1,3 +1,0 @@
-#!/usr/bin/env sh
-
-echo "$HOME/.config/eww/lockscreen/images/cover.png"
