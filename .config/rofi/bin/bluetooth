@@ -1,9 +1,9 @@
 #!/usr/bin/env sh
-img_active="/home/devops/.local/share/icons/Flatery-Indigo-Dark/panel/24@2x/blueman-active.svg"
+img_active="/home/tk/.local/share/icons/Papirus-Dark/panel/24@24/blueman-active.svg"
 
-img_deactive="/home/devops/.local/share/icons/Flatery-Indigo-Dark/panel/24@2x/bluetooth-disabled.svg"
+img_deactive="/home/tk/.local/share/icons/Papirus-Dark/panel/24@24/bluetooth-disabled.svg"
 
-img_conncet="/home/devops/.local/share/icons/Flatery-Indigo-Dark/panel/24@2x/bluetooth-paired.svg"
+img_conncet="/home/tk/.local/share/icons/Papirus-Dark/panel/24@24/bluetooth-paired.svg"
 bluetooth_print() {
     bluetoothctl | while read -r; do
     	if bluetoothctl show | grep -q "Powered: yes"; then
