@@ -15,8 +15,8 @@ wmname LG3D
 export _JAVA_AWT_WM_NONREPARENTING=1
 
 # wallpapers
-export WALLPAPER="$HOME/.config/bspwm/assets/bloodfountain.jpg"
-export LOCKSCREEN_WALLPAPER="$HOME/.config/bspwm/assets/bloodfountain.jpg"
+export WALLPAPER="$HOME/.config/bspwm/wallpapers/bloodfountain.jpg"
+export LOCKSCREEN_WALLPAPER="$HOME/.config/bspwm/wallpapers/bloodfountain.jpg"
 
 # Parse colors from "~/.Xresources"
 xrdb -override "${HOME}/.Xresources"
