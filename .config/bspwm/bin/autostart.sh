@@ -3,6 +3,9 @@
 # Run polkit daemon if doesn't started.
 [ -n "$(pidof xfce-polkit)" ] || /usr/lib/xfce-polkit/xfce-polkit &
 
+# xfce4 power manager
+xfce4-power-manager &
+
 # ibus daemon
 pgrep ibus-daemon || ibus-daemon &
 
@@ -13,13 +16,17 @@ pgrep -u $USER -x nm-applet > /dev/null || (nm-applet &)
 killall -q picom && while pgrep -u $UID -x picom >/dev/null; do sleep 1; done # Wait until the processes have been shut down
 picom --config "${HOME}/.config/picom/picom.conf" &
 
-# xfce4 power manager
-xfce4-power-manager &
+# Launch keybinding daemon
+sxhkd -conf "${HOME}/.config/sxhkd/sxhkdrc" &
 
 # dunst
 pkill dunst
 dunst -conf "${HOME}/.config/dunst/dunstrc" &
 	
+# Enable Super Keys For Menu
+ksuperkey -e 'Super_L=Alt_L|F1' &
+ksuperkey -e 'Super_R=Alt_L|F1' &
+
 # window swallowing
 pgrep bspswallow || bspswallow &
 
@@ -28,9 +35,6 @@ xsetroot -cursor_name left_ptr
 
 # xsettingsd
 xsettingsd &
-
-# Launch keybinding daemon
-sxhkd -conf "${HOME}/.config/sxhkd/sxhkdrc" &
 
 # touchpad
 xinput set-prop "SynPS/2 Synaptics TouchPad" "libinput Tapping Enabled" 1
@@ -41,10 +45,6 @@ xrdb -override "${HOME}/.Xresources" &
 
 # wallpaper
 feh --bg-fill "${HOME}/.config/bspwm/assets/bloodfountain.jpg" &
-
-# Enable Super Keys For Menu
-ksuperkey -e 'Super_L=Alt_L|F1' &
-ksuperkey -e 'Super_R=Alt_L|F1' &
 
 # Run EWW.
 "${HOME}/.local/bin/eww" -c "${HOME}/.config/eww/bar --restart open bar" &
@@ -64,7 +64,6 @@ elif [ "$1" == "-s" ]; then
 else
 	alacritty --config-file "$CONFIG"
 fi
-
                              
 # Drop-down terminal (can swap with any app)
 bspc rule -a dropdown sticky=on state=floating hidden=on
