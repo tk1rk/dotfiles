@@ -17,6 +17,12 @@ source "$ZSH_PLUGINS/extract/extract.plugin.zsh"
 source "$ZSH_PLUGINS/history-substring-search/history-substring-search.plugin.zsh"
 source "$ZSH_PLUGINS/zsh-exa/zsh-exa.plugin.zsh"
 
+ZSH_AUTOSUGGEST_USE_ASYNC="true"
+ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor regexp root line)
+ZSH_HIGHLIGHT_MAXLENGTH=512
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=$color8,bold"
+
+# ZI
 source "$HOME/.zi/bin/zi.zsh"
 autoload -Uz _zi
 (( ${+_comps} )) && _comps[zi]=_zi
@@ -47,8 +53,6 @@ z-shell/z-a-readurl \
 z-shell/z-a-bin-gem-node \
 z-shell/z-a-submods
 zi light z-shell/declare-zsh
-
-
 
 # Semi-graphical .zshrc editor for zi commands
 zi load zdharma-continuum/zui
