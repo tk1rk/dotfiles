@@ -10,9 +10,11 @@ setopt numericglobsort     # sort filenames numerically when it makes sense
 setopt promptsubst         # enable command substitution in prompt
 setopt MENU_COMPLETE        # Automatically highlight first element of completion menu
 setopt AUTO_LIST            # Automatically list choices on ambiguous completion.
-setopt auto_pushd
 setopt COMPLETE_IN_WORD     # Complete from both ends of a word.
-setopt cdable_vars check_jobs correct correct_all
+setopt cdable_vars 
+setopt check_jobs 
+setopt correct 
+setopt correct_all
 setopt always_to_end            # Move Cursor To The End Of A Completed Word.
 setopt path_dirs                # Perform Path Search Even On Command Names With Slashes.
 setopt auto_menu                # Show Completion Menu On A Successive Tab Press.
@@ -39,7 +41,5 @@ setopt extended_history	   # Show Timestamp In History.
 setopt inc_append_history	 # Write To The History File Immediately, Not When The Shell Exits.
 setopt bang_hist	          # Treat The '!' Character Specially During Expansion.
 setopt multios	            # Perform implicit tees or cats when multiple redirections are attempted.
-setopt interactive_comments   # Allow comments even in interactive shells (especially for Muness).
 setopt pushd_ignore_dups	  # Don't push multiple copies of the same directory onto the directory stack.
-setopt auto_pushd	         # Make cd push the old directory onto the directory stack.
 setopt pushdminus	         # Swapped the meaning of cd +1 and cd -1; we want them to mean the opposite of what they
