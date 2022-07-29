@@ -16,27 +16,13 @@ then
 	eval "$(dbus-launch --sh-syntax --exit-with-session)"
 fi
 
-[ ​-f​ ​~​/.xprofile ] ​&&​ ​.​ ​~​/.xprofile 
+xset +fp /usr/share/fonts/local &
+xset fp rehash &
+xrdb ~/.Xresources &
+xsetroot -cursor_name left_ptr &
+export XDG_SESSION_TYPE=x11
 exec​ bspwm
 
-
-
-# Export locale variables
-# I use autox for Display Manager replacement
-# It has a bug that make locale configurations are not loaded on login
-# (Confirmed in Void Wiki)
-# So I export the locale configurations manually
-# Without this some character in terminal couldn't be loaded
-export LANG=en_US.utf8
+export LANG=en_US.UTF-8
 export LC_COLLATE=C
-export LC_ADDRESS=en_US.utf8
-export LC_CTYPE=en_US.utf8
-export LC_IDENTIFICATION=en_US.utf8
-export LC_MEASUREMENT=id_ID.utf8
-export LC_MESSAGES=en_US.utf8
-export LC_MONETARY=id_ID.utf8
-export LC_NAME=en_US.utf8
-export LC_NUMERIC=id_ID.utf8
-export LC_PAPER=en_US.utf8
-export LC_TELEPHONE=id_ID.utf8
-export LC_TIME=en_US.utf8
+export LC_CTYPE=en_US.UTF-8
