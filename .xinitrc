@@ -16,12 +16,11 @@ then
 	eval "$(dbus-launch --sh-syntax --exit-with-session)"
 fi
 
-xset +fp /usr/share/fonts/local &
 xset fp rehash &
 xrdb ~/.Xresources &
 xsetroot -cursor_name left_ptr &
 export XDG_SESSION_TYPE=x11
-exec​ bspwm
+exec​ dbus-launch bspwm
 
 export LANG=en_US.UTF-8
 export LC_COLLATE=C
