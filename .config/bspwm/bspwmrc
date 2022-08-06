@@ -5,35 +5,29 @@
 # ##############################################################################
 
 ## Bspwm config directory
-BSPDIR="${HOME}/.config/bspwm"
+export BSPDIR=$HOME/.config/bspwm
 
 ## Export bspwm/bin dir to PATH
-export PATH="${PATH}:$HOME/.config/bspwm/bin"
+export PATH=$HOME/.config/bspwm/bin:$PATH
 
 ## Java Applications
 wmname LG3D
 export _JAVA_AWT_WM_NONREPARENTING=1
 
+export XDG_SESSION_TYPE="x11"
+export XDG_CURRENT_DESKTOP="bspwm"
+
 # wallpapers
-export WALLPAPER="${HOME}/.config/bspwm/wallpapers/bloodfountain.jpg"
-export LOCKSCREEN_WALLPAPER="${HOME}/.config/bspwm/wallpapers/bloodfountain.jpg"
+export WALLPAPER=$HOME/.config/bspwm/wallpapers/nord_blood.jpg
+export LOCKSCREEN_WALLPAPER=$HOME/.config/bspwm/wallpapers/nord_blood.jpg
 
 # Parse colors from "${HOME}/.Xresources"
-xrdb -override "${HOME}/.Xresources"
+xrdb -override "$HOME/.Xresources"
 
 # autostart
-sh "${HOME}/.config/bspwm/bin/autostart.sh" &
-# ##############################################################################
-# #                                  FUNCTIONS                                 # 
-# ##############################################################################
-rule() { bspc rule -a "$@" & }
-config() { bspc config "$@" & }
-start() { pkill -x "$1"; { sleep 0.1; "$@" & }; }
+"$HOME/.config/bspwm/bin/autostart.sh" &
 
-
-# ##############################################################################
-# #                                 WINDOW RULES                               #
-# ##############################################################################
+#  WINDOW RULES                               
 bspc monitor -d 1 2 3 4 
 
 
@@ -53,7 +47,7 @@ config bottom_padding            0
 # Apply bspwm configurations
 config border_width              "$CURRENT_BORDER"
 config window_gap                "$CURRENT_GAP"
-config split_ratio                  "$CURRENT_SRATIO"
+config split_ratio               0.52
 
 config focused_border_color      "$BLUE" 
 config normal_border_color       "$BACKGROUND"
@@ -71,46 +65,7 @@ config center_pseudo_tiled       true
 bspc wm --adopt-orphans
 
 
-# ##############################################################################
-# #                                 THEME                                      #
-# ##############################################################################
-# Load current theme files to get colors for bspwm
-source "$BSPDIR"/themes/dracula.sh
 
-## Get the wallpaper from theme file
-CURRENT_WALLPAPER="$wallpaper"
-
-## Get the colors from theme file
-FOREGROUND="$foreground"
-BACKGROUND="$background"
-CURSOR="$cursor"
-BLACK="$color0"
-RED="$color1"
-GREEN="$color2"
-YELLOW="$color3"
-BLUE="$color4"
-MAGENTA="$color5"
-CYAN="$color6"
-WHITE="$color7"
-ALTBLACK="$color8"
-ALTRED="$color9"
-ALTGREEN="$color10"
-ALTYELLOW="$color11"
-ALTBLUE="$color12"
-ALTMAGENTA="$color13"
-ALTCYAN="$color14"
-ALTWHITE="$color15"
-
-## Bspwm appearance
-CURRENT_BORDER='1'
-CURRENT_GAP='10'
-CURRENT_SRATIO='0.52'
-
-
-
-##############################################################################
-#                                 MISCELLANEOUS                              #
-##############################################################################
 
 ###External rules
 # Pseudo automatic mode: always splits focused ~window when opening new windowp
