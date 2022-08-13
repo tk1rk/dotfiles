@@ -50,40 +50,6 @@
 ;; end Top bar widget
 
 ;; begin Middle bar widget
-(defwidget middle []
-  (box :class "middle"
-       :orientation "v"
-       :space-evenly false
-       (music)
-       (screenshot)))
-
-;;; begin Screenshot
-(defwidget screenshot []
-  (button :class "label"
-          :onclick "flameshot gui"
-          ""))
-;;; end Screenshot
-
-
-;;; begin Music
-(defpoll music-icon
-  :interval "1s"
-  "scripts/volume-stats.sh")
-
-(defpoll volume
-  :interval "0s"
-  "scripts/volume-level.sh")
-
-(defwidget music []
-    (metric :label {music-icon}
-            :value volume
-            :onchange "amixer sset Master {}%"))
-;;; end Music
-;; end Middle bar widget
-
-;; begin Bottom bar widget
-(defwidget bottom [] (stuff))
-
 ;;; begin Time
 (defwidget time []
   (box :orientation "v" 
@@ -94,6 +60,11 @@
 (defpoll hour :interval "60s" "date '+%H'")
 (defpoll min :interval "10s" "date '+%M'")
 ;;; end Time
+;; end Middle bar widget
+
+;; begin Bottom bar widget
+(defwidget bottom [] (stuff))
+
 
 ;;; begin Bat
 (defwidget bat []
@@ -120,13 +91,50 @@
   "xbacklight -get|awk -F'.' '{ print $1 }'")
 ;;; end Bright
 
+;;; begin Layout
+(defwidget layouts []
+    ; Eventbox to close the layouts window when hover is lost
+    (eventbox :onhoverlost "${eww} open --toggle layouts"
+        (box :class "layout-box" :orientation "v" :space-evenly true :spacing 10
+	    ; Row 1
+	    (box :orientation "h" :space-evenly true :spacing 10
+		(overlay 
+		    (image :path "images/layouts/tiled.svg")
+		    (button :onclick "scripts/layout tiled" ""))
+		(overlay 
+		    (image :path "images/layouts/tall.svg")
+		    (button :onclick "scripts/layout tall" ""))
+		(overlay 
+		    (image :path "images/layouts/wide.svg")
+		    (button :onclick "scripts/layout wide" "")))
+	    ; Row 2
+	    (box :orientation "h" :space-evenly true :spacing 10
+		(overlay 
+		    (image :path "images/layouts/even.svg")
+		    (button :onclick "scripts/layout even" ""))
+		(overlay 
+		    (image :path "images/layouts/rtall.svg")
+		    (button :onclick "scripts/layout rtall" ""))
+		(overlay 
+		    (image :path "images/layouts/rwide.svg")
+		    (button :onclick "scripts/layout rwide" "")))
+		))
+)
+
+(defwindow layouts
+	:geometry (geometry :x "1815" :y "35" :width "10px")
+	:monitor 0
+	:wm-ignore false
+	:stacking "fg"
+	(layouts))
+
 ;;; begin Stuff
 (defwidget stuff []
   (centerbox :orientation "v"
              :class "stuff"
              (bat)
              (bright)
-             (time)))
+             (layouts)))
 ;;; end Stuff
 ;; end Bottom bar widget
 
