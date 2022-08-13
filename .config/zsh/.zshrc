@@ -5,17 +5,34 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-# ZSH SOURCES 
-typeset -ga sources
-for file in "$ZDOTDIR/config/*.zsh"; do 
-    source "$file"
-done
+# zsh-znap
+if [[ ! -z $HOME/.zsh-snap.zsh ]]; then
+    command git clone --depth 1 https://github.com/marlonrichert/zsh-snap.git $HOME/.zsh-znap.zsh && \
+    command echo "# znap \nsource "$HOME/.zsh-snap/install.zsh""
+fi
+
+# fish like Auto suggestion
+autoload predict-on
+predict-toggle() {
+  ((predict_on=1-predict_on)) && predict-on || predict-off
+}
+zle -N predict-toggle
+bindkey '^Z'   predict-toggle
+zstyle ':predict' toggle true
+zstyle ':predict' verbose true
+------------------------------
+autoload predict-on
+predict-on
+
 
 
 ZSH_AUTOSUGGEST_USE_ASYNC="true"
+ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
+ZSH_AUTOSUGGEST_CLEAR_WIDGETS+=(expand-or-complete bracketed-paste accept-line push-line-or-edit)
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=$color8,bold"
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor regexp root line)
 ZSH_HIGHLIGHT_MAXLENGTH=512
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=$color8,bold"
+
 
 
 # Turn on some useful options
