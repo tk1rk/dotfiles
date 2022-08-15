@@ -20,8 +20,6 @@ zle -N predict-toggle
 bindkey '^Z'   predict-toggle
 zstyle ':predict' toggle true
 zstyle ':predict' verbose true
-------------------------------
-autoload predict-on
 predict-on
 
 
@@ -34,11 +32,6 @@ ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor regexp root line)
 ZSH_HIGHLIGHT_MAXLENGTH=512
 
 
-
-# Turn on some useful options
-setopt auto_cd
-setopt extended_glob
-
 # Basic auto/tab complete:
 autoload -Uz compinit
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
@@ -50,13 +43,13 @@ _comp_options+=(globdots)
 # History in cache directory:
 HISTSIZE=10000
 SAVEHIST=$HISTSIZE
-HISTFILE=~/.cache/zsh/history
+HISTFILE=~/.cache/zsh/.zhistory
 
 
 source /usr/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
 source /usr/share/zsh/plugins/history-substring-search/history-substring-search.plugin.zsh
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
-
+source $ZDOTDIR/.znap.zsh
 
 mafredri/zsh-async 
 romkatv/powerlevel10k 
