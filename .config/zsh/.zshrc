@@ -46,20 +46,10 @@ SAVEHIST=$HISTSIZE
 HISTFILE=~/.cache/zsh/.zhistory
 
 
-source /usr/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
-source /usr/share/zsh/plugins/history-substring-search/history-substring-search.plugin.zsh
-source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
 source $ZDOTDIR/.znap.zsh
 
-mafredri/zsh-async 
-romkatv/powerlevel10k 
-junegunn/fzf
-sharkdp/fd
-sharkdp/bat
-eth-p/bat-extras
-sharkdp/vivid
-zchee/zsh-completions
-
+# sheldon
+eval "$(sheldon source)"
 
 
 
