@@ -1,0 +1,53 @@
+
+sheldon init --shell zsh
+
+
+[plugins.zsh-defer]
+github = "romkatv/zsh-defer"
+
+[templates]
+defer = { value = 'zsh-defer source "{{ file }}"', each = true }
+
+[plugins.zsh-syntax-highlighting]
+github = "zsh-users/zsh-syntax-highlighting"
+apply = ["defer"]
+
+[plugins.fzf-tab]
+github = "Aloxaf/fzf-tab"
+
+[plugins.syntax-highlighting]
+github = "zsh-users/zsh-syntax-highlighting"
+
+[plugins.autosuggestions]
+github = "zsh-users/zsh-autosuggestions"
+
+[plugins.completions]
+github = "zsh-users/zsh-completions"
+
+[plugins.autocompletions]
+github = "marlonrichert/zsh-autocomplete"
+
+[plugins.]
+github = "zsh-users/zsh-history-substring-search"
+
+[plugins.]
+github = "zdharma-continuum/history-search-multi-word"
+
+[plugins.]
+github = "zdharma-continuum/fast-syntax-highlighting"
+
+
+source /usr/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
+source /usr/share/zsh/plugins/history-substring-search/history-substring-search.plugin.zsh
+source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
+mafredri/zsh-async 
+romkatv/powerlevel10k 
+junegunn/fzf
+sharkdp/fd
+sharkdp/bat
+eth-p/bat-extras
+sharkdp/vivid
+zchee/zsh-completions
+
+
+source $HOME/zsh-znap/.znap.zsh
