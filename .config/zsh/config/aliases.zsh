@@ -35,7 +35,7 @@ alias yi='yay -Syy'
 alias yr="yay -Rns"
 alias pr='paru --bottomup'
 alias wifi="nmtui-connect"
-alias ls="exa -la --group-directories-first --git --header --color-scale --color=always --icons"
+alias ls="exa -la --group-directories-first --git --header --color-scale --color=always --icons --no-time"
 alias l='lsd -la --group-dirs first --color always --icon always --blocks permission,user,size,date,name --date '+%d %b %y''
 alias lt="exa --tree"
 alias cat="bat --color always"
@@ -51,23 +51,31 @@ alias vim='nvim'
 alias n='nvim'
 alias mv='mv -v'
 alias cp='cp -vr'
-alias gcl='git clone --depth 1'
-alias gi='git init'
-alias ga='git add'
-alias gc='git commit -m'
-alias gp='git push origin master'
-# Auto-completion
-alias up='nmcli con up id'
-alias down=' nmcli con down id'
-# arch linux with systemd aliases
-if [[ '$LSB_DISTRIBUTOR' == 'inux' ]]; then
-# statements
-alias ctl='sudo systemctl '
-alias off='sudo systemctl start poweroff.target'
-alias start='sudo systemctl start'
-alias stop='sudo systemctl stop'
-alias status='sudo systemctl status'
-alias restart='sudo systemctl restart'
-alias reboot='sudo systemctl start reboot.target'
-fi
-~
+if [[ $(command -v exa) ]] {
+    DISABLE_LS_COLORS=true
+    unset LS_BIN_FILE
+    for i (/bin/ls ${PREFIX}/bin/ls /usr/bin/ls /usr/local/bin/ls) {
+        [[ ! -x ${i} ]] || {
+            local LS_BIN_FILE=${i}
+            break
+        }
+    }
+    [[ -n ${LS_BIN_FILE} ]] || local LS_BIN_FILE=$(whereis ls 2>/dev/null | awk '{print $2}')
+    alias lls=${LS_BIN_FILE} 
+    # lls is the original ls. lls为原版ls
+    alias ls="exa --color=auto" 
+    # Exa is a modern version of ls. exa是一款优秀的ls替代品,拥有更好的文件展示体验,输出结果更快,使用rust编写。
+    alias l='exa -lbah --icons'
+    alias la='exa -labgh --icons'
+    alias ll='exa -lbg --icons'
+    alias lsa='exa -lbagR --icons'
+    alias lst='exa -lTabgh --icons' # 输入lst,将展示类似于tree的树状列表。
+} else {
+    alias ls='ls --color=auto'
+    # color should not be always.
+    alias lst='tree -pCsh'
+    alias l='ls -lah'
+    alias la='ls -lAh'
+    alias ll='ls -lh'
+    alias lsa='ls -lah'
+}
