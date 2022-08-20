@@ -17,12 +17,11 @@ pkill nm-applet
 pgrep -u $USER -x nm-applet > /dev/null || (nm-applet &)
 
 # Terminate if picom is already running
-killall -q picom && while pgrep -u $UID -x picom >/dev/null; do sleep 1; done # Wait until the processes have been shut down
-picom --config $HOME/.config/picom/picom.conf &
+pkill picom 
+picom -b --config ~/.config/picom/picom.conf --experimental-backends &
 
 # Launch keybinding daemon
-pkill sxhkd
-sxhkd --config $HOME/.config/sxhkd/sxhkdrc &
+pgrep -x sxhkd > /dev/null || sxhkd &
 
 # dunst
 pkill dunst
@@ -32,14 +31,8 @@ dunst -config $HOME/.config/dunst/dunstrc &
 ksuperkey -e 'Super_L=Alt_L|F1' &
 ksuperkey -e 'Super_R=Alt_L|F1' &
 
-# window swallowing
-pgrep bspswallow || bspswallow &
-
 # Fix cursor.
-xsetroot -cursor_name left_ptr
-
-# xsettingsd
-xsettingsd &
+xsetroot -cursor_name left_ptr &
 
 # touchpad
 xinput set-prop "SynPS/2 Synaptics TouchPad" "libinput Tapping Enabled" 1
@@ -60,15 +53,6 @@ $HOME/.config/bspwm/bin/eww_fullscreen_fix.sh &
 # Fix windows being below bar
 xdo lower -N eww-bar
 
-# alacritty
-CONFIG=$HOME/.config/alacritty/alacritty.yml
-if [ "$1" == "-f" ]; then
-	alacritty --class 'alacritty-float,alacritty-float' --config-file "$CONFIG"
-elif [ "$1" == "-s" ]; then
-	alacritty --class 'Fullscreen,Fullscreen' --config-file "$CONFIG" -o window.startup_mode=fullscreen font.size=12
-else
-	alacritty --config-file "$CONFIG"
-fi
                              
 # Drop-down terminal (can swap with any app)
 bspc rule -a dropdown sticky=on state=floating hidden=on
