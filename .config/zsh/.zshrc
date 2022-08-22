@@ -6,22 +6,20 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 # zsh-znap
-if [[ ! -z $HOME/.zsh-snap.zsh ]]; then
+if [[ ! -z $HOME/.zsh-snap ]]; then
     command git clone --depth 1 https://github.com/marlonrichert/zsh-snap.git $HOME/.zsh-znap.zsh && \
     command echo "# znap \nsource "$HOME/.zsh-snap/install.zsh""
 fi
 
-# fish like Auto suggestion
-autoload predict-on
-predict-toggle() {
-  ((predict_on=1-predict_on)) && predict-on || predict-off
-}
-zle -N predict-toggle
-bindkey '^Z'   predict-toggle
-zstyle ':predict' toggle true
-zstyle ':predict' verbose true
-predict-on
-
+# completion cache path setup 
+ typeset -g comppath="$HOME/.cache/zsh" 
+ typeset -g compfile="$comppath/.zcompdump" 
+  
+ if [[ -d "$comppath" ]]; then 
+         [[ -w "$compfile" ]] || rm -rf "$compfile" >/dev/null 2>&1 
+ else 
+         mkdir -p "$comppath" 
+ fi
 
 
 ZSH_AUTOSUGGEST_USE_ASYNC="true"
@@ -50,8 +48,6 @@ source $ZDOTDIR/.znap.zsh
 
 # sheldon
 eval "$(sheldon source)"
-
-
 
 # Cargo 
 source $HOME/.cargo/env
