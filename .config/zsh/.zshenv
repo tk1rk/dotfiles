@@ -1,34 +1,22 @@
 #!/usr/bin/env zsh
 
 #### xdg
-export XDG_DOWNLOAD_DIR="$HOME/Downloads"
-export XDG_DOCUMENTS_DIR="$HOME/Documents"
-export XDG_MUSIC_DIR="$HOME/Music"
-export XDG_PICTURES_DIR="$HOME/Pictures"
-export XDG_CONFIG_HOME="$HOME/.config"
 [[ -d "$XDG_CONFIG_HOME" ]] || mkdir -p "$XDG_CONFIG_HOME"
-### CACHE
-export XDG_CACHE_HOME="$HOME/.cache"
-[[ -d "$XDG_CACHE_HOME" ]] || mkdir -p "$XDG_CACHE_HOME"
-### DATA
-export XDG_DATA_DIR="$HOME/.local/share"
+export XDG_CONFIG_HOME=
+[[ -d "$XDG_CACHE_HOME" ]] || mkdir -p "$XDG_CACHE_HOME
+export XDG_CACHE_HOME
 [[ -d "$XDG_DATA_DIR" ]] || mkdir -p "$XDG_DATA_DIRS"
-### STATE
-export XDG_STATE_HOME="$HOME/.local/state"
+export XDG_DATA_HOME
 [[ -d "$XDG_STATE_HOME" ]] || mkdir -p "$XDG_STATE_HOME"
-### DOWNLOADS
-export XDG_DOWNLOAD_DIR="$HOME/Downloads"
+export XDG_STATE_HOME
 [[ -d "$XDG_DOWNLOAD_DIR" ]] || mkdir -p "$XDG_DOWNLOAD_DIR"
-### DOCUMENTS
-export XDG_DOCUMENTS_DIR="$HOME/Documents"
+export XDG_DOWNLOADS_HOME
 [[ -d "$XDG_DOCUMENTS_DIR" ]] || mkdir -p "$XDG_DOCUMENTS_DIR"
-### MUSIC
-export XDG_MUSIC_DIR="$HOME/Music"
+export XDG_DOCUMENTS_HOME
 [[ -d "$XDG_MUSIC_DIRS" ]] || mkdir -p "$XDG_MUSIC_DIRS"
-### PICTURES
-export XDG_PICTURES_DIR="$HOME/Pictures"
+export XDG_MUSIC_HOME
 [[ -d "$XDG_PICTURES_DIRS" ]] || mkdir -p "$XDG_PICTURES_DIRS"
-
+export XDG_PICTURES_HOME
 
 #### ZSH
 export ZDOTDIR="$HOME/.config/zsh"
@@ -48,16 +36,13 @@ fpath=($HOME/.cache/zsh/completions $fpath)
 _comp_options+=(globdots)
 
 # Editor + Others
-export EDITOR=/usr/bin/nvim
-export PAGER="/bin/sh -c \"col -b | nvim -c 'set ft=man ts=4 nomod nolist nonu noma' -\""
-export MANPAGER="/bin/sh -c \"col -b | nvim -c 'set ft=man ts=4 nomod nolist nonu noma' -\""
-export VISUAL=/usr/bin/nvim
-export VIMCONFIG="$XDG_CONFIG_HOME/nvim"     
+export EDITOR="nvim"
+export SUDO_EDITOR="nvim"
+export VISUAL="nvim"
+export PAGER="nvim +Man!"
+export MANPAGER="nvim +Man!"     
 
-export BROWSER=/usr/bin/vivaldi-stable
-
-# starship config
-#export STARSHIP_CONFIG="$HOME/.config/starship/starship.toml"
+export BROWSER="vivaldi-stable"
 
 ### Path ###
 export PATH="$HOME/.local/bin:$HOME/.local/share:$HOME/.cargo/bin:$HOME/.cargo/env:$HOME/Applications:$HOME/.config/rofi/bin:HOME/.config/polybar/themes/pwidgets/scripts:$PATH"
