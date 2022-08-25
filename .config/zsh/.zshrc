@@ -1,11 +1,9 @@
 #!/usr/bin/env zsh
 
-# zcomet
-if [[ ! -e ~/.zcomet/bin ]]; then
-  git clone --depth=1 https://github.com/agkozak/zcomet.git ~/.zcomet/bin
+# Clone zcomet if necessary
+if [[ ! -f ${HOME}/.zcomet/bin/zcomet.zsh ]]; then
+  command git clone https://github.com/agkozak/zcomet.git ${ZDOTDIR:-${HOME}}/.zcomet/bin
 fi
-
-source ~/.zcomet/bin/zcomet.zsh
 
 # Enable Powerlevel10k instant prompt
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
@@ -13,27 +11,13 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 # completion cache path setup 
- typeset -g comppath="$HOME/.cache/zsh" 
- typeset -g compfile="$comppath/.zcompdump" 
- 
-# source 
-files="$HOME/.config/.zsh/plugins/*.zsh"
- 
-for f in $files
-do
-        source $ZDOTDIR/plugins/"$@"
-done
- 
+typeset -g comppath="$HOME/.cache/zsh" 
+typeset -g compfile="$comppath/.zcompdump" 
 
-ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor regexp root line)
-ZSH_HIGHLIGHT_MAXLENGTH=512
-
-zcomet load zsh-users/zsh-syntax-highlighting
-zcomet load zsh-users/zsh-autosuggestions
-zcomet load romkatv/powerlevel10k
-
-zcomet compinit
-
+# History in cache directory:
+HISTSIZE=10000
+SAVEHIST=$HISTSIZE
+HISTFILE=~/.cache/zsh/.zhistory
 
 # Basic auto/tab complete:
 autoload -Uz compinit
@@ -43,20 +27,26 @@ zmodload zsh/complist
 compinit
 _comp_options+=(globdots)
 
-# History in cache directory:
-HISTSIZE=10000
-SAVEHIST=$HISTSIZE
-HISTFILE=~/.cache/zsh/.zhistory
+# zsh config
+for file in $ZDOTDIR/config/*.zsh; 
+do
+       source "$file"
+done
 
-source ~/.zcomet/bin/zcomet.zsh
 
-ZSH_AUTOSUGGEST_MANUAL_REBIND=1
+##-----------zcomet------------##
+source ${HOME}/.zcomet/bin/zcomet.zsh
 
 zcomet load zsh-users/zsh-syntax-highlighting
 zcomet load zsh-users/zsh-autosuggestions
 zcomet load romkatv/powerlevel10k
 
+
+# Run compinit and compile its cache
 zcomet compinit
+
+
+
 # sheldon
 eval "$(sheldon source)"
 
