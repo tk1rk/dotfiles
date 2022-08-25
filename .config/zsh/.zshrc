@@ -1,33 +1,38 @@
 #!/usr/bin/env zsh
 
+# zcomet
+if [[ ! -e ~/.zcomet/bin ]]; then
+  git clone --depth=1 https://github.com/agkozak/zcomet.git ~/.zcomet/bin
+fi
+
+source ~/.zcomet/bin/zcomet.zsh
+
 # Enable Powerlevel10k instant prompt
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-# zsh-znap
-if [[ ! -z $HOME/.zsh-snap ]]; then
-    command git clone --depth 1 https://github.com/marlonrichert/zsh-snap.git $HOME/.zsh-znap.zsh && \
-    command echo "# znap \nsource "$HOME/.zsh-snap/install.zsh""
-fi
-
 # completion cache path setup 
  typeset -g comppath="$HOME/.cache/zsh" 
  typeset -g compfile="$comppath/.zcompdump" 
-  
- if [[ -d "$comppath" ]]; then 
-         [[ -w "$compfile" ]] || rm -rf "$compfile" >/dev/null 2>&1 
- else 
-         mkdir -p "$comppath" 
- fi
+ 
+# source 
+files="$HOME/.config/.zsh/plugins/*.zsh"
+ 
+for f in $files
+do
+        source $ZDOTDIR/plugins/"$@"
+done
+ 
 
-
-ZSH_AUTOSUGGEST_USE_ASYNC="true"
-ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
-ZSH_AUTOSUGGEST_CLEAR_WIDGETS+=(expand-or-complete bracketed-paste accept-line push-line-or-edit)
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=$color8,bold"
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor regexp root line)
 ZSH_HIGHLIGHT_MAXLENGTH=512
+
+zcomet load zsh-users/zsh-syntax-highlighting
+zcomet load zsh-users/zsh-autosuggestions
+zcomet load romkatv/powerlevel10k
+
+zcomet compinit
 
 
 # Basic auto/tab complete:
@@ -43,9 +48,15 @@ HISTSIZE=10000
 SAVEHIST=$HISTSIZE
 HISTFILE=~/.cache/zsh/.zhistory
 
+source ~/.zcomet/bin/zcomet.zsh
 
-source $ZDOTDIR/.znap.zsh
+ZSH_AUTOSUGGEST_MANUAL_REBIND=1
 
+zcomet load zsh-users/zsh-syntax-highlighting
+zcomet load zsh-users/zsh-autosuggestions
+zcomet load romkatv/powerlevel10k
+
+zcomet compinit
 # sheldon
 eval "$(sheldon source)"
 
@@ -60,5 +71,4 @@ export LS_COLORS="$(vivid generate dracula)"
 
 # p10k
 source /usr/share/powerlevel10k/powerlevel10k.zsh-theme
-
 [[ ! -f "$HOME/.p10k.zsh" ]] || source "$HOME/.p10k.zsh" 
