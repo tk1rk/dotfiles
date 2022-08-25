@@ -61,4 +61,4 @@ export LS_COLORS="$(vivid generate dracula)"
 # p10k
 source /usr/share/powerlevel10k/powerlevel10k.zsh-theme
 
-[[ ! -f "${HOME}/.p10k.zsh" ]] || source "${HOME}/.p10k.zsh" 
+[[ ! -f "$HOME/.p10k.zsh" ]] || source "$HOME/.p10k.zsh" 
