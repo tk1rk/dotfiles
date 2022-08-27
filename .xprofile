@@ -1,7 +1,0 @@
- #!/usr/bin/env sh
-
- ​exec bspwm
- ​xsetroot -cursor_name left_ptr 
- ​xset +fp /usr/share/fonts/misc/ 
- ​xset fp rehash 
- ​xset b off
