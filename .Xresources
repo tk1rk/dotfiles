@@ -1,8 +1,3 @@
-#include "$HOME/.Xresources.d/fonts
-#include "$HOME/.Xresources.d/urvxt
-#include "$HOME/.Xresources.d/
-
-
 !{{{ Font settings
 Xft.autohint:               true
 Xft.hinting:                true
