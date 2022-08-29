@@ -1,3 +1,3 @@
-cd "$(head -1 ~/.config/eww/directory.txt)"
+#!/usr/bin/env sh
 
 ./eww close-all
