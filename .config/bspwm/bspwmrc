@@ -14,18 +14,12 @@ export PATH="$BSPDIR/bin:$PATH"
 wmname LG3D
 export _JAVA_AWT_WM_NONREPARENTING=1
 
+ẞ bspwm
 export XDG_SESSION_TYPE="x11"
 export XDG_CURRENT_DESKTOP="bspwm"
 
-# wallpapers
-export WALLPAPER="$HOME/.config/bspwm/wallpapers/nord_blood.jpg"
-export LOCKSCREEN_WALLPAPER="$HOME/.config/bspwm/wallpapers/nord_blood.jpg"
-
-# Parse colors from "${HOME}/.Xresources"
-xrdb -load "$HOME/.Xresources"
-
 # autostart
-"$HOME/.config/bspwm/bin/autostart.sh" &
+sh $HOME/.config/bspwm/bin/autostart.sh &
 
 #  WINDOW RULES                               
 bspc monitor -d 1 2 3 4 
@@ -46,8 +40,12 @@ bspc config bottom_padding            0
 
 # Apply bspwm configurations
 bspc config border_width              2
-bspc config window_gap                8
-bspc config split_ratio               0.52
+bspc config border_radius             20
+bspc config window_gap                10
+bspc config split_ratio               0.55
+
+bspc config normal_frame_opacity      0.88 
+bspc config focused_frame_opacity     0.88
 
 bspc config focused_border_color      #44475A 
 bspc config normal_border_color       #282A36
@@ -59,16 +57,17 @@ bspc config paddingless_monocle       false
 bspc config single_monocle            true
 bspc config focus_follows_pointer     true
 bspc config center_pseudo_tiled       true
+bspc config leaf_monocle              true 
+bspc config adaptative_raise          true 
+bspc config apply_floating_atom       true 
+bspc config history_aware_focus       true
 
 # Manage all the unmanaged windows remaining from a previous session.
 bspc wm --adopt-orphans
 
-
-
-
 ###External rules
 # Pseudo automatic mode: always splits focused ~window when opening new windowp
-bspc config external_rules_command $HOME/.config/bspwm/bin/pseudo_automatic_mode
+#bspc config external_rules_command $HOME/.config/bspwm/bin/pseudo_automatic_mode
 
 # Adjust new window: splits biggest windows to keep windows about the same size
 bspc config external_rules_command $HOME/.config/bspwm/bin/adjust-new-window
