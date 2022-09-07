@@ -13,18 +13,17 @@ pgrep ibus-daemon || ibus-daemon &
 wmname LG3D &
 
 # nm-applet
-pkill nm-applet
+
+# networking
 pgrep -u $USER -x nm-applet > /dev/null || (nm-applet &)
 
 # Terminate if picom is already running
-pkill picom 
 picom -b --config ~/.config/picom/picom.conf --experimental-backends &
 
 # Launch keybinding daemon
 pgrep -x sxhkd > /dev/null || sxhkd &
 
 # dunst
-pkill dunst
 dunst -config $HOME/.config/dunst/dunstrc &
 	
 # Enable Super Keys For Menu
@@ -39,10 +38,10 @@ xinput set-prop "SynPS/2 Synaptics TouchPad" "libinput Tapping Enabled" 1
 xinput set-prop "SynPS/2 Synaptics TouchPad" "libinput Natural Scrolling Enabled" 1
 
 # xrdb (themes)
-xrdb $HOME/.Xresources &
+xrdb -load $HOME/.Xresources &
 
 # wallpaper
-feh --bg-fill "${HOME}/.config/bspwm/wallpapera/bloodfountain.jpg" &
+feh --bg- "${HOME}/.config/bspwm/wallpapera/bloodfountain.jpg" &
 
 # Run EWW.
 eww -c $HOME/.config/eww/bar --restart open bar &
