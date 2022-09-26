@@ -13,8 +13,6 @@ pgrep ibus-daemon || ibus-daemon &
 wmname LG3D &
 
 # nm-applet
-
-# networking
 pgrep -u $USER -x nm-applet > /dev/null || (nm-applet &)
 
 # Terminate if picom is already running
@@ -41,7 +39,7 @@ xinput set-prop "SynPS/2 Synaptics TouchPad" "libinput Natural Scrolling Enabled
 xrdb -load $HOME/.Xresources &
 
 # wallpaper
-feh --bg- "${HOME}/.config/bspwm/wallpapera/bloodfountain.jpg" &
+feh --bg-fill "${HOME}/.config/bspwm/wallpapers/bloodfountain.jpg" &
 
 # Run EWW.
 eww -c $HOME/.config/eww/bar --restart open bar &
@@ -51,8 +49,7 @@ $HOME/.config/bspwm/bin/eww_fullscreen_fix.sh &
 
 # Fix windows being below bar
 xdo lower -N eww-bar
-
-                             
+                          
 # Drop-down terminal (can swap with any app)
 bspc rule -a dropdown sticky=on state=floating hidden=on
 alacritty --class dropdown -e "zsh -i" &
