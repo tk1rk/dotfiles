@@ -1,33 +1,31 @@
 #!/usr/bin/env zsh
 
+
 #### xdg
+export XDG_CONFIG_HOME="$HOME/.config"
 [[ -d "$XDG_CONFIG_HOME" ]] || mkdir -p "$XDG_CONFIG_HOME"
-export XDG_CONFIG_HOME=
+export XDG_CACHE_HOME="$HOME/.cache"
 [[ -d "$XDG_CACHE_HOME" ]] || mkdir -p "$XDG_CACHE_HOME
-export XDG_CACHE_HOME
+export XDG_DATA_HOME="$HOME/.local/share"
 [[ -d "$XDG_DATA_DIR" ]] || mkdir -p "$XDG_DATA_DIRS"
-export XDG_DATA_HOME
+export XDG_STATE_HOME="$HOME/.local/state"
 [[ -d "$XDG_STATE_HOME" ]] || mkdir -p "$XDG_STATE_HOME"
-export XDG_STATE_HOME
+export XDG_DOWNLOADS_HOME="$HOME/Downloads"
 [[ -d "$XDG_DOWNLOAD_DIR" ]] || mkdir -p "$XDG_DOWNLOAD_DIR"
-export XDG_DOWNLOADS_HOME
+export XDG_DOCUMENTS_HOME="$HOME/Documents"
 [[ -d "$XDG_DOCUMENTS_DIR" ]] || mkdir -p "$XDG_DOCUMENTS_DIR"
-export XDG_DOCUMENTS_HOME
+export XDG_MUSIC_HOME=$HOME/Music"
 [[ -d "$XDG_MUSIC_DIRS" ]] || mkdir -p "$XDG_MUSIC_DIRS"
-export XDG_MUSIC_HOME
+export XDG_PICTURES_HOME="$HOME/Pictures"
 [[ -d "$XDG_PICTURES_DIRS" ]] || mkdir -p "$XDG_PICTURES_DIRS"
-export XDG_PICTURES_HOME
 
 #### ZSH
 export ZDOTDIR="$HOME/.config/zsh"
 [[ -d "$ZDOTDIR" ]] || mkdir -p "$ZDOTDIR"
-### CACHE
 export ZSH_CACHE_DIR="$HOME/.cache/zsh"
-[[ -d "$CACHEDIR" ]] || mkdir -p "$CACHEDIR"
-##s plugins
+[[ -d "$ZSH_CACHE_DIR" ]] || mkdir -p "$ZSH_CACHE_DIR"
 export ZSH_PLUGINS="$HOME/.config/zsh/plugins"
 [[ -d "$ZSH_PLUGINS" ]] || mkdir -p "$ZSH_PLUGINS"
-### Completions
 export ZSH_COMPLETIONS="$HOME/.cache/zsh/completions"
 [[ -d "$ZSH_COMPLETIONS" ]] || mkdir -p "$ZSH_COMPLETIONS"
 
