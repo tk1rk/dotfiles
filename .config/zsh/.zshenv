@@ -39,15 +39,15 @@ export SUDO_EDITOR="nvim"
 export VISUAL="nvim"
 export PAGER="nvim +Man!"
 export MANPAGER="nvim +Man!"     
-
 export BROWSER="vivaldi-stable"
 
 ### Path ###
 export PATH="$HOME/.local/bin:$HOME/.local/share:$HOME/.cargo/bin:$HOME/.cargo/env:$HOME/Applications:$HOME/.config/rofi/bin:HOME/.config/polybar/themes/pwidgets/scripts:$PATH"
 
 ### TERMINAL ###
-export TERM="xterm-256color"
+export TERMINAL="xterm-kitty"
 export COLORTERM="truecolor"
+export CLICOLOR=1
 
 ### LANG ###
 export LC_ALL="en_US.UTF-8"
@@ -62,3 +62,6 @@ export RIPGREP_CONFIG_PATH="$HOME/.rgrc"
 
 # bat
 export BAT_THEME="Dracula"
+
+# LS_COLORS
+export LS_COLORS="$(vivid generate dracula)"
