@@ -1,54 +1,51 @@
 #!/usr/bin/env zsh
 
-# Clone zcomet if necessary
-if [[ ! -f ${HOME}/.zcomet/bin/zcomet.zsh ]]; then
-  command git clone https://github.com/agkozak/zcomet.git ${ZDOTDIR:-${HOME}}/.zcomet/bin
-fi
-
-# Enable Powerlevel10k instant prompt
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
+# General Setting foldstart
 # completion cache path setup 
 typeset -g comppath="$HOME/.cache/zsh" 
 typeset -g compfile="$comppath/.zcompdump" 
 
 # History in cache directory:
 HISTSIZE=10000
-SAVEHIST=$HISTSIZE
+SAVEHIST=12000
 HISTFILE=~/.cache/zsh/.zhistory
 
 # Basic auto/tab complete:
-autoload -Uz compinit
-zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
-zstyle ':completion:*' menu select
+autoload -U compinit
 zmodload zsh/complist
+zstyle ':completion:*' menu select
+# Include hidden files.
+_comp_options+=(globdots)		
+# Autocomplete from the middle of the word
+zstyle ':completion:*' matcher-list 'r:|=*' 'l:|=* r:|=*'
 compinit
-_comp_options+=(globdots)
+# foldend
 
-# zsh config
-for file in $ZDOTDIR/config/*.zsh; 
-do
-       source "$file"
-done
+# Plugins foldstart
+# installed thru pacman, no need to source, might need to run compinitload-plugin "zsh-completions"
+load-plugin    "zsh-autosuggestions"
+load-plugin    "zsh-autopair"
+load-plugin    "zsh-autocomplete"
+load-plugin    "zsh-extract"
+load-plugin    "fast-syntax-highlighting"
+load-plugin    "zsh-history-substring-search"   
+load-plugin    "zsh-you-should-use" 
+# foldend
 
+compinitload-plugin "zsh-completions"
 
-##-----------zcomet------------##
-source ${HOME}/.zcomet/bin/zcomet.zsh
+# Modules foldstart
+source "$ZDOTDIR/modules/functions.zsh"
+source "$ZDOTDIR/modules/keybinds.zsh"
+source "$ZDOTDIR/modules/setopt.zsh"
+source "$ZDOTDIR/modules/alias.zsh"
+source "$ZDOTDIR/modules/less.zsh"
+# foldend
 
-zcomet load zsh-users/zsh-syntax-highlighting
-zcomet load zsh-users/zsh-autosuggestions
-zcomet load romkatv/powerlevel10k
-
-
-# Run compinit and compile its cache
-zcomet compinit
-
-
-
-# sheldon
-eval "$(sheldon source)"
+# Some quick plugin settings
+ZSH_HIGHLIGHT_MAXLENGTH=100  
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#85858f,bold,underline"
+# foldend
 
 # Cargo 
 source $HOME/.cargo/env
@@ -61,4 +58,5 @@ export LS_COLORS="$(vivid generate dracula)"
 
 # p10k
 source /usr/share/powerlevel10k/powerlevel10k.zsh-theme
-[[ ! -f "$HOME/.p10k.zsh" ]] || source "$HOME/.p10k.zsh" 
+
+vim:foldmarker=foldstart,foldend
