@@ -1,39 +1,35 @@
 #!/usr/bin/env sh
+
 ### ROFI ###
 # power options
 alt + p
-        rofi -theme '$HOME/.config/rofi/powermenu/full_rounded.rasi'
+        sh ~/.config/rofi/bin/powermenu.sh
 
 # program launcher
 alt + f1
-        rofi -no-lazy-grab -show drun -modi drun -show-icons -theme '$HOME/.config/rofi/launchers/misc/launchpad.rasi'
+        sh ~/.config/rofi/bin/launchpad.sh
 
-# colorscheme
-alt + t
-        rofi -theme '$HOME/.config/polybar/scripts/style-switch.sh'
+# Rofi Network Menu
+alt + n
+	sh ~/.config/rofi/bin/network.sh
 
+# Rofi Menus/Applets
+super + {w,a}
+	sh ~/.config/bspwm/rofi/bin/{windows,asroot}
 
 
 ### APPS ###
-# alacritty drop-down
-super + Return
-        scratchpad.sh dropdown
-
-# terminal emulator
+# Kitty
 alt + Return
-    	alacritty
+        kitty
 
 # screenshot
-alt + s
+Print
         scrot -b -d 5 '%Y:%m:%d:%H:%M:%S.png' -e 'mv $f $HOME/Pictures/'
 
 # file manager
-alt + f
-    	thunar
-
-# web brower
-alt + w
-        vivaldi-stable
+shift + {f,w,e,m}
+    	{thunar,vivaldi,oni2,spotify}
 
 #############
 ### BSPWM ###
@@ -42,353 +38,119 @@ alt + w
 alt + Escape
     	pkill -USR1 -x sxhkd
 
-# Reload configuration
-alt + shift + r
-    ~/.config/bspwm/bspwmrc
+# Close App
+alt + {_,shift + }q
+	bspc node -{c,k}
 
-# restart bspwm
-alt + r
-    	bspc wm -r
+# kill window
+ctrl + alt + Escape
+    xkill
 
-# close
-alt + q
-    	bspc node -c
-
-# kill
-super + k
-        bspc node -k
+# Quit/Restart bspwm
+shift + {q,r}
+	bspc {quit,wm -r}
 
 # polybar autoclose
 super + b
         polybar-msg cmd toggle
 
-#Audio Control
-# Play button
-XF86AudioPlay
-	playerctl -p spotify play
+##---------- System Keys ----------##
 
-# Pause button
-XF86AudioPause
-	playerctl -p spotify pause
-
-# Stop button
-XF86AudioStop
-	playerctl -p spotify stop
-
-# Next button
-XF86AudioNext
-	playerctl -p spotify next
-
-# Previous button
-XF86AudioPrev
-	playerctl -p spotify previous
-
-# Toggle mute
-XF86AudioMute
-	pulseaudio-ctl mute
-
-# Toggle mic mute
-XF86AudioMicMute
-	pulseaudio-ctl mute-input
-
-# Change volume
-XF86Audio{Raise,Lower}Volume
-	pulseaudio-ctl {up,down} .;b
-
-  
-XF86AudioRaiseVolume
-        pactl set-sink-volume @DEFAULT_SINK@ +10%
-XF86AudioLowerVolume 
-        pactl set-sink-volume @DEFAULT_SINK@ -10%
-XF86AudioMute
-        pactl set-sink-mute @DEFAULT_SINK@ toggle
-XF86AudioMicMute
-        pactl set-source-mute @DEFAULT_SOURCE@ toggle
-XF86AudioPlay
-        mpc toggle
-XF86AudioNext
-        mpc next
-XF86AudioPrev
-        mpc prev
-
-# Laptop screen brightness control
-XF86MonBrightnessUp 
-        sudo light -A 10
-XF86MonBrightnessDown 
-        sudo light -U 10
-
+# Take a screenshot
+Print
+	takeshot --now
 	
-# alternate between the tiled and monocle layout
-super + m
-	bspc desktop -l next
-vb 
-# send the newest marked node to the newest preselected node
-super + y
-	bspc node newest.marked.local -n newest.!automatic.local
+# Take screenshot in 5 second
+alt + Print	
+	takeshot --in5
 
-# swap the current node and the biggest window
-super + g
-	bspc node -s biggest.window
+# Take screenshot in 10 second
+shift + Print	
+	takeshot --in10
 
-### move/resize ###
-# expand a window by moving one of its side outward
-super + alt + {h,j,k,l}
-	bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
+# Take screenshot of active window
+ctrl + Print
+	takeshot --win
 
-# contract a window by moving one of its side inward
-super + alt + shift + {h,j,k,l}
-	bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
+# Take screenshot of area
+ctrl + alt + Print
+	takeshot --area
 
-# move a floating window
-super + {Left,Down,Up,Right}
-	bspc node -v {-20 0,0 20,0 -20,20 0}
+# Brighness control
+XF86MonBrightness{Up,Down}
+	brightness{ --inc, --dec}
+	
+# Volume control
+XF86Audio{RaiseVolume,LowerVolume}
+	volume{ --inc, --dec}
 
+XF86AudioMute
+	volume --toggle
 
-### state/flags ###
-# set the window state
-super + {t,shift + d,s,f}
-	bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
+XF86AudioMicMute
+	volume --toggle-mic
 
-# set the node flags
-super + ctrl + {m,x,y,z}
-	bspc node -g {marked,locked,sticky,private}
+# Music control
+XF86Audio{Next,Prev,Play,Stop}
+	mpc {next,prev,toggle,stop}
 
-### focus/swap ###
-# focus the node in the given direction
-super + {_,shift + }{h,j,k,l}
-	bspc node -{f,s} {west,south,north,east}
+# Split horizontal, vertical or cancel
+super + {h,v,q}
+	bspc node -p {east,south,cancel}
 
-# focus the node for the given path jump
-super + {p,b,comma,period}
-	bspc node -f @{parent,brother,first,second}
-
-# focus the next/previous window in the current desktop
-super + {_,shift + }c
-	bspc node -f {next,prev}.local.!hidden.window
-
-# focus the next/previous desktop in the current monitor
-super + bracket{left,right}
-	bspc desktop -f {prev,next}.local
-
-# focus the last node/desktop
-super + {grave,Tab}
-	bspc {node,desktop} -f last
-
-# focus the older or newer node in the focus history
-super + {o,i}
-	bspc wm -h off; \
-	bspc node {older,newer} -f; \
-	bspc wm -h on
-
-# focus or send to the given desktop
-super + {_,shift + }{1-9,0}
-	bspc {desktop -f,node -d} '^{1-9,10}'
-
-
-
-### preselect ###
-# preselect the direction
-super + ctrl + {h,j,k,l}
-	bspc node -p {west,south,north,east}
-
-# preselect the ratio
+# Preselect the ratio
 super + ctrl + {1-9}
 	bspc node -o 0.{1-9}
 
-# cancel the preselection for the focused node
-super + ctrl + space
-	bspc node -p cancel
+# Fullscreen or Monocle
+super + f
+#	bspc desktop -l next
+    bspc node -t "~"fullscreen
 
-# cancel the preselection for the focused desktop
-super + ctrl + shift + space
-	bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
+# Toggle beetwen floating & tiled
+super + space
+    bspc node -t "~"{floating,tiled}
 
+# Pseudo Tiled & tiled mode
+super + shift + space
+#super + {p,t}
+    bspc node -t "~"{pseudo_tiled,tiled}
 
-#
-# wm independent hotkeys
-#
-
-# Reload configuration
-alt + shift + r
-    ~/.config/bspwm/bspwmrc
-
-# Play button
-XF86AudioPlay
-	playerctl -p spotify play
-
-# Pause button
-XF86AudioPause
-	playerctl -p spotify pause
-
-# Stop button
-XF86AudioStop
-	playerctl -p spotify stop
-
-# Next button
-XF86AudioNext
-	playerctl -p spotify next
-
-# Previous button
-XF86AudioPrev
-	playerctl -p spotify previous
-
-# Toggle mute
-XF86AudioMute
-	pulseaudio-ctl mute
-
-# Toggle mic mute
-XF86AudioMicMute
-	pulseaudio-ctl mute-input
-
-# Change volume
-XF86Audio{Raise,Lower}Volume
-	pulseaudio-ctl {up,down} 2
-
-# Change volume
-#alt + {j,k}
-#	pulseaudio-ctl {down,up} 2
-
-# Launch web browser
-alt + w
-	firefox
-
-# Launch fvim
-alt + v
-    fvim
-
-# program launcher
-alt + p
-	rofi -show run
-
-# terminal emulator
-alt + Return
-	alacritty -e tmux new-session -A -s asgard 'wal -R -n -q; exec fish'
-
-# ssh browser
-alt + backslash
-    rofi -show ssh
-
-# plasma launcher
-alt + space
-	krunner
-
-# window switcher
-alt + Tab
-	rofi -show window
-
-# make sxhkd reload its configuration files:
-alt + Escape
-	pkill -USR1 -x sxhkd
-
-# Brightness controls
-XF86MonBrightnessUp
-    ~/.dotfiles/brightness.sh + eDP
-
-XF86MonBrightnessDown
-    ~/.dotfiles/brightness.sh - eDP
-
-#
-# bspwm hotkeys
-#
-
-# quit bspwm normally
-alt + ctrl + Escape
-	bspc quit
-
-# close and kill
-alt + {_,shift + }w
-	bspc node -{c,k}
-
-# alternate between the tiled and monocle layout
-alt + m
-	bspc desktop -l next
-
-# send the newest marked node to the newest preselected node
-alt + y
-	bspc node newest.marked.local -n newest.!automatic.local
-
-# swap the current node and the biggest node
-alt + g
-	bspc node -s biggest
-
-#
-# state/flags
-#
-
-# set the window state
-alt + ctrl + {t,shift + t,s,f}
-	bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
-
-# set the node flags
-alt + ctrl + {m,x,y,z}
+# Set the node flags
+super + ctrl + {m,x,y,z}
 	bspc node -g {marked,locked,sticky,private}
 
-#
-# focus/swap
-#
-
-# focus the node in the given direction
-alt + {_,shift + }{h,j,k,l}
+# Send the window to another edge of the screen
+super + {_,shift + }{Left,Down,Up,Right}
 	bspc node -{f,s} {west,south,north,east}
 
-# focus the node for the given path jump
-alt + {p,b,comma,period}
-	bspc node -f @{parent,brother,first,second}
+# Change focus to next window, including floating window
+alt + {_,shift + }Tab
+	bspc node -f {next.local,prev.local}
 
-# focus the next/previous node in the current desktop
-alt + {_,shift + }c
-	bspc node -f {next,prev}.local
+# Switch workspace
+ctrl + alt + {Left,Right}
+	bspc desktop -f {prev.local,next.local}
 
-# focus the next/previous desktop in the current monitor
-alt + bracket{left,right}
-	bspc desktop -f {prev,next}.local
-
-# focus the last node/desktop
-alt + {grave,Tab}
+# Switch to last opened workspace
+super + {Tab,grave}
 	bspc {node,desktop} -f last
 
-# focus the older or newer node in the focus history
-alt + {o,i}
-	bspc wm -h off; \
-	bspc node {older,newer} -f; \
-	bspc wm -h on
+# Send focused window to another workspace
+super + {_,shift + }{1-8}
+	bspc {desktop -f,node -d} '^{1-8}'
 
-# focus or send to the given desktop
-alt + {_,shift + }{1-9,0}
-	bspc {desktop -f,node -d} '^{1-9,10}'
-
-#
-# preselect
-#
-
-# preselect the direction
-alt + ctrl + {h,j,k,l}
-	bspc node -p {west,south,north,east}
-
-# preselect the ratio
-alt + ctrl + {1-9}
-	bspc node -o 0.{1-9}
-
-# cancel the preselection for the focused node
-alt + ctrl + space
-	bspc node -p cancel
-
-# cancel the preselection for the focused desktop
-alt + ctrl + shift + space
-	bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
-
-#
-# move/resize
-#
-
-# expand a window by moving one of its side outward
-alt + ctrl + {h,j,k,l}
-	bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
-
-# contract a window by moving one of its side inward
-alt + ctrl + shift + {h,j,k,l}
-	bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
-
-# move a floating window
-alt + {Left,Down,Up,Right}
+# Expanding windows
+super + control + {Left,Right,Up,Down}
+	bspc node -z {left -20 0,right 20 0,top 0 -20,bottom 0 20}
+	
+## Shrinking windows
+super + alt + {Left,Right,Up,Down}
+	bspc node -z {left 20 0,right -20 0,top 0 20,bottom 0 -20}
+	
+## Move floating windows
+alt + shift + {Left,Down,Up,Right}
 	bspc node -v {-20 0,0 20,0 -20,20 0}
+
+
+  
