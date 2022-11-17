@@ -1,3 +1,4 @@
 #!/usr/bin/env zsh
 
-source $ZDOTDIR/zshrc
+export ZDOTDIR="/home/tk/.config/zsh"
+[[ -f /home/tk/.config/zsh/.zshrc ]] || source "home/tk/.config/zsh/.zshrc"
