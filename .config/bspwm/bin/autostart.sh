@@ -24,9 +24,26 @@ pgrep -x sxhkd > /dev/null || sxhkd &
 # dunst
 dunst -config $HOME/.config/dunst/dunstrc &
 	
+# Kill if already running
+killall -9 ksuperkey
+
 # Enable Super Keys For Menu
 ksuperkey -e 'Super_L=Alt_L|F1' &
 ksuperkey -e 'Super_R=Alt_L|F1' &
+
+# Set configurations
+for i in "$_config"/configs/*.sh; do
+	{
+		eval "$i" &
+	}
+done
+
+# Set rules
+for i in "$_config"/rules/*.sh; do
+	{
+		eval "$i" &
+	}
+done
 
 # Fix cursor.
 xsetroot -cursor_name left_ptr &
@@ -50,6 +67,3 @@ $HOME/.config/bspwm/bin/eww_fullscreen_fix.sh &
 # Fix windows being below bar
 xdo lower -N eww-bar
                           
-# Drop-down terminal (can swap with any app)
-bspc rule -a dropdown sticky=on state=floating hidden=on
-alacritty --class dropdown -e "zsh -i" &
