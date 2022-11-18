@@ -1,0 +1,54 @@
+function _bat() {
+  local context curcontext=$curcontext state line expl ret=1
+  declare -A opt_args
+
+  local -a commands
+  commands=(
+  'cache:Modify the syntax-definition and theme cache'
+  )
+
+  _arguments -C \
+    {-l,--language}"[Explicitly set the language for syntax highlighting.]:language:($(bat --list-languages | sed -E 's|(\()?[[:alnum:]]*(\.\|-\|_\|\++\|\#)?[[:alnum:]]*(\))?[[:space:]]+||g' | perl -pe 's/\n/ /g' | sed -E 's|,( )?| |g'))" \
+    '--list-languages[Display a list of supported languages for syntax highlighting.]' \
+    {-m,--map-syntax}'[Map a file extension or file name to an existing syntax.]:<from:to>' \
+    "--theme[Set the theme for syntax highlighting.]:theme:($(bat --list-themes | awk -F'Theme' '{print $1}'))" \
+    '--list-themes[Display a list of supported themes for syntax highlighting.]' \
+    '--style[Configure which elements to display in addition to the file contents.]:style:(auto full plain changes header grid numbers)' \
+    {-p,--plain}"[Only show plain style, no decorations. This is an alias for '--style=plain']" \
+    {-n,--number}"[Only show line numbers, no other decorations. This is an alias for '--style=numbers]" \
+    {-A,--show-all}"[Show non-printable characters like space, tab or newline. Use '--tabs' to control the width of the tab-placeholders.]" \
+    {-r,--line-range}'[Only print the specified range of lines for each file.]:specified range of lines' \
+    {-H,--highlight-line}'[Highlight the N-th line with a different background color]:number' \
+    '--color[Specify when to use colored output.]:when:(auto never always)' \
+    '--italic-text[Specify when to use ANSI sequences for italic text in the output.]:when:(always never)' \
+    "--decorations[Specify when to use the decorations that have been specified via '--style'.]:when:(auto never always)" \
+    '--paging[Specify when to use the pager.]:command' \
+    '--wrap[Specify the text-wrapping mode.]:mode:(auto never character)' \
+    '--tab[Set the tab width to T spaces. Use a width of 0 to pass tabs through directly]:tab width' \
+    {-u,--unbuffered}'[This option exists for POSIX-compliance reasons.]' \
+    '--terminal-width[Explicitly set the width of the terminal instead of determining it automatically.]:terminal width' \
+    {-h,--help}'[Print this help message.]' \
+    {-V,--version}'[Show version information.]' \
+    '*:file:_files' \
+    && ret=0
+
+  _arguments -C \
+    "1: :{_describe 'bat commands' commands}" \
+    '*:: :->args' \
+
+    case $words[1] in
+      cache)
+        _arguments \
+          {-b,--build}'[Initialize (or update) the syntax/theme cache by loading from the source directory \(default: the configuration directory\).]' \
+          {-c,--clear}'[Remove the cached syntax definitions and themes.]' \
+          '--source[Use a different directory to load syntaxes and themes from.]:dir:_directories' \
+          '--target[Use a different directory to store the cached syntax and theme set.]:dir:_directories' \
+          '--blank[Create completely new syntax and theme sets \(instead of appending to the default sets\).]' \
+          {-h,--help}'[Prints help information]'
+        ;;
+    esac
+
+  return ret
+}
+
+_bat "$*"

@@ -1,0 +1,48 @@
+#compdef rg
+
+##
+# zsh completion function for ripgrep
+#
+# Run ci/test-complete after building to ensure that the options supported by
+# this function stay in synch with the `rg` binary.
+#
+# For convenience, a completion reference guide is included at the bottom of
+# this file.
+#
+# Originally based on code from the zsh-users project — see copyright notice
+# below.
+
+_rg() {
+  local curcontext=$curcontext no='!' descr ret=1
+  local -a context line state state_descr args tmp suf
+  local -A opt_args
+
+  # ripgrep has many options which negate the effect of a more common one — for
+  # example, `--no-column` to negate `--column`, and `--messages` to negate
+  # `--no-messages`. There are so many of these, and they're so infrequently
+  # used, that some users will probably find it irritating if they're completed
+  # indiscriminately, so let's not do that unless either the current prefix
+  # matches one of those negation options or the user has the `complete-all`
+  # style set. Note that this prefix check has to be updated manually to account
+  # for all of the potential negation options listed below!
+  if
+    # We also want to list all of these options during testing
+    [[ $_RG_COMPLETE_LIST_ARGS == (1|t*|y*) ]] ||
+    # (--[imnp]* => --ignore*, --messages, --no-*, --pcre2-unicode)
+    [[ $PREFIX$SUFFIX == --[imnp]* ]] ||
+    zstyle -t ":complete:$curcontext:*" complete-all
+  then
+    no=
+  fi
+
+  # We make heavy use of argument groups here to prevent the option specs from
+  # growing unwieldy. These aren't supported in zsh <5.4, though, so we'll strip
+  # them out below if necessary. This makes the exclusions inaccurate on those
+  # older versions, but oh well — it's not that big a deal
+  args=(
+    + '(exclusive)' # Misc. fully exclusive options
+    '(: * -)'{-h,--help}'[display help information]'
+    '(: * -)'{-V,--version}'[display version information]'
+    '(: * -)'--pcre2-version'[print the version of PCRE2 used by ripgrep, if available]'
+
+    + '(buffered)' # buffering options

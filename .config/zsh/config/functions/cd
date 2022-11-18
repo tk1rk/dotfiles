@@ -1,0 +1,19 @@
+# ls with preferred arguments 
+ ls() { 
+         command exa -la --group-directories-first --git --header --color-scale --color=always --icons --no-time
+ "$@" 
+ } 
+  
+ # cd and ls after 
+ cd() { 
+         builtin cd "$@" && command exa -la --group-directories-first --git --header --color-scale --color=always --icons --no-time
+
+  
+ # recompile completion and reload zsh 
+ src() { 
+         autoload -U zrecompile 
+         rm -rf "$compfile"* 
+         compinit -u -d "$compfile" 
+         zrecompile -p "$compfile" 
+         exec zsh 
+ }

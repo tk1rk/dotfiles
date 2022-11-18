@@ -1,0 +1,4 @@
+emulate -L zsh
+if [[ "$OLDPWD" != "$PWD" ]]; then
+    exa -la --icons --group-directories-first --git --color-scale --no-time
+fi
