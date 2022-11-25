@@ -12,6 +12,10 @@ pgrep ibus-daemon || ibus-daemon &
 # java
 wmname LG3D &
 
+# libinput
+libinput-gestures-setup autostart
+libinput-gestures-setup start
+
 # nm-applet
 pgrep -u $USER -x nm-applet > /dev/null || (nm-applet &)
 
