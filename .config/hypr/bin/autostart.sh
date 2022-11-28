@@ -22,6 +22,12 @@ exec-once=ksuperkey -e 'Super_L=Alt_L|F1'
 exec-once=ksuperkey -e 'Super_R=Alt_L|F1' 
 
 # UI
+# Gtk Theme workaround
+exec=gsettings set org.gnome.desktop.interface gtk-theme 'Catppuccin-Mocha-Peach'
+exec=gsettings set org.gnome.desktop.interface icon-theme 'Papirus-Dark'
+exec=gsettings set org.gnome.desktop.interface font-name 'FiraCode Nerd Font Mono'
+exec=gsettings set org.gnome.desktop.interface cursor-theme 'Catppuccin-Mocha-Dark-Cursors'
+
 exec-once=xrdb -merge ~/.Xresources 
 exec-once=xsetroot -cursor_name left_ptr 
 exec-once=picom --config ~/.config/picom/picom.conf 
