@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 
-theme="launchpad"
-dir="$HOME/.config/rofi/launchers"
+theme="launcher.sh"
+dir="$HOME/.config/rofi/themes"
 
-rofi -no-lazy-grab -show drun -modi drun -theme $dir/"$theme"
+rofi -show drun -theme "$dir/$theme"
 
