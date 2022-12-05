@@ -1,8 +1,9 @@
 #!/usr/bin/env sh
 
 # System
-exec-once=dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
-exec-once=killall xdg-desktop-portal xdg-desktop-portal-wlr && /usr/lib/xdg-desktop-portal & /usr/lib/xdg-desktop-portal-wlr
+exec-once=systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK
+exec-once=hash dbus-update-activation-environment 2>/dev/null && \
+     dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
 exec-once=xsettingsd
 exec-once=ibus-daemon -drxR
 exec-once=/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
