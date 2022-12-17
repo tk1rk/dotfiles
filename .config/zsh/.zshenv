@@ -18,7 +18,7 @@ export ZSH_PLUGINS="$HOME/.config/zsh/plugins"
 export ZSH_COMPLETIONS="$HOME/.cache/zsh/completions"
 
 ### Create cache and completions dir and add to $fpath ###
-fpath=($HOME/.cache/zsh/completions $fpath)
+fpath=("$HOME/.cache/zsh/completions" $fpath)
 _comp_options+=(globdots)
 
 # Editor + Others
@@ -27,7 +27,7 @@ export SUDO_EDITOR="nvim"
 export VISUAL="nvim"
 export PAGER="nvim +Man!"
 export MANPAGER="nvim +Man!"     
-export BROWSER="vivaldiH"
+export BROWSER="vivaldi-stable"
 
 # Man pages color support
 export LESS_TERMCAP_mb=$'\e[1;32m'
@@ -38,14 +38,15 @@ export LESS_TERMCAP_so=$'\e[01;33m'
 export LESS_TERMCAP_ue=$'\e[0m'
 export LESS_TERMCAP_us=$'\e[1;4;31m'
 
-# sxhkd uses $SHELL by default (zsh)
-set -U SXHKD_SHELL sh
-
 ### Path ###
-export PATH="$HOME/.local/bin:$HOME/.local/share:$HOME/.cargo/bin:$HOME/.cargo/env:$HOME/Applications:$HOME/.config/rofi/bin:HOME/.config/polybar/themes/pwidgets/scripts:$PATH"
+path+=("$HOME/.local/bin")
+path+=("$HOME/.cargo/bin")
+path+=("$HOME/Applications")
+path+=("$HOME/.config")
+export PATH
 
 ### TERMINAL ###
-export TERMINAL="xterm-kitty"
+export TERMINAL="alacritty"
 export COLORTERM="truecolor"
 export CLICOLOR=1
 
@@ -59,6 +60,12 @@ export GPG_TTY="$(tty)"
 
 # ripgrep
 export RIPGREP_CONFIG_PATH="$HOME/.rgrc"
+
+# neofetch-btw
+neofetch
+
+# starship
+eval "$(starship init zsh)"
 
 # bat
 export BAT_THEME="Dracula"
