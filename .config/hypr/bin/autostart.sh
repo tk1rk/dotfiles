@@ -8,6 +8,7 @@ exec-once=ibus-daemon -drxR
 exec-once=/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec-once=xfce4-power-manager --daemon
 exec-once=dunst -config ~/.config/dunst/dunstrc 
+exec-once=swaybg -i ~/.config/wallpapers/pacman.png
 exec-once=pipewire 
 exec-once=pipewire-pulse 
 exec-once=wireplumber 
