@@ -1,5 +1,4 @@
 #!/usr/bin/env sh
-# Author : rxyhn
 
 DIR="$HOME/.config/dunst"
 BRIGHTNESS_STEPS=5
