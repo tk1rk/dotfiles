@@ -1,14 +1,15 @@
 #!/usr/bin/env zsh
 
-### History Substring Search ###
-bindkey '^[[A' history-substring-search-up
-bindkey '^[[B' history-substring-search-down
-bindkey -M vicmd 'k' history-substring-search-up
-bindkey -M vicmd 'j' history-substring-search-down
-
 # create a zkbd compatible hash;
 # to add other keys to this hash, see: man 5 terminfo
 typeset -g -A key
+
+### History Substring Search ###
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
+bindkey "$terminfo[kcuu1]" history-substring-search-up
+bindkey "$terminfo[kcud1]" history-substring-search-down
+
 
 key[Home]="${terminfo[khome]}"
 key[End]="${terminfo[kend]}"
