@@ -7,4 +7,3 @@ require('lualine').setup {
   },
 }
 
-require('telescope.builtin')
