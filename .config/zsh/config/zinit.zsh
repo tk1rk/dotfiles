@@ -22,8 +22,33 @@ turbo0()   { zinit ice wait"0a" lucid             "${@}"; }
 turbo1()   { zinit ice wait"0b" lucid             "${@}"; }
 turbo2()   { zinit ice wait"0c" lucid             "${@}"; }
 zcommand() { zinit ice wait"0b" lucid as"command" "${@}"; }
-zload()    { zinit load                           "${@}"; }
+zload()    { zinit light                          "${@}"; }
 zsnippet() { zinit snippet                        "${@}"; }
+
+
+#################################################################
+# PROMPT SETTINGS
+#
+# This settings are applied immidiately (because we need to show
+# prompt as fast as possible), so the plugins are being loaded
+# eagerly.
+#
+
+# Print python virtual environment name in prompt
+zload tonyseek/oh-my-zsh-virtualenv-prompt
+export PS1='%B%F{green}$(virtualenv_prompt_info)'${PS1}
+
+# Print command exit code as a human-readable string
+zload bric3/nice-exit-code
+export RPS1='%B%F{red}$(nice_exit_code)%f%b'
+
+# Add execution time to right prompt
+zload sindresorhus/pretty-time-zsh
+zload popstas/zsh-command-time
+export ZSH_COMMAND_TIME_MIN_SECONDS=1
+export ZSH_COMMAND_TIME_MSG=''
+export RPS1=${RPS1}' %B%F{green}$([[ -n ${ZSH_COMMAND_TIME} ]] && pretty-time ${ZSH_COMMAND_TIME})%f%b'
+
 
 #################################################################
 # FUZZY SEARCH AND MOVEMENT
@@ -63,17 +88,36 @@ bindkey '^T'  fzy-file-widget
 turbo0; zload mafredri/zsh-async
 turbo0; zload seletskiy/zsh-fuzzy-search-and-edit
 bindkey '^P' fuzzy-search-and-edit
-export EDITOR=${EDITOR:-nvim}
+export EDITOR=${EDITOR:-vim}
 
+
+#################################################################
+# INSTALL NON-PLUGIN COMMANDS
+#
+
+# Install `ffsend` (a Firefox Send client) statically-linked binary
+zcommand from"gh-r" bpick"*-static" mv"* -> ffsend";
+    zload timvisee/ffsend
+# Install `ffsend` completions
+turbo0 as'completion' id-as'timvisee/ffsend_completions'
+    zsnippet 'https://raw.githubusercontent.com/timvisee/ffsend/master/contrib/completions/_ffsend'
+
+# Install `cloc` (code summary) binary if not already installed via package manager
+zcommand if'[[ -z "$commands[cloc]" ]]' from"gh-r" bpick"*pl" mv"cloc-* -> cloc";
+    zload AlDanial/cloc
+
+# Install timelapse screen recorder
+zcommand from"gh-r" mv'tl-* -> tl' if'[[ -n $DISPLAY ]]'
+    zload ryanmjacobs/tl
 
 
 #################################################################
 # INSTALL `k` COMMAND AND GENERATE COMPLITIONS
 #
 turbo0; zload RobSis/zsh-completion-generator
-turbo1 atclone"gencomp k; ZINIT[COMPINIT_OPTS]='-i' zpcompinit" atpull'%atclone'
-    zload supercrabtree/k
-alias l='k -h'
+turbo1 atclone"gencomp exa; ZINIT[COMPINIT_OPTS]='-i' zpcompinit" atpull'%atclone'
+    zload ogham/exa
+alias ls='exa -la --header --icons --color=alwys --color-scale --no-time --group-directories-first'
 
 
 #################################################################
@@ -81,13 +125,16 @@ alias l='k -h'
 #
 
 # Add `git dsf` command to git
-zcommand pick"bin/git-dsf";            zload zdharma/zsh-diff-so-fancy
+zcommand pick"bin/git-dsf"
+zload zdharma/zsh-diff-so-fancy
 
 # Add command-line online translator
-turbo1 if'[[ -n "$commands[gawk]" ]]'; zload soimort/translate-shell
+turbo1 if'[[ -n "$commands[gawk]" ]]'
+zload soimort/translate-shell
 
 # `...` ==> `../..`
-# turbo2 pick"manydots-magic";           zload knu/zsh-manydots-magic
+turbo2 pick"manydots-magic"
+zload knu/zsh-manydots-magic
 
 # Toggles "sudo" before the current/previous command by pressing ESC-ESC.
 turbo1; zload hcgraf/zsh-sudo
@@ -102,39 +149,35 @@ export GITCD_HOME=${HOME}/tmp
 
 
 #################################################################
-# INSTALL/SOURCE LOCAL STUFF
-#
-
-# Install completions for `my` script and for python-gist
-# (use `-f` flag to force completion installation)
-zinit ice as"completion" if"[ -f '${HOME}/.zsh/completions/_my' ]" id-as"my";
-    zsnippet "${HOME}/.zsh/completions/_my"
-
-turbo0 as"completion" if"[ -f '${HOME}/.local/share/gist/gist.zsh' ]" id-as"gist" mv"gist.zsh -> _gist";
-    zsnippet "${HOME}/.local/share/gist/gist.zsh"
-
-
-#################################################################
 # IMPORTANT PLUGINS
 #
+
+# Load starship theme
+zinit ice as"command" from"gh-r" \ # `starship` binary as command, from github release
+          atclone"./starship init zsh > init.zsh; ./starship completions zsh > _starship" \ # starship setup at clone(create init.zsh, completion)
+          atpull"%atclone" src"init.zsh" # pull behavior same as clone, source init.zsh
+zinit light starship/starship
 
 # Additional completion definitions
 turbo0 blockf
 zload zsh-users/zsh-completions
 
 # History search by `Ctrl+R`
-turbo1; zload zdharma/history-search-multi-word
+turbo1; zload zdharma-continuum/history-search-multi-word
 
 # Syntax highlighting
 # (compinit without `-i` spawns warning on `sudo -s`)
 turbo0 atinit"ZINIT[COMPINIT_OPTS]='-i' zpcompinit; zpcdreplay"
-    zload zdharma/fast-syntax-highlighting
+    zload zdharma-continuum/fast-syntax-highlighting
 
 # Autosuggestions
 # Note: should go _after_ syntax highlighting plugin
 turbo0 atload"_zsh_autosuggest_start"; zload zsh-users/zsh-autosuggestions
 export ZSH_AUTOSUGGEST_USE_ASYNC=1
 export ZSH_AUTOSUGGEST_MANUAL_REBIND=1
+export ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
+export ZSH_AUTOSUGGEST_CLEAR_WIDGETS+=(expand-or-complete bracketed-paste accept-line push-line-or-edit)
+export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#bd93f9,bold"
 
 
 #################################################################
