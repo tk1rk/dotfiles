@@ -25,31 +25,6 @@ zcommand() { zinit ice wait"0b" lucid as"command" "${@}"; }
 zload()    { zinit load                           "${@}"; }
 zsnippet() { zinit snippet                        "${@}"; }
 
-
-#################################################################
-# PROMPT SETTINGS
-#
-# This settings are applied immidiately (because we need to show
-# prompt as fast as possible), so the plugins are being loaded
-# eagerly.
-#
-
-# Print python virtual environment name in prompt
-zload tonyseek/oh-my-zsh-virtualenv-prompt
-export PS1='%B%F{green}$(virtualenv_prompt_info)'${PS1}
-
-# Print command exit code as a human-readable string
-zload bric3/nice-exit-code
-export RPS1='%B%F{red}$(nice_exit_code)%f%b'
-
-# Add execution time to right prompt
-zload sindresorhus/pretty-time-zsh
-zload popstas/zsh-command-time
-export ZSH_COMMAND_TIME_MIN_SECONDS=1
-export ZSH_COMMAND_TIME_MSG=''
-export RPS1=${RPS1}' %B%F{green}$([[ -n ${ZSH_COMMAND_TIME} ]] && pretty-time ${ZSH_COMMAND_TIME})%f%b'
-
-
 #################################################################
 # FUZZY SEARCH AND MOVEMENT
 #
@@ -88,27 +63,8 @@ bindkey '^T'  fzy-file-widget
 turbo0; zload mafredri/zsh-async
 turbo0; zload seletskiy/zsh-fuzzy-search-and-edit
 bindkey '^P' fuzzy-search-and-edit
-export EDITOR=${EDITOR:-vim}
+export EDITOR=${EDITOR:-nvim}
 
-
-#################################################################
-# INSTALL NON-PLUGIN COMMANDS
-#
-
-# Install `ffsend` (a Firefox Send client) statically-linked binary
-zcommand from"gh-r" bpick"*-static" mv"* -> ffsend";
-    zload timvisee/ffsend
-# Install `ffsend` completions
-turbo0 as'completion' id-as'timvisee/ffsend_completions'
-    zsnippet 'https://raw.githubusercontent.com/timvisee/ffsend/master/contrib/completions/_ffsend'
-
-# Install `cloc` (code summary) binary if not already installed via package manager
-zcommand if'[[ -z "$commands[cloc]" ]]' from"gh-r" bpick"*pl" mv"cloc-* -> cloc";
-    zload AlDanial/cloc
-
-# Install timelapse screen recorder
-zcommand from"gh-r" mv'tl-* -> tl' if'[[ -n $DISPLAY ]]'
-    zload ryanmjacobs/tl
 
 
 #################################################################
