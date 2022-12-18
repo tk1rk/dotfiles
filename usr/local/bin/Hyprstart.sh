@@ -23,5 +23,5 @@ export GTK_THEME="Dracula"
 export XCURSOR_THEME="ArchCursorComplete"
 export XCURSOR_SIZE=20
 
-exec system-cat --identifier=wayland /usr/bin/Hyprland "$@"
+exec system-cat --identifier=wayland /usr/bin/Hyprland $@
 
