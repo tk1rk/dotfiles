@@ -8,11 +8,62 @@ local ensure_packer = function()
   end
   return false
 end
-
 local packer_bootstrap = ensure_packer()
+
+-- autocommand that reloads neovim and installs/updates/removes plugins
+-- when file is saved
+vim.cmd([[ 
+  augroup packer_user_config
+    autocmd!
+    autocmd BufWritePost plugins-setup.lua source <afile> | PackerSync
+  augroup end
+]])
+
+-- import packer safely
+local status, packer = pcall(require, "packer")
+if not status then
+  return
+end
+
+
+
+
 
 return require('packer').startup({ function(use)
   use 'wbthomason/packer.nvim'
+
+  -- startup dashboard
+  use {
+    'goolord/alpha-nvim', 
+      disable = false
+  },
+
+  -- save readonly files
+  use 'lambdalisue/suda.vim'
+
+  use 'jghauser/mkdir.nvim'
+
+  use 'baskerville/vim-sxhkdrc'
+
+  use 'elkowar/yuck.vim'
+
+  use { 
+    'Fymyte/rasi.vim',
+	ft = { "rasi" },
+	run = ":TSInstall rasi"
+  },
+
+	["gpanders/nvim-parinfer"] = {},
+
+	-- formatting and diagnostic
+	["jose-elias-alvarez/null-ls.nvim"] = {
+		after = "nvim-lspconfig",
+		config = function()
+			require("custom.plugins.null-ls").setup()
+		end,
+	},
+
+
 
   use {
     'nvim-tree/nvim-tree.lua',
