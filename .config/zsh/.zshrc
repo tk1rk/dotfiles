@@ -1,5 +1,25 @@
 #!/usr/bin/env zsh
 
+typeset -A ZI
+ZI[HOME_DIR]="$HOME.config/zi" 
+ZI[BIN_DIR]="$HOME/.config/zi/bin"
+if [[ ! -f "${ZI[BIN_DIR]}/zi.zsh" ]]; then
+  print -P "%F{33}▓▒░ %F{160}Installing (%F{33}z-shell/zi%F{160})…%f"
+  command mkdir -p "$HOME/.config/zi" && command chmod g-rwX "$HOME/.config/zi"
+  command git clone -q --depth=1 --branch "main" https://github.com/z-shell/zi "$HOME/.config/zi/bin" && \
+    print -P "%F{33}▓▒░ %F{34}Installation successful.%f%b" || \
+    print -P "%F{160}▓▒░ The clone has failed.%f%b"
+fi
+
+source "$HOME/.config/zi/bin/zi.zsh"
+autoload -Uz _zi
+(( ${+_comps} )) && _comps[zi]=_zi
+
+
+# auto-exa
+[[ $COLORTERM = *(24bit|truecolor)* ]] || zmodload zsh/nearcolor
+auto-exa () { exa ${exa_params}; }
+[[ ${chpwd_functions[(r)auto-exa]} == auto-exa ]] || chpwd_functions=( auto-exa $chpwd_functions )
 
 # Modules
 source "$ZDOTDIR/config/functions.zsh"
@@ -10,26 +30,7 @@ source "$ZDOTDIR/config/aliases.zsh"
 source "$ZDOTDIR/confih/less.zsh"
 
 
-# startx on login
-if [ -z "${DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then
-  startx >/dev/null 2>&1
-fi
 
-# Lines configured by zsh-newuser-install
-HISTFILE=~/.cache/zsh/.histfile
-HISTSIZE=1000
-SAVEHIST=1000
-#setopt autocd nomatch
-setopt autocd nomatch
-setopt appendhistory
-bindkey -e
-# End of lines configured by zsh-newuser-install
-# The following lines were added by compinstall
-zstyle :compinstall filename '/home/rtkay/.zshrc'
-
-autoload -Uz compinit
-fpath+=~/.config
-compinit
 
 
 # Coloured output
