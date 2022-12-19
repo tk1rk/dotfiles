@@ -25,43 +25,48 @@ if not status then
   return
 end
 
-
+-- Have packer use a popup window
+packer.init({
+  display = {
+    open_fn = function()
+    return require("packer.util").float({ border = "rounded" })
+  end,
+  },
+})
 
 
 
 return require('packer').startup({ function(use)
-  use 'wbthomason/packer.nvim'
+  use {'wbthomason/packer.nvim'}
 
   -- startup dashboard
-  use {
-    'goolord/alpha-nvim', 
-      disable = false
-  },
+  use {'glepnir/dashboard-nvim'}
 
   -- save readonly files
-  use 'lambdalisue/suda.vim'
+  use {'lambdalisue/suda.vim'}
 
-  use 'jghauser/mkdir.nvim'
+  use {'jghauser/mkdir.nvim'}
 
-  use 'baskerville/vim-sxhkdrc'
+  use {'baskerville/vim-sxhkdrc'}
 
-  use 'elkowar/yuck.vim'
+  use {'elkowar/yuck.vim'}
 
   use { 
     'Fymyte/rasi.vim',
-	ft = { "rasi" },
-	run = ":TSInstall rasi"
+      ft = { "rasi" },
+      run = ":TSInstall rasi"
   },
 
-	["gpanders/nvim-parinfer"] = {},
+  use {'gpanders/nvim-parinfer'}
 
-	-- formatting and diagnostic
-	["jose-elias-alvarez/null-ls.nvim"] = {
-		after = "nvim-lspconfig",
-		config = function()
-			require("custom.plugins.null-ls").setup()
-		end,
-	},
+  -- formatting and diagnostic
+  use { 
+    'jose-elias-alvarez/null-ls.nvim',
+      after = "nvim-lspconfig",
+      config = function()
+	  require("custom.plugins.null-ls").setup()
+     end,
+  },
 
 
 
