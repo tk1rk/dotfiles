@@ -34,101 +34,103 @@ packer.init({
   },
 })
 
-
-
+# Plugins
 return require('packer').startup({ function(use)
   use {'wbthomason/packer.nvim'}
 
   -- startup dashboard
   use {'glepnir/dashboard-nvim'}
 
+  -- Theme
+  use { 'Mofiqul/dracula.nvim' }
+
+  -- Statusline
+  use {'konapun/vacuumline.nvim', branch = 'next', requires = {
+    'glepnir/galaxyline.nvim', branch = 'main',
+    'kyazdani42/nvim-web-devicons', opt = true
+  }, config = function() require('vacuumline').setup() end} -- Add this line to use defaults; otherwise, call `setup` with your config as described below wherever you configure your plugins
+
+
   -- save readonly files
   use {'lambdalisue/suda.vim'}
 
+  -- mkdir
   use {'jghauser/mkdir.nvim'}
 
+  -- sxhkd
   use {'baskerville/vim-sxhkdrc'}
 
+  -- File specific helpers
   use {'elkowar/yuck.vim'}
-
-  use { 
-    'Fymyte/rasi.vim',
-      ft = { "rasi" },
-      run = ":TSInstall rasi"
+  use {'Fymyte/rasi.vim',
+    ft = { "rasi" }, run = ":TSInstall rasi"
   },
 
+  -- formatting
   use {'gpanders/nvim-parinfer'}
 
   -- formatting and diagnostic
-  use { 
-    'jose-elias-alvarez/null-ls.nvim',
-      after = "nvim-lspconfig",
-      config = function()
-	  require("custom.plugins.null-ls").setup()
-     end,
+  use {'jose-elias-alvarez/null-ls.nvim',
+    after = "nvim-lspconfig",
+    config = function()
+      require("custom.plugins.null-ls").setup()
+    end,
   },
 
-
-
-  use {
-    'nvim-tree/nvim-tree.lua',
-    requires = {
-      'nvim-tree/nvim-web-devicons',
-      'nvim-lualine/lualine.nvim'
-    }
+  --file explorer
+  use {'nvim-tree/nvim-tree.lua', requires = {
+    'nvim-tree/nvim-web-devicons',
+    'konapun/vacuumline.nvim' }
   }
 
-  use {
-    'neovim/nvim-lspconfig',
-    requires = {
-      'hrsh7th/cmp-nvim-lsp',
-      'hrsh7th/cmp-buffer',
-      'hrsh7th/cmp-path',
-      'hrsh7th/cmp-cmdline',
-      'hrsh7th/nvim-cmp',
-      {
-        "L3MON4D3/LuaSnip",
-        wants = {
-          "friendly-snippets",
-          "vim-snippets",
-        },
+  --code correction
+  use {'neovim/nvim-lspconfig', requires = {
+    'hrsh7th/cmp-nvim-lsp',
+    'hrsh7th/cmp-buffer',
+    'hrsh7th/cmp-path',
+    'hrsh7th/cmp-cmdline',
+    'hrsh7th/nvim-cmp',
+    {"L3MON4D3/LuaSnip",
+      wants = {
+        "friendly-snippets",
+        "vim-snippets",
       },
-      "rafamadriz/friendly-snippets",
-      "honza/vim-snippets",
-      'windwp/nvim-autopairs',
-      'windwp/nvim-ts-autotag',
-      'saadparwaiz1/cmp_luasnip',
-    }
-  }
-
-  use { 'b4skyx/serenade',
-    wants = {
-      "nvim-treesitter"
     },
-    requires = {
-      'nvim-treesitter/nvim-treesitter',
-      'cespare/vim-toml'
-    }
+    'rafamadriz/friendly-snippets',
+    'honza/vim-snippets',
+    'windwp/nvim-autopairs',
+    'windwp/nvim-ts-autotag',
+    'saadparwaiz1/cmp_luasnip'}
   }
 
+  -- Syntax Highlighting
+  use {'nvim-treesitter/nvim-treesitter',
+    run = function()
+      local ts_update = require('nvim-treesitter.install').update({ with_sync = true })
+      ts_update()
+    end,
+  }
+
+  use { 'b4skyx/serenade', 
+    wants = {'nvim-treesitter'},
+    requires = {'nvim-treesitter/nvim-treesitter', 'cespare/vim-toml'}
+  }
+
+  -- rust tools
   use 'simrat39/rust-tools.nvim'
 
-  use {
-    'nvim-telescope/telescope.nvim',
-    requires = {
-      'nvim-lua/plenary.nvim'
-    }
+  -- telescope
+  use {'nvim-telescope/telescope.nvim', 
+    requires = {'nvim-lua/plenary.nvim'}
   }
 
-  use "stevearc/dressing.nvim"
-  use({
-    "ziontee113/icon-picker.nvim",
+  -- icon picker
+  use {'stevearc/dressing.nvim'}
+  use {'ziontee113/icon-picker.nvim',
     config = function()
-      require("icon-picker").setup({
-        disable_legacy_commands = true
-      })
+      require("icon-picker").setup({disable_legacy_commands = true})
     end,
-  })
+  }
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
