@@ -6,7 +6,7 @@ require('nvim-treesitter.configs').setup {
   ensure_installed = "all",
 
   -- Install languages synchronously (only applied to `ensure_installed`)
-  sync_install = false,
+  sync_install = true,
 
   -- List of parsers to ignore installing
   -- ignore_install = { "phpdoc" },
@@ -25,3 +25,15 @@ require('nvim-treesitter.configs').setup {
     additional_vim_regex_highlighting = false,
   },
 }
+
+-- vim.opt.foldmethod     = 'expr'
+-- vim.opt.foldexpr       = 'nvim_treesitter#foldexpr()'
+---WORKAROUND
+vim.api.nvim_create_autocmd({'BufEnter','BufAdd','BufNew','BufNewFile','BufWinEnter'}, {
+  group = vim.api.nvim_create_augroup('TS_FOLD_WORKAROUND', {}),
+  callback = function()
+    vim.opt.foldmethod     = 'expr'
+    vim.opt.foldexpr       = 'nvim_treesitter#foldexpr()'
+  end
+})
+---ENDWORKAROUND
