@@ -117,16 +117,19 @@ require('packer').startup(function(use)
   }
 
   -- save readonly files
-  use {'lambdalisue/suda.vim'}
+  use 'lambdalisue/suda.vim'
+
+  -- indent
+  use `lukas-reineke/indent-blankline.nvim`
 
   -- mkdir
-  use {'jghauser/mkdir.nvim'}
+  use 'jghauser/mkdir.nvim'
 
   -- sxhkd
-  use {'baskerville/vim-sxhkdrc'}
+  use 'baskerville/vim-sxhkdrc'
 
   -- File specific helpers
-  use {'elkowar/yuck.vim'}
+  use 'elkowar/yuck.vim'
   use {'Fymyte/rasi.vim',
     ft = { "rasi" }, run = ":TSInstall rasi"
   },
@@ -159,7 +162,7 @@ require('packer').startup(function(use)
   use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make', cond = vim.fn.executable 'make' == 1 }
 
   -- icon picker
-  use {'stevearc/dressing.nvim'}
+  use 'stevearc/dressing.nvim'
   use {'ziontee113/icon-picker.nvim',
     config = function()
       require("icon-picker").setup({disable_legacy_commands = true})
