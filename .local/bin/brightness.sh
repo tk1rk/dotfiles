@@ -32,6 +32,7 @@ notify_user() {
 }
 
 # Increase brightness
+
 inc_backlight() {
 	light -A 5 && get_icon && notify_user
 }
