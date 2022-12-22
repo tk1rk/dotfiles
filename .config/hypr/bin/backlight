@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 dimtime=120000
 offtime=300000
