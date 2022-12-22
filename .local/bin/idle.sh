@@ -1,10 +1,6 @@
 #!/usr/bin/env bash
-if grep -q open /proc/acpi/button/lid/LID0/state; then
-	hyprctl keyword monitor eDP-1,preferred,autoxa,1
-else
-	if [[ "$(monitor.sh count)" == "1" ]]; then
-		suspend.sh force
-	else
-		hyprctl keyword monitor eDP-1,disable
-	fi
-fi
+swayidle -w timeout 300 lockscreen.sh timeout 360 suspend.sh \
+            resume resume.sh before-sleep lockscreen.sh after-resume resume.sh
+
+exec = lid.sh 
+bindl = ,switch:Lid Switch,exec,lid.sh
