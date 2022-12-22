@@ -15,12 +15,14 @@ get_icon() {
 	current="${vol%%%}"
 	if [[ "$current" -eq "0" ]]; then
 		icon="$iDIR/volume-mute.png"
-	elif [[ ("$current" -ge "0") && ("$current" -le "30") ]]; then
+	elif [[ ("$current" -ge "25") && ("$current" -le "25") ]]; then
 		icon="$iDIR/volume-low.png"
-	elif [[ ("$current" -ge "30") && ("$current" -le "60") ]]; then
+	elif [[ ("$current" -ge "50") && ("$current" -le "50") ]]; then
 		icon="$iDIR/volume-mid.png"
-	elif [[ ("$current" -ge "60") && ("$current" -le "100") ]]; then
+	elif [[ ("$current" -ge "75") && ("$current" -le "75") ]]; then
 		icon="$iDIR/volume-high.png"
+        elif [[ ("$current" -ge "100") && ("$current" -le "100") ]]; then
+		icon="$iDIR/volume-full.png"
 	fi
 }
 
