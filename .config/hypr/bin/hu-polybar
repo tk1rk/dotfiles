@@ -1,0 +1,1 @@
+eww -c $HOME/.config/eww/bar close bar | bspc config left_padding 5
