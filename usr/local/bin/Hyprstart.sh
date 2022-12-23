@@ -1,9 +1,9 @@
 #!/bin/sh
 
 # XDG
-XDG_SESSION_TYPE="wayland"
-XDG_CURRENT_DESKTOP="Hyprland"
-XDG_SESSION_DESKTOP="Hyprland"
+export XDG_SESSION_TYPE="wayland"
+export XDG_CURRENT_DESKTOP="Hyprland"
+export XDG_SESSION_DESKTOP="Hyprland"
 
 # QT
 QT_AUTO_SCREEN_SCALE_FACTOR=1
@@ -21,7 +21,7 @@ export GDK_BACKEND="wayland,x11"
 # Theme
 export GTK_THEME="Dracula"
 export XCURSOR_THEME="ArchCursorComplete"
-export XCURSOR_SIZE=20
+export XCURSOR_SIZE=24
 
 exec system-cat --identifier=wayland /usr/bin/Hyprland $@
 
