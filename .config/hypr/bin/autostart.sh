@@ -4,11 +4,11 @@
 killall -9 eww mako mpd xfce-polkit rofi clipman wl-clipboard mpd nm-applet blueman-applet pa-applet
 
 # wallpaper
-exec=hyprctl hyprpaper wallpaper $HOME/.config/wallpapers/pacman.jpeg
+exec=hyprctl hyprpaper wallpaper $HOME/.config/wallpapers/pacman.png
 
 # System
-exec-once=systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK
-exec-once=hash dbus-update-activation-environment 2>/dev/null && dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
+exec-once=systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
+exec-once=dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
 exec-once=ibus-daemon -drxR
 exec-once=/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec-once=swaybg -i ~/.config/wallpapers/pacman.png
@@ -17,7 +17,7 @@ exec-once=pipewire-pulse
 exec-once=wireplumber 
 
 # Lauch notification daemon (mako)
-exec-once=$HOME/.config/hypr/scripts/notifications 
+exec-once=$HOME/.config/hypr/bin/notifications 
 
 # Ksuperkey
 exec-once=ksuperkey -e 'Super_L=Alt_L|F1' &
@@ -39,15 +39,6 @@ exec-once=thunar --daemon
 exec-once=nm-applet --indicator
 exec-once=blueman --applet
 
-# UI
-# Gtk Theme workaround
-exec=gsettings set org.gnome.desktop.interface gtk-theme 'Dracula'
-exec=gsettings set org.gnome.desktop.interface icon-theme 'Papirus-Dark'
-exec=gsettings set org.gnome.desktop.interface font-name 'Lemonade 10'
-exec=gsettings set org.gnome.desktop.interface cursor-theme 'ArchCursorComplete'
-
-# Idle & Lockscreen
-exec=$HOME/.local/bin/lock.sh
 
 # eww bar
 exec-once=eww -c $HOME/.config/eww/bar open bar
