@@ -8,7 +8,7 @@ b00b.lol {
     # Logging #
     ###########
 
-    # log to stdout, which is captured by journalctl
+    # log to stdout, captured by journalctl
     log {
         output stdout
         format console
