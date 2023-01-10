@@ -6,7 +6,8 @@ killall -9 eww mako mpd xfce-polkit rofi clipman wl-clipboard mpd nm-applet blue
 # wallpaper
 exec=hyprctl hyprpaper wallpaper $HOME/.config/wallpapers/pacman.png
 
-# System
+# █▀▀ ▀▄▀ █▀▀ █▀▀
+# ██▄ █░█ ██▄ █▄▄
 exec-once=systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
 exec-once=dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
 exec-once=ibus-daemon -drxR
