@@ -4,7 +4,7 @@
 killall -9 eww mako mpd xfce-polkit rofi clipman wl-clipboard mpd nm-applet blueman-applet pa-applet
 
 # wallpaper
-exec=hyprctl hyprpaper wallpaper $HOME/.config/wallpapers/pacman.png
+exec=swaybg -m fill -i $HOME/.config/hypr/wallpapers/pacman.jpeg
 
 # █▀▀ ▀▄▀ █▀▀ █▀▀
 # ██▄ █░█ ██▄ █▄▄
@@ -12,7 +12,6 @@ exec-once=systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTO
 exec-once=dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
 exec-once=ibus-daemon -drxR
 exec-once=/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
-exec-once=swaybg -i ~/.config/wallpapers/pacman.png
 exec-once=pipewire -c ~/.config/pipewire/pipewire.conf
 exec-once=pipewire-pulse 
 exec-once=wireplumber 
@@ -29,7 +28,6 @@ exec-once=xfce4-power-manager --daemon
 exec-once=parcellite 
 exec-once=greenclip daemon 
 exec-once=clipman
-exec-once=rofi
 exec-once=wl-clipboard
 exec-once=wl-clipboard-history -t
 exec-once=mpd
