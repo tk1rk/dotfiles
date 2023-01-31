@@ -27,15 +27,16 @@ exec-once = ksuperkey -e 'Super_R=Alt_L|F1' &
 exec-once = xfce4-power-manager --daemon
 exec-once = parcellite 
 exec-once = greenclip daemon 
+exec-once = wl-clip-persist --clipboard regular 
+exec-once = wl-paste --watch cliphist store 
 exec-once = wl-clipboard-history -t
 exec-once = mpd
-exec-once = foot --server 
-exec-once = eww daemon 
 exec-once = nm-applet --indicator
 exec-once = blueman --applet
 exec-once = ~/.config/hypr/bin/swayidle.sh
 
 
 # eww bar
+exec-once = eww daemon
 exec-once = eww -c $HOME/.config/eww/bar open bar
 exec-once = polybar -q tray -c ~/.config/eww/bar/polybar_tray.ini &
