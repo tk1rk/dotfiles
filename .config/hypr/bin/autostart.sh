@@ -1,5 +1,11 @@
 #!/usr/bin/env sh
 
+# Load systemd configuration
+exec-once = systemctl --user import-environment DISPLAY WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
+exec-once = dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
+exec-once = systemctl --user start hyprland-session.target
+
+
 # Kill already running process
 killall -9 eww mako mpd xfce-polkit rofi clipman wl-clipboard mpd nm-applet blueman-applet pa-applet
 
@@ -8,8 +14,9 @@ exec-once = swaybg -m fill -i ~/.config/hypr/wallpapers/pacman.jpeg
 
 # █▀▀ ▀▄▀ █▀▀ █▀▀
 # ██▄ █░█ ██▄ █▄▄
-exec-once = systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
-exec-once = dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
+# ██▄ █░█ ██▄ █▄▄
+# ██▄ █░█ ██▄ █▄▄
+# ██▄ █░█ ██▄ █▄▄
 exec-once = ibus-daemon -drxR
 exec-once = /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec-once = pipewire -c ~/.config/pipewire/pipewire.conf
