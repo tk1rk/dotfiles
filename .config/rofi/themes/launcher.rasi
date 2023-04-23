@@ -1,0 +1,120 @@
+configuration { 
+     modi:                       "drun"; 
+     show-icons:                 true; 
+     display-drun:               " Applications"; 
+     font:                       "Source Code Pro Semibold 10"; 
+     drun-display-format:        "{name}"; 
+ } 
+  
+ @import                          "~/.config/rofi/themes/dracula.rasi" 
+  
+ window { 
+     transparency:                "real"; 
+     location:                    center; 
+     anchor:                      center; 
+     fullscreen:                  true; 
+     width:                       2880px; 
+     height:                      1800px; 
+  
+     enabled:                     true; 
+     background-color:            var(background); 
+     cursor:                      "default"; 
+ } 
+  
+ mainbox { 
+     enabled:                     true; 
+     spacing:                     20px; 
+     padding:                     200px; 
+     background-color:            var(background); 
+     children:                    [ "inputbar", "listview" ]; 
+ } 
+  
+ inputbar { 
+     enabled:                     true; 
+     spacing:                     20px; 
+     background-color:            var(background); 
+     text-color:                  var(foreground); 
+     children:                    [ "prompt", "entry" ]; 
+ } 
+  
+ prompt { 
+     enabled:                     true; 
+     padding:                     15px; 
+     border-radius:               100%; 
+     background-color:            var(purple); 
+     text-color:                  var(background); 
+ } 
+  
+ entry { 
+     enabled:                     true; 
+     expand:                      false; 
+     width:                       350px; 
+     padding:                     15px 20px; 
+     border-radius:               100%; 
+     background-color:            var(background-alt); 
+     text-color:                  var(foreground); 
+     cursor:                      text; 
+     placeholder:                 " Search..."; 
+ } 
+  
+ listview { 
+     enabled:                     true; 
+     columns:                     4; 
+     lines:                       6; 
+     cycle:                       true; 
+     dynamic:                     true; 
+      
+     background-color:            var(background); 
+     text-color:                  var(foreground); 
+     cursor:                      "default"; 
+ } 
+  
+ element { 
+     enabled:                     true; 
+     spacing:                     10px; 
+     margin:                      8px; 
+     padding:                     8px; 
+     border-radius:               100%; 
+     border-color:                var(background-alt); 
+     background-color:            var(background); 
+     text-color:                  var(foreground); 
+     cursor:                      pointer; 
+ } 
+  
+ element selected.normal { 
+     background-color:            var(background-alt); 
+     text-color:                  var(foreground); 
+ } 
+  
+ element-icon { 
+     padding:                     8px 5px 5px 8px; 
+     background-color:            transparent; 
+     text-color:                  inherit; 
+     size:                        32px; 
+     cursor:                      inherit; 
+ } 
+  
+ element-text { 
+     background-color:            transparent; 
+     text-color:                  inherit; 
+     highlight:                   inherit; 
+     cursor:                      inherit; 
+     vertical-align:              0.5; 
+     horizontal-align:            0.0; 
+ } 
+  
+ error-message { 
+     padding:                     100px; 
+     background-color:            var(background); 
+     text-color:                  var(foreground); 
+ } 
+  
+ textbox { 
+     background-color:            var(background); 
+     text-color:                  var(foreground); 
+     vertical-align:              0.5; 
+     horizontal-align:            0.0; 
+     highlight:                   none; 
+ } 
+  
+ // vim:ft=scss
