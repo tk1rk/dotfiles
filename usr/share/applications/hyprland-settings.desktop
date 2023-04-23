@@ -1,0 +1,5 @@
+[Desktop Entry]
+Type=Application
+Name=Hyprland Tweaks
+Icon=/home/shved/.local/bin/icons/hyprland.png
+Exec=/home/shved/.config/rofi/launchers/hyprland/launch.sh
