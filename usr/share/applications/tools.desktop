@@ -1,5 +1,0 @@
-[Desktop Entry]
-Type=Application
-Name=Tools
-Icon=terminal
-Exec=/home/shved/.config/rofi/launchers/tools/launch.sh

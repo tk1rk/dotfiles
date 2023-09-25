@@ -3,15 +3,15 @@ zswap.enabled=1
 GRUB_DEFAULT=saved
 GRUB_TIMEOUT=5
 GRUB_RECORDFAIL_TIMEOUT=$GRUB_TIMEOUT
-GRUB_DISTRIBUTOR="Archcraft"
+GRUB_DISTRIBUTOR="Arch Linux"
 GRUB_CMDLINE_LINUX_DEFAULT="quiet splash resume=UUID=63990f3b-5f07-45ef-9580-bd224634c1b6 vt.
-global_cursor_default=0 audit=0 intel_iommu=ons nvme_load=yes loglevel=3 ipv6.disable=1 rd.systemd.show_status=false rd.
+global_cursor_default=0 audit=0 intel_iommu=on nvme_load=yes loglevel=3 ipv6.disable=1 rd.systemd.show_status=false rd.
 udev.log-priority=3 sysrq_always_enabled=1"
 GRUB_CMDLINE_LINUX=""
 
 f you want to enable the save default function, uncomment the following
  # line, and set GRUB_DEFAULT to saved.
- #GRUB_SAVE_DEFAULT=true
+ GRUB_SAVE_DEFAULT=true
  #GRUB_ENABLE_CRYPTODISK=y
  
  # Uncomment to use basic console
@@ -36,7 +36,7 @@ f you want to enable the save default function, uncomment the following
  #GRUB_DISABLE_RECOVERY=true
  
  # Uncomment this option to enable os-prober execution in the grub-mkconfig command
- GRUB_DISABLE_OS_PROBER=false
+ GRUB_DISABLE_OS_PROBER=true
  # Uncomment and set to the desired menu colors.  Used by normal and wallpaper
  
  # modes only.  Entries specified as foreground/background.

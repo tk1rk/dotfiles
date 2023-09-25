@@ -1,5 +1,0 @@
-[Desktop Entry]
-Type=Application
-Name=Poweroff
-Exec=systemctl poweroff
-Icon=terminal
