@@ -1,4 +1,0 @@
-#!/usr/bin/env sh
-
-exec dbus-launch bspwm
-startx
