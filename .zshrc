@@ -1,4 +1,4 @@
 #!/usr/bin/env zsh
 
-export ZDOTDIR="$HOME/.config/zsh"
+export ZDOTDIR={$ZDOTDIR:-$HOME/.config/zsh}
 [[ -f "$ZDOTDIR/.zshrc" ]] && source "$ZDOTDIR/.zshrc"
