@@ -19,7 +19,7 @@ XTerm.vt100.scrollBar: false
 !}}}
 
 !! Cursor
-
+Xcursor.theme: ArchCursorComplete
 
 !! special
 *.foreground: #F8F8F2                   
