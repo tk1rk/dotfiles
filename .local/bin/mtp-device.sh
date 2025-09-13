@@ -1,7 +1,7 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 
 export DISPLAY=:0
-export XAUTHORITY=/home/shved/.Xauthority
+export XAUTHORITY=/home/tk/.Xauthority
 export DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/1000/bus"
 
 source $HOME/.local/bin/environment.sh
