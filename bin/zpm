@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+# zpm - a fast, robust Zsh plugin manager
+# Requires: bash >= 4.3, curl, tar; optionally git, zsh
+
+set -Eeuo pipefail
+
+# Resolve script directory
+_zpm_script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+_zpm_root="$(cd "${_zpm_script_dir}/.." && pwd)"
+
+# Load libs
+source "${_zpm_root}/lib/zpm/common.sh"
+source "${_zpm_root}/lib/zpm/locks.sh"
+source "${_zpm_root}/lib/zpm/git.sh"
+source "${_zpm_root}/lib/zpm/plugins.sh"
+source "${_zpm_root}/lib/zpm/cli.sh"
+
+# Entry
+zpm_cli_dispatch "${1:-help}" "$@"
